@@ -2,7 +2,7 @@
 galaxy_info:
   author: Werner Dijkerman
   description: Installing and configuring Telegraf
-  company: 
+  company:
   license: license BSD
   min_ansible_version: 1.2
   platforms:
