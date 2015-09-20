@@ -11,7 +11,6 @@ end
 describe 'Telegraf Services' do
     describe service('telegraf') do
         it { should be_enabled }
-        it { should be_running }
     end
 end
 
@@ -23,5 +22,6 @@ describe 'Telegraf Configuration' do
 
         it { should contain "[cpu]" }
         it { should contain "[mem]" }
+        it { should contain "url = \"http://localhost:8086\"" }
     end
 end
