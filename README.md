@@ -68,7 +68,7 @@ Every telegraf agent has these as an default configuration.
 The 2nd parameter `telegraf_plugins_extra` can be used to add plugins specific to the servers goal. Following is an example for using this parameter for MySQL database servers:
 
 	cat group_vars/mysql_database
-	telegraf_plugins_extra
+	telegraf_plugins_extra:
 		- plugin: mysql
 		  config:
 		  	- servers = ["root:{{ mysql_root_password }}@tcp(localhost:3306)/"]
