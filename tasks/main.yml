@@ -1,0 +1,20 @@
+---
+# tasks file for ansible-telegraf
+
+- name: "Install the correct repository"
+  include: "RedHat.yml"
+  when: ansible_os_family == "RedHat"
+
+- name: "Install the correct repository"
+  include: "Debian.yml"
+  when: ansible_os_family == "Debian"
+
+- name: "Copy the template"
+  action: template
+          src=etc-opt-telegraf-telegraf.conf.j2
+          dest=/etc/opt/telegraf/telegraf.conf
+          owner=root
+          group=root
+          mode=644
+  sudo: yes
+  notify: "Restart Telegraf"

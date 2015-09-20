@@ -1,0 +1,13 @@
+---
+
+- name: "Fetch telegraf installation package | RedHat"
+  action: get_url
+          url=http://get.influxdb.org/telegraf/telegraf-{{ telegraf_agent_version }}-1.x86_64.rpm
+          dest=/tmp/telegraf_{{ telegraf_agent_version }}-1.x86_64.rpm
+          mode=0440
+
+- name: "Install telegraf package | RedHat"
+  action: yum
+          name=/tmp/telegraf_{{ telegraf_agent_version }}-1.x86_64.rpm
+          state=installed
+  sudo: yes
