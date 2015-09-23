@@ -30,8 +30,35 @@
 {% if telegraf_plugins_default is defined and telegraf_plugins_default is iterable %}
 {% for item in telegraf_plugins_default %}
 [{{ item.plugin }}]
+{% if item.interval is defined %}
+    interval = "{{ item.interval }}s"
+{% endif %}
 {% if item.config is defined and item.config is iterable %}
 {% for items in item.config %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.tagpass is defined and item.tagpass is iterable %}
+[{{ item.plugin }}.tagpass]
+{% for items in item.tagpass %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.tagdrop is defined and item.tagdrop is iterable %}
+[{{ item.plugin }}.tagdrop]
+{% for items in item.tagdrop %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.pass is defined and item.pass is iterable %}
+[{{ item.plugin }}.pass]
+{% for items in item.pass %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.drop is defined and item.drop is iterable %}
+[{{ item.plugin }}.drop]
+{% for items in item.drop %}
     {{ items }}
 {% endfor %}
 {% endif %}
@@ -42,8 +69,35 @@
 {% if telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable %}
 {% for item in telegraf_plugins_extra %}
 [{{ item.plugin }}]
+{% if item.interval is defined %}
+    interval = "{{ item.interval }}s"
+{% endif %}
 {% if item.config is defined and item.config is iterable %}
 {% for items in item.config %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.tagpass is defined and item.tagpass is iterable %}
+[{{ item.plugin }}.tagpass]
+{% for items in item.tagpass %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.tagdrop is defined and item.tagdrop is iterable %}
+[{{ item.plugin }}.tagdrop]
+{% for items in item.tagdrop %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.pass is defined and item.pass is iterable %}
+[{{ item.plugin }}.pass]
+{% for items in item.pass %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.drop is defined and item.drop is iterable %}
+[{{ item.plugin }}.drop]
+{% for items in item.drop %}
     {{ items }}
 {% endfor %}
 {% endif %}
