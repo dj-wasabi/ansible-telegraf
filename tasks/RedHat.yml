@@ -10,4 +10,5 @@
   action: yum
           name=/tmp/telegraf_{{ telegraf_agent_version }}-1.x86_64.rpm
           state=installed
+  notify: "Restart Telegraf"
   sudo: yes
