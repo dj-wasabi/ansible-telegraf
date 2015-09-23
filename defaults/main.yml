@@ -1,7 +1,7 @@
 ---
 # defaults file for ansible-telegraf
 
-telegraf_agent_version: 0.1.8
+telegraf_agent_version: 0.1.9
 telegraf_agent_interval: 10
 telegraf_agent_debug: False
 telegraf_agent_utc: True
