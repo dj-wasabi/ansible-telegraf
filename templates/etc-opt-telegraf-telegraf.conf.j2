@@ -107,6 +107,11 @@
     {{ items }}
 {% endfor %}
 {% endif %}
+{% if item.specifications is defined and item.specifications is iterable %}
+{% for items in item.specifications %}
+    {{ items }}
+{% endfor %}
+{% endif %}
 
 {% endfor %}
 {% endif %}
