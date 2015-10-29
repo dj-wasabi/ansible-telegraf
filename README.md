@@ -19,11 +19,10 @@ Role Variables
 
 The following parameters can be set for the Telegraf agent:
 
-* `telegraf_agent_version`: The version of Telegraf to install. Default: `0.1.9`
+* `telegraf_agent_version`: The version of Telegraf to install. Default: `0.2.0`
 * `telegraf_agent_interval`: The interval configured for sending data to the server. Default: `10`
 * `telegraf_agent_debug`: Setting the Telegraf in debug mode. Default: `False`
-* `telegraf_agent_utc`: Option for outputting data in UTC. Default: `True`
-* `telegraf_agent_precision`: Precision to write data at. Valid values for Precision are n, u, ms, s, m, and h. Default: `s`
+
 
 You can set tags for the host running telegraf:
 
@@ -62,6 +61,7 @@ With the property `telegraf_plugins_default` it is set to use the default set of
 	  - plugin: mem
 	  - plugin: system
 	  - plugin: swap
+	  - plugin: netstat
 
 Every telegraf agent has these as an default configuration.
  
