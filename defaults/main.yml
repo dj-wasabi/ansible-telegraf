@@ -1,11 +1,9 @@
 ---
 # defaults file for ansible-telegraf
 
-telegraf_agent_version: 0.1.9
+telegraf_agent_version: 0.2.0
 telegraf_agent_interval: 10
 telegraf_agent_debug: False
-telegraf_agent_utc: True
-telegraf_agent_precision: s
 
 telegraf_agent_tags:
 
@@ -24,5 +22,11 @@ telegraf_plugins_default:
   - plugin: mem
   - plugin: system
   - plugin: swap
+  - plugin: netstat
+  - plugin: procstat
+    specifications:
+      - prefix = "" # optional string to prefix measurements
+      - exe = "java" # the name as pgrep can find
+
 
 telegraf_plugins_extra:
