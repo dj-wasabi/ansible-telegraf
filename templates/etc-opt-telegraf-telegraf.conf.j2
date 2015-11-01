@@ -12,8 +12,6 @@
     interval = "{{ telegraf_agent_interval }}s"
     debug = {{ telegraf_agent_debug | lower }}
     hostname = "{{ ansible_fqdn }}"
-    utc = {{ telegraf_agent_utc | lower }}
-    precision = "{{ telegraf_agent_precision }}"
 
 # Configuration for influxdb server to send metrics to
 [outputs]
