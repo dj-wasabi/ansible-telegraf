@@ -104,6 +104,12 @@ Example Playbook
       roles:
          - { role: dj-wasabi.telegraf }
 
+##Contributors
+The following have contributed to this Ansible role:
+
+  * aferrari-technisys
+
+
 Test Kitchen
 ------------
 
