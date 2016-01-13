@@ -1,0 +1,123 @@
+# Telegraf configuration
+
+[tags]
+{% if telegraf_agent_tags is defined and telegraf_agent_tags is iterable %}
+{% for item in telegraf_agent_tags %}
+    {{ item.tag_name }} = "{{ item.tag_value }}"
+{% endfor %}
+{% endif %}
+
+# Configuration for telegraf agent
+[agent]
+    interval = "{{ telegraf_agent_interval }}s"
+    debug = {{ telegraf_agent_debug | lower }}
+    hostname = "{{ ansible_fqdn }}"
+    round_interval = {{ telegraf_agent_round_interval | lower }}
+    flush_interval = "{{ telegraf_agent_flush_interval }}s"
+    flush_jitter = "{{ telegraf_agent_flush_jitter }}s"
+
+###############################################################################
+#                                  OUTPUTS                                    #
+###############################################################################
+
+{% if telegraf_agent_output is defined and telegraf_agent_output is iterable %}
+{% for item in telegraf_agent_output %}
+[[outputs.{{ item.type }}]]
+{% for items in item.config %}
+    {{ items }}
+{% endfor %}
+{% endfor %}
+{% endif %}
+
+###############################################################################
+#                                  INPUTS                                     #
+###############################################################################
+
+{% if telegraf_plugins_default is defined and telegraf_plugins_default is iterable %}
+{% for item in telegraf_plugins_default %}
+[[inputs.{{ item.plugin }}]]
+{% if item.interval is defined %}
+    interval = "{{ item.interval }}s"
+{% endif %}
+{% if item.config is defined and item.config is iterable %}
+{% for items in item.config %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.tagpass is defined and item.tagpass is iterable %}
+[{{ item.plugin }}.tagpass]
+{% for items in item.tagpass %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.tagdrop is defined and item.tagdrop is iterable %}
+[{{ item.plugin }}.tagdrop]
+{% for items in item.tagdrop %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.pass is defined and item.pass is iterable %}
+[{{ item.plugin }}.pass]
+{% for items in item.pass %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.drop is defined and item.drop is iterable %}
+[{{ item.plugin }}.drop]
+{% for items in item.drop %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.specifications is defined and item.specifications is iterable %}
+[[{{item.plugin}}.specifications]]
+{% for items in item.specifications %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
+{% if telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable %}
+{% for item in telegraf_plugins_extra %}
+[[inputs.{{ item.plugin }}]]
+{% if item.interval is defined %}
+    interval = "{{ item.interval }}s"
+{% endif %}
+{% if item.config is defined and item.config is iterable %}
+{% for items in item.config %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.tagpass is defined and item.tagpass is iterable %}
+[{{ item.plugin }}.tagpass]
+{% for items in item.tagpass %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.tagdrop is defined and item.tagdrop is iterable %}
+[{{ item.plugin }}.tagdrop]
+{% for items in item.tagdrop %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.pass is defined and item.pass is iterable %}
+[{{ item.plugin }}.pass]
+{% for items in item.pass %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.drop is defined and item.drop is iterable %}
+[{{ item.plugin }}.drop]
+{% for items in item.drop %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.specifications is defined and item.specifications is iterable %}
+[[{{item.plugin}}.specifications]]
+{% for items in item.specifications %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endif %}
