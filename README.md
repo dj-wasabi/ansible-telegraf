@@ -19,10 +19,12 @@ Role Variables
 
 The following parameters can be set for the Telegraf agent:
 
-* `telegraf_agent_version`: The version of Telegraf to install. Default: `0.2.0`
+* `telegraf_agent_version`: The version of Telegraf to install. Default: `0.10.0`
 * `telegraf_agent_interval`: The interval configured for sending data to the server. Default: `10`
 * `telegraf_agent_debug`: Setting the Telegraf in debug mode. Default: `False`
-
+* `telegraf_agent_round_interval`: Rounds collection interval to 'interval' Default: True
+* `telegraf_agent_flush_interval`: Default data flushing interval for all outputs. Default: 10
+* `telegraf_agent_flush_jitter`: Jitter the flush interval by a random amount. Default: 0
 
 You can set tags for the host running telegraf:
 
@@ -35,7 +37,7 @@ Specifying an output. The default is set to localhost, you'll have to specify th
 	telegraf_agent_output:
 	  - type: influxdb
 	    config:
-	      - url = "http://localhost:8086"
+	      - urls = ["http://localhost:8086"]
 	      - database = "telegraf"
 
 The config will be printed line by line into the configuration, so you could also use:

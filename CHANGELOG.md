@@ -5,6 +5,11 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
+0.3.0 (2016-01-13)
+
+  * Made it work with telegraf 0.10.0
+  * Default installation: 0.10.0
+
 0.2.0 (2015-11-14)
 
   * Fixed kitchen test setup

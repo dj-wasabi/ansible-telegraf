@@ -2,7 +2,7 @@
 # defaults file for ansible-telegraf
 
 telegraf_agent_version: 0.10.0
-telegraf_agent_interval: 60
+telegraf_agent_interval: 10
 telegraf_agent_debug: False
 telegraf_agent_round_interval: True
 telegraf_agent_flush_interval: 10
