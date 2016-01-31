@@ -1,6 +1,10 @@
 dj-wasabi.telegraf
 =========
 
+Build status:
+
+[![Build Status](https://travis-ci.org/dj-wasabi/ansible-telegraf.svg?branch=master)](https://travis-ci.org/dj-wasabi/ansible-telegraf)
+
 This role will install and configure telegraf.
 
 Telegraf is an agent written in Go for collecting metrics from the system it's running on, or from other services, and writing them into InfluxDB.
