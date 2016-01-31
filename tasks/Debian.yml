@@ -2,13 +2,13 @@
 
 - name: "Fetch telegraf installation package | Debian"
   action: get_url
-          url=http://get.influxdb.org/telegraf/telegraf-{{ telegraf_agent_version }}_amd64.deb
-          dest=/tmp/telegraf_{{ telegraf_agent_version }}_amd64.deb
+          url=http://get.influxdb.org/telegraf/telegraf_{{ telegraf_agent_version }}-1_amd64.deb
+          dest=/tmp/telegraf_{{ telegraf_agent_version }}-1_amd64.deb
           mode=0440
 
 - name: "Install telegraf package | Debian"
   action: apt
-          deb=/tmp/telegraf_{{ telegraf_agent_version }}_amd64.deb
+          deb=/tmp/telegraf_{{ telegraf_agent_version }}-1_amd64.deb
           state=installed
   notify: "Restart Telegraf"
   sudo: yes

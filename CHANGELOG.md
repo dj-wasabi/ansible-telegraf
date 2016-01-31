@@ -5,6 +5,11 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
+0.x.x (2016-01-13)
+
+  * Fixed test for test-kitchen
+  * Added travis-ci test for testing default installation when PR is made
+
 0.3.0 (2016-01-13)
 
   * Made it work with telegraf 0.10.0
