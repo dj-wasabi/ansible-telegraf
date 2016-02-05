@@ -5,10 +5,12 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
-0.x.x (2016-01-13)
+0.4.0 (2016-02-05)
 
   * Fixed test for test-kitchen
   * Added travis-ci test for testing default installation when PR is made
+  * Fixed Download url for Debian
+  * Removed default entry for telegraf_plugins_extra
 
 0.3.0 (2016-01-13)
 
