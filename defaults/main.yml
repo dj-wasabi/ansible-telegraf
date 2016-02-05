@@ -30,7 +30,3 @@ telegraf_plugins_default:
   - plugin: netstat
 
 telegraf_plugins_extra:
-  - plugin: procstat
-    specifications:
-      - prefix = "" # optional string to prefix measurements
-      - exe = "java" # the name as pgrep can find
