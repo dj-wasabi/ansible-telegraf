@@ -22,6 +22,6 @@ describe 'Telegraf Configuration' do
 
         it { should contain "[[inputs.cpu]]" }
         it { should contain "[[inputs.mem]]" }
-        it { should contain "urls = \"http://localhost:8086\"" }
+        it { should contain "urls = [\"http://localhost:8086\"]" }
     end
 end
