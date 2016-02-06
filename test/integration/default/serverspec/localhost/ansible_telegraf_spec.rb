@@ -20,8 +20,8 @@ describe 'Telegraf Configuration' do
         it { should be_owned_by 'root'}
         it { should be_grouped_into 'root'}
 
-        it { should contain "[cpu]" }
-        it { should contain "[mem]" }
-        it { should contain "url = \"http://localhost:8086\"" }
+        it { should contain "[[inputs.cpu]]" }
+        it { should contain "[[inputs.mem]]" }
+        it { should contain "urls = \"http://localhost:8086\"" }
     end
 end
