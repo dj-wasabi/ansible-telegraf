@@ -1,7 +1,9 @@
 ---
 # defaults file for ansible-telegraf
 
-telegraf_agent_version: 0.10.1
+telegraf_agent_version: 0.13.0
+telegraf_agent_deb_url: https://dl.influxdata.com/telegraf/releases/telegraf_{{ telegraf_agent_version }}_amd64.deb
+telegraf_agent_rpm_url: https://dl.influxdata.com/telegraf/releases/telegraf-{{ telegraf_agent_version }}.x86_64.rpm
 telegraf_agent_interval: 10
 telegraf_agent_debug: False
 telegraf_agent_round_interval: True
