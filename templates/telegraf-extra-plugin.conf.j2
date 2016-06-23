@@ -1,33 +1,7 @@
-# Telegraf configuration
 
-[tags]
-{% if telegraf_agent_tags is defined and telegraf_agent_tags is iterable %}
-{% for item in telegraf_agent_tags %}
-    {{ item.tag_name }} = "{{ item.tag_value }}"
-{% endfor %}
-{% endif %}
-
-# Configuration for telegraf itself
-[agent]
-    interval = "{{ telegraf_agent_interval }}s"
-    debug = {{ telegraf_agent_debug | lower }}
-    hostname = "{{ ansible_fqdn }}"
-
-# Configuration for influxdb server to send metrics to
-[outputs]
-{% if telegraf_agent_output is defined and telegraf_agent_output is iterable %}
-{% for item in telegraf_agent_output %}
-[outputs.{{ item.type }}]
-{% for items in item.config %}
-    {{ items }}
-{% endfor %}
-{% endfor %}
-{% endif %}
-
-# PLUGINS
-{% if telegraf_plugins_default is defined and telegraf_plugins_default is iterable %}
-{% for item in telegraf_plugins_default %}
-[{{ item.plugin }}]
+{% if telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable %}
+{% for item in telegraf_plugins_extra %}
+[[inputs.{{ item.plugin }}]]
 {% if item.interval is defined %}
     interval = "{{ item.interval }}s"
 {% endif %}
@@ -66,7 +40,5 @@
     {{ items }}
 {% endfor %}
 {% endif %}
-
-
 {% endfor %}
 {% endif %}

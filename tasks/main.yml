@@ -10,27 +10,39 @@
   when: ansible_os_family == "Debian"
 
 - name: "Set fact by remove the dots from version"
-  action: set_fact
-          telegraf_ver="{{ telegraf_agent_version.replace('.','') }}"
+  set_fact:
+    telegraf_ver: "{{ telegraf_agent_version.replace('.','') }}"
 
 - name: "Copy the template for versions < 0.10.0"
-  action: template
-          src=etc-opt-telegraf-telegraf.conf.j2
-          dest=/etc/opt/telegraf/telegraf.conf
-          owner=root
-          group=root
-          mode=644
+  template:
+    src: etc-opt-telegraf-telegraf.conf.j2
+    dest: /etc/opt/telegraf/telegraf.conf
+    owner: root
+    group: root
+    mode: 644
   when: telegraf_ver < 100
   sudo: yes
   notify: "Restart Telegraf"
 
 - name: "Copy the template for versions >= 0.10.0"
-  action: template
-          src=telegraf.conf.j2
-          dest=/etc/telegraf/telegraf.conf
-          owner=root
-          group=root
-          mode=644
+  template:
+    src: telegraf.conf.j2
+    dest: /etc/telegraf/telegraf.conf
+    owner: root
+    group: root
+    mode: 644
   when: telegraf_ver >= 100
+  sudo: yes
+  notify: "Restart Telegraf"
+
+- name: "Copy telegraf extra plugins"
+  template:
+    src: "telegraf-extra-plugin.conf.j2"
+    dest: "/etc/telegraf/telegraf.d/{{ item.plugin }}.conf"
+    owner: root
+    group: root
+    mode: 644
+  with_items: "{{ telegraf_plugins_extra }}"
+  when: "telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable"
   sudo: yes
   notify: "Restart Telegraf"
