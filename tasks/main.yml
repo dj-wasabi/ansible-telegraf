@@ -37,7 +37,7 @@
 
 - name: "Copy telegraf extra plugins"
   template:
-    src: "telegraf.conf.j2"
+    src: "telegraf-extra-plugin.conf.j2"
     dest: "/etc/telegraf/telegraf.d/{{ item.plugin }}.conf"
     owner: root
     group: root
