@@ -1,4 +1,7 @@
-.kitchen/
-.kitchen.local.yml
-.idea/
+.idea
+.molecule
+tests/.cache
+.cache
+__pycache__
+*.retry
 pmip

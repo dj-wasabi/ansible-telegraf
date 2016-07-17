@@ -19,7 +19,7 @@
     dest: /etc/opt/telegraf/telegraf.conf
     owner: root
     group: root
-    mode: 644
+    mode: 0644
   when: telegraf_ver < 100
   sudo: yes
   notify: "Restart Telegraf"
@@ -30,7 +30,7 @@
     dest: /etc/telegraf/telegraf.conf
     owner: root
     group: root
-    mode: 644
+    mode: 0644
   when: telegraf_ver >= 100
   sudo: yes
   notify: "Restart Telegraf"

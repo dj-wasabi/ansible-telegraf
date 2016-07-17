@@ -1,0 +1,18 @@
+---
+ansible:
+  playbook: playbook.yml
+
+docker:
+  containers:
+  - name: telegraf-centos
+    ansible_groups:
+      - group1
+    image: milcom/centos7-systemd
+    image_version: latest
+    privileged: True
+  - name: telegraf-debian
+    ansible_groups:
+      - group2
+    image: maint/debian-systemd
+    image_version: latest
+    privileged: True

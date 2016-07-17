@@ -23,7 +23,9 @@ Role Variables
 
 The following parameters can be set for the Telegraf agent:
 
-* `telegraf_agent_version`: The version of Telegraf to install. Default: `0.10.0`
+* `telegraf_agent_version`: The version of Telegraf to install. Default: `1.0.0`
+* `telegraf_agent_rpm_url`: The full path to the RPM file located on a webserver. 
+* `telegraf_agent_deb_url`:  The full path to the DEB file located on a webserver.
 * `telegraf_agent_interval`: The interval configured for sending data to the server. Default: `10`
 * `telegraf_agent_debug`: Setting the Telegraf in debug mode. Default: `False`
 * `telegraf_agent_round_interval`: Rounds collection interval to 'interval' Default: True
@@ -114,12 +116,11 @@ Example Playbook
 The following have contributed to this Ansible role:
 
   * aferrari-technisys
+  * stvnwrgs
 
+# Molecule
 
-Test Kitchen
-------------
-
-This roles is configured to be tested with Test Kitchen. You can find on this page some more information regarding Test Kitchen: http://werner-dijkerman.nl/2015/08/20/using-test-kitchen-with-docker-and-serverspec-to-test-ansible-roles/
+This roles is configured to be tested with Molecule. You can find on this page some more information regarding Molecule: https://werner-dijkerman.nl/2016/07/10/testing-ansible-roles-with-molecule-testinfra-and-docker/
 
 License
 -------

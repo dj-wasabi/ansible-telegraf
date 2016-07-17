@@ -1,0 +1,6 @@
+localhost
+[group1]
+telegraf-centos
+
+[group2]
+telegraf-debian
