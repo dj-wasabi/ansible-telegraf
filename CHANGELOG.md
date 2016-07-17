@@ -5,6 +5,13 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
+0.5.0 (2016-07-17)
+
+  * Removed Test Kitchen tests
+  * Added Molecule tests and travis make use of them
+  * Updated default version to 1.0.0 beta2
+  * Feature/add extra plugins to telegrafd folder #5 (By pull request: stvnwrgs (Thanks!))
+
 0.4.0 (2016-02-05)
 
   * Fixed test for test-kitchen
