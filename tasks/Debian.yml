@@ -1,14 +1,45 @@
 ---
 
-- name: "Fetch telegraf installation package | Debian"
-  action: get_url
-          url={{ telegraf_agent_deb_url }}
-          dest=/tmp/telegraf_{{ telegraf_agent_version }}-1_amd64.deb
-          mode=0440
+- name: Ensure the system can use the HTTPS transport for APT.
+  stat:
+    path: /usr/lib/apt/methods/https
+  register: apt_https_transport
+  tags:
+    - telegraf
+    - packages
+
+- name: Install APT HTTPS transport.
+  apt:
+    name: "apt-transport-https"
+    state: present
+  when: not apt_https_transport.stat.exists
+  tags:
+    - telegraf
+    - packages
+
+- name: Download Influxdb apt key.
+  apt_key:
+    url: "https://repos.influxdata.com/influxdb.key"
+    state: present
+  tags:
+    - telegraf
+    - packages
+
+- name: Add Influxdb repository.
+  apt_repository:
+    repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
+    filename: "influxdb"
+    state: present
+  tags:
+    - telegraf
+    - packages
 
 - name: "Install telegraf package | Debian"
   action: apt
-          deb=/tmp/telegraf_{{ telegraf_agent_version }}-1_amd64.deb
+          name=telegraf
           state=installed
   notify: "Restart Telegraf"
   sudo: yes
+  tags:
+  - telegraf
+  - packages
