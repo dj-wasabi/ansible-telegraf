@@ -5,6 +5,10 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
+0.5.1 (2016-08-24)
+
+  * fixed issue with ansible not getting the package #6 (By pull request: thecodeassassin (Thanks!))
+
 0.5.0 (2016-07-17)
 
   * Removed Test Kitchen tests
