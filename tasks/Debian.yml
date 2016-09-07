@@ -25,7 +25,7 @@
     - telegraf
     - packages
 
-- name: Add Influxdb repository.
+- name: Add Influxdb repository (using LSB).
   apt_repository:
     repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_lsb.codename }} stable"
     filename: "influxdb"
@@ -33,6 +33,18 @@
   tags:
     - telegraf
     - packages
+  when: ansible_lsb is defined
+
+- name: Add Influxdb repository.
+  apt_repository:
+    repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
+    filename: "influxdb"
+    state: present
+  become: yes
+  tags:
+    - telegraf
+    - packages
+  when: ansible_lsb is not defined
 
 - name: "Install telegraf package | Debian"
   action: apt
