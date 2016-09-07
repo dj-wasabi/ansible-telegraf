@@ -13,6 +13,7 @@
     name: "apt-transport-https"
     state: present
   when: not apt_https_transport.stat.exists
+  become: yes
   tags:
     - telegraf
     - packages
@@ -21,6 +22,7 @@
   apt_key:
     url: "https://repos.influxdata.com/influxdb.key"
     state: present
+  become: yes
   tags:
     - telegraf
     - packages
@@ -30,6 +32,7 @@
     repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_lsb.codename }} stable"
     filename: "influxdb"
     state: present
+  become: yes
   tags:
     - telegraf
     - packages
@@ -39,7 +42,7 @@
           name=telegraf
           state=installed
   notify: "Restart Telegraf"
-  sudo: yes
+  become: yes
   tags:
   - telegraf
   - packages
