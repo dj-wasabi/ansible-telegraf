@@ -1,6 +1,4 @@
 from testinfra.utils.ansible_runner import AnsibleRunner
-import pytest
-import requests
 
 testinfra_hosts = AnsibleRunner('.molecule/ansible_inventory').get_hosts('all')
 
