@@ -3,6 +3,7 @@
 
 #telegraf_agent_version: 0.10.1
 telegraf_agent_version: 1.0.0
+telegraf_agent_hostname: "{{ ansible_fqdn }}"
 telegraf_agent_version_sub_l: _beta2
 telegraf_agent_version_sub_u: -beta2
 telegraf_agent_interval: 10
