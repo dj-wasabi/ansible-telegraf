@@ -21,7 +21,7 @@
     group: root
     mode: 0644
   when: telegraf_ver < 100
-  sudo: yes
+  become: yes
   notify: "Restart Telegraf"
 
 - name: "Copy the template for versions >= 0.10.0"
@@ -32,7 +32,7 @@
     group: root
     mode: 0644
   when: telegraf_ver >= 100
-  sudo: yes
+  become: yes
   notify: "Restart Telegraf"
 
 - name: "Copy telegraf extra plugins"
@@ -44,5 +44,5 @@
     mode: 644
   with_items: "{{ telegraf_plugins_extra }}"
   when: "telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable"
-  sudo: yes
+  become: yes
   notify: "Restart Telegraf"
