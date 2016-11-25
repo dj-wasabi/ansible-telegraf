@@ -1,14 +1,14 @@
 ---
 
 - name: "Enable EPEL"
-  action: yum
-          name=epel-release
-          state=installed
+  yum:
+    name: epel-release
+    state: installed
 
 - name: "Installing some dependencies"
-  action: yum
-          name={{ item }}
-          state=installed
+  yum:
+    name: "{{ item }}"
+    state: installed
   with_items:
     - python-pip
     - python-devel
@@ -17,22 +17,22 @@
     - openssl-devel
 
 - name: "Installing PIP dependensies"
-  action: pip
-          name={{ item }}
-          state=present
+  pip:
+    name: "{{ item }}"
+    state: present
   with_items:
     - urllib3
     - pyopenssl
     - ndg-httpsclient
 
 - name: "Fetch telegraf installation package | RedHat"
-  action: get_url
-          url="{{ telegraf_agent_rpm_url }}"
-          dest=/tmp/telegraf_{{ telegraf_agent_version }}.x86_64.rpm
-          mode=0440
+  get_url:
+    url: "{{ telegraf_agent_rpm_url }}"
+    dest: "/tmp/telegraf_{{ telegraf_agent_version }}.x86_64.rpm"
+    mode: 0440
 
 - name: "Install telegraf package | RedHat"
-  action: yum
-          name=/tmp/telegraf_{{ telegraf_agent_version }}.x86_64.rpm
-          state=installed
+  yum:
+    name: "/tmp/telegraf_{{ telegraf_agent_version }}.x86_64.rpm"
+    state: installed
   notify: "Restart Telegraf"

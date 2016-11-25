@@ -49,9 +49,9 @@
   when: ansible_lsb is not defined
 
 - name: "Install telegraf package | Debian"
-  action: apt
-          name=telegraf
-          state=installed
+  apt:
+    name: telegraf
+    state: installed
   notify: "Restart Telegraf"
   become: yes
   tags:
