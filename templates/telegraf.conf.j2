@@ -11,7 +11,7 @@
 [agent]
     interval = "{{ telegraf_agent_interval }}s"
     debug = {{ telegraf_agent_debug | lower }}
-    hostname = "{{ ansible_fqdn }}"
+    hostname = "{{ telegraf_agent_hostname }}"
     round_interval = {{ telegraf_agent_round_interval | lower }}
     flush_interval = "{{ telegraf_agent_flush_interval }}s"
     flush_jitter = "{{ telegraf_agent_flush_jitter }}s"
