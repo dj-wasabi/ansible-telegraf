@@ -9,10 +9,6 @@
   include: "Debian.yml"
   when: ansible_os_family == "Debian"
 
-- name: "Set fact by remove the dots from version"
-  set_fact:
-    telegraf_ver: "{{ telegraf_agent_version.replace('.','') }}"
-
 - name: "Copy the template for versions < 0.10.0"
   template:
     src: etc-opt-telegraf-telegraf.conf.j2
@@ -20,7 +16,7 @@
     owner: root
     group: root
     mode: 0644
-  when: telegraf_ver < 100
+  when: telegraf_agent_version|version_compare('0.10.0', '<')
   sudo: yes
   notify: "Restart Telegraf"
 
@@ -31,7 +27,7 @@
     owner: root
     group: root
     mode: 0644
-  when: telegraf_ver >= 100
+  when: telegraf_agent_version|version_compare('0.10.0', '>=')
   sudo: yes
   notify: "Restart Telegraf"
 
