@@ -2,6 +2,12 @@
 ansible:
   playbook: playbook.yml
 
+driver:
+  name: docker
+
+verifier:
+  name: testinfra
+
 docker:
   containers:
   - name: telegraf-centos
