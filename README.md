@@ -27,10 +27,18 @@ The following parameters can be set for the Telegraf agent:
 * `telegraf_agent_rpm_url`: The full path to the RPM file located on a webserver. 
 * `telegraf_agent_deb_url`:  The full path to the DEB file located on a webserver.
 * `telegraf_agent_interval`: The interval configured for sending data to the server. Default: `10`
-* `telegraf_agent_debug`: Setting the Telegraf in debug mode. Default: `False`
+* `telegraf_agent_debug`: Run Telegraf in debug mode. Default: `False`
 * `telegraf_agent_round_interval`: Rounds collection interval to 'interval' Default: True
 * `telegraf_agent_flush_interval`: Default data flushing interval for all outputs. Default: 10
 * `telegraf_agent_flush_jitter`: Jitter the flush interval by a random amount. Default: 0
+* `telegraf_agent_collection_jitter`: Jitter the collection by a random amount. Default: 0 (since v0.13)
+* `telegraf_agent_metric_batch_size`: The agent metric batch size. Default: 1000  (since v0.13)
+* `telegraf_agent_metric_buffer_limit`: The agent metric buffer limit. Default: 10000  (since v0.13)
+* `telegraf_agent_quiet`: Run Telegraf in quiet mode (error messages only). Default: `False` (since v0.13)
+* `telegraf_agent_logfile`: The agent logfile name. Default: '' (means to log to stdout) (since v1.1)
+* `telegraf_agent_omit_hostname`: Do no set the "host" tag in the agent. Default: `False` (since v1.1)
+
+Full agent settings reference: https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent-configuration
 
 You can set tags for the host running telegraf:
 
@@ -117,6 +125,7 @@ The following have contributed to this Ansible role:
 
   * aferrari-technisys
   * stvnwrgs
+  * lhoss
 
 # Molecule
 
