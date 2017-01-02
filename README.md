@@ -126,6 +126,9 @@ The following have contributed to this Ansible role:
   * aferrari-technisys
   * stvnwrgs
   * lhoss
+  * thecodeassassin
+  * Ismael
+  * romainbureau
 
 # Molecule
 
