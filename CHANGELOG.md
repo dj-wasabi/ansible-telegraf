@@ -5,6 +5,18 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
+0.6.0 (2017-01-02)
+
+  * Fix the Influxdb repo for "hybrid" debian distros (like "jessie/sid") #9 (By pull request: Ismael (Thanks!))
+  * Do "become" for the steps that require root access on Debian #10 (By pull request: Ismael (Thanks!))
+  * Fix the Influxdb repo for "hybrid" debian distros (like "jessie/sid") #11 (By pull request: Ismael (Thanks!))
+  * Removed imports #12
+  * Fixing molecule #15
+  * set telegraf hostname in defaults. #13 (By pull request: romainbureau (Thanks!))
+  * use version_compare filter … #14 (By pull request: lhoss (Thanks!))
+  * support missing agent settings upto telegraf v1.1 #16 (By pull request: lhoss (Thanks!))
+  * update the README with the latest v0.13 - v1.1 agent settings #17 (By pull request: lhoss (Thanks!))
+
 0.5.1 (2016-08-24)
 
   * fixed issue with ansible not getting the package #6 (By pull request: thecodeassassin (Thanks!))
