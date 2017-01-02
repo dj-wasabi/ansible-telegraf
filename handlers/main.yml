@@ -6,4 +6,4 @@
           name=telegraf
           state=restarted
           enabled=yes
-  sudo: yes
+  become: yes

@@ -16,8 +16,8 @@
     owner: root
     group: root
     mode: 0644
+  become: yes
   when: telegraf_agent_version|version_compare('0.10.0', '<')
-  sudo: yes
   notify: "Restart Telegraf"
 
 - name: "Copy the template for versions >= 0.10.0"
@@ -27,8 +27,8 @@
     owner: root
     group: root
     mode: 0644
+  become: yes
   when: telegraf_agent_version|version_compare('0.10.0', '>=')
-  sudo: yes
   notify: "Restart Telegraf"
 
 - name: "Copy telegraf extra plugins"
@@ -37,8 +37,8 @@
     dest: "/etc/telegraf/telegraf.d/{{ item.plugin }}.conf"
     owner: root
     group: root
-    mode: 644
+    mode: 0644
   with_items: "{{ telegraf_plugins_extra }}"
   when: "telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable"
-  sudo: yes
+  become: yes
   notify: "Restart Telegraf"
