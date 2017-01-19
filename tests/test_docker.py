@@ -12,9 +12,9 @@ def test_telegraf_running_and_enabled(Service, SystemInfo):
 
 def test_telegraf_dot_conf(File):
     telegraf = File("/etc/telegraf/telegraf.conf")
-    assert telegraf.user == "root"
-    assert telegraf.group == "root"
-    assert telegraf.mode == 0o644
+    assert telegraf.user == "telegraf"
+    assert telegraf.group == "telegraf"
+    assert telegraf.mode == 0o640
     assert telegraf.contains('[[inputs.cpu]]')
 
 

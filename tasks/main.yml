@@ -13,9 +13,9 @@
   template:
     src: etc-opt-telegraf-telegraf.conf.j2
     dest: /etc/opt/telegraf/telegraf.conf
-    owner: root
-    group: root
-    mode: 0644
+    owner: telegraf
+    group: telegraf
+    mode: 0640
   become: yes
   when: telegraf_agent_version|version_compare('0.10.0', '<')
   notify: "Restart Telegraf"
@@ -24,9 +24,9 @@
   template:
     src: telegraf.conf.j2
     dest: /etc/telegraf/telegraf.conf
-    owner: root
-    group: root
-    mode: 0644
+    owner: telegraf
+    group: telegraf
+    mode: 0640
   become: yes
   when: telegraf_agent_version|version_compare('0.10.0', '>=')
   notify: "Restart Telegraf"
@@ -35,9 +35,9 @@
   template:
     src: "telegraf-extra-plugin.conf.j2"
     dest: "/etc/telegraf/telegraf.d/{{ item.plugin }}.conf"
-    owner: root
-    group: root
-    mode: 0644
+    owner: telegraf
+    group: telegraf
+    mode: 0640
   with_items: "{{ telegraf_plugins_extra }}"
   when: "telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable"
   become: yes
