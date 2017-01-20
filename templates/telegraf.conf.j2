@@ -54,6 +54,12 @@
     {{ items }}
 {% endfor %}
 {% endif %}
+{% if item.tags is defined and item.tags is iterable %}
+[inputs.{{ item.plugin }}.tags]
+{% for items in item.tags %}
+    {{ items }}
+{% endfor %}
+{% endif %}
 {% if item.tagpass is defined and item.tagpass is iterable %}
 [{{ item.plugin }}.tagpass]
 {% for items in item.tagpass %}
