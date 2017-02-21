@@ -4,7 +4,6 @@
 #telegraf_agent_version: 0.10.1
 telegraf_agent_version: 1.0.0
 telegraf_agent_hostname: "{{ ansible_fqdn }}"
-telegraf_agent_version_sub_l: _beta2
 telegraf_agent_interval: 10
 telegraf_agent_debug: False
 telegraf_agent_round_interval: True
@@ -21,7 +20,6 @@ telegraf_agent_quiet: False
 telegraf_agent_logfile: ""
 telegraf_agent_omit_hostname: False
 
-telegraf_agent_rpm_url: https://dl.influxdata.com/telegraf/releases/telegraf-{{ telegraf_agent_version }}{{ telegraf_agent_version_sub_l }}.x86_64.rpm
 telegraf_agent_tags:
 
 telegraf_agent_output:
