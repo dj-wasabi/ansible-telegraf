@@ -79,7 +79,7 @@ With the property `telegraf_plugins_default` it is set to use the default set of
 	  - plugin: swap
 	  - plugin: netstat
 
-Every telegraf agent has these as an default configuration.
+Every telegraf agent has these as a default configuration.
 
 The 2nd parameter `telegraf_plugins_extra` can be used to add plugins specific to the servers goal. Following is an example for using this parameter for MySQL database servers:
 
