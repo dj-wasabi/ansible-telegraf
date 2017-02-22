@@ -25,14 +25,16 @@
     - pyopenssl
     - ndg-httpsclient
 
-- name: "Fetch telegraf installation package | RedHat"
-  action: get_url
-          url="{{ telegraf_agent_rpm_url }}"
-          dest=/tmp/telegraf_{{ telegraf_agent_version }}.x86_64.rpm
-          mode=0440
+- name: "Add yum repository | RedHat"
+  yum_repository:
+    name: influxdb
+    description: InfluxDB Repository - RHEL $releasever
+    baseurl: https://repos.influxdata.com/rhel/$releasever/$basearch/stable
+    gpgcheck: yes
+    gpgkey: https://repos.influxdata.com/influxdb.key
 
 - name: "Install telegraf package | RedHat"
   action: yum
-          name=/tmp/telegraf_{{ telegraf_agent_version }}.x86_64.rpm
+          name="telegraf-{{ telegraf_agent_version }}"
           state=installed
   notify: "Restart Telegraf"

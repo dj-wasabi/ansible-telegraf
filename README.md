@@ -24,8 +24,6 @@ Role Variables
 The following parameters can be set for the Telegraf agent:
 
 * `telegraf_agent_version`: The version of Telegraf to install. Default: `1.0.0`
-* `telegraf_agent_rpm_url`: The full path to the RPM file located on a webserver.
-* `telegraf_agent_deb_url`:  The full path to the DEB file located on a webserver.
 * `telegraf_agent_interval`: The interval configured for sending data to the server. Default: `10`
 * `telegraf_agent_debug`: Run Telegraf in debug mode. Default: `False`
 * `telegraf_agent_round_interval`: Rounds collection interval to 'interval' Default: True
@@ -81,7 +79,7 @@ With the property `telegraf_plugins_default` it is set to use the default set of
 	  - plugin: swap
 	  - plugin: netstat
 
-Every telegraf agent has these as an default configuration.
+Every telegraf agent has these as a default configuration.
 
 The 2nd parameter `telegraf_plugins_extra` can be used to add plugins specific to the servers goal. Following is an example for using this parameter for MySQL database servers:
 
