@@ -1,14 +1,14 @@
 ---
 
 - name: "Enable EPEL"
-  action: yum
-          name=epel-release
-          state=installed
+  yum:
+    name: epel-release
+    state: installed
 
 - name: "Installing some dependencies"
-  action: yum
-          name={{ item }}
-          state=installed
+  yum:
+    name: "{{ item }}"
+    state: installed
   with_items:
     - python-pip
     - python-devel
@@ -17,9 +17,9 @@
     - openssl-devel
 
 - name: "Installing PIP dependensies"
-  action: pip
-          name={{ item }}
-          state=present
+  pip:
+    name: "{{ item }}"
+    state: present
   with_items:
     - urllib3
     - pyopenssl
@@ -34,7 +34,7 @@
     gpgkey: https://repos.influxdata.com/influxdb.key
 
 - name: "Install telegraf package | RedHat"
-  action: yum
-          name="telegraf-{{ telegraf_agent_version }}"
-          state=installed
+  yum:
+    name: "telegraf-{{ telegraf_agent_version }}"
+    state: installed
   notify: "Restart Telegraf"
