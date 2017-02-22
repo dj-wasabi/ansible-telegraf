@@ -2,14 +2,14 @@
 - hosts: all
   pre_tasks:
     - name: "Installing which on CentOS"
-      action: yum
-              name=which
-              state=installed
+      yum:
+        name: which
+        state: installed
       when: ansible_distribution == 'CentOS'
     - name: "Installing wget on Debian"
-      action: apt
-              name=wget
-              state=installed
+      apt:
+        name: wget
+        state: installed
       when: ansible_distribution == 'Debian'
   roles:
     - role: ansible-telegraf
