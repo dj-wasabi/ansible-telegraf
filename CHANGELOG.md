@@ -5,6 +5,16 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
+0.7.0 (2017-02-23)
+
+  * Replace action by modules #26 (By pull request: tszym (Thanks!))
+  * Use yum repository to install telegraf on RedHat #25 (By pull request: tszym (Thanks!))
+  * Remove for-loop in extra-plugin template #24 (By pull request: emersondispatch (Thanks!))
+  * Update Debian.yml #23 (By pull request: zend0 (Thanks!))
+  * extra plugins tags #21 (By pull request: oboukili (Thanks!))
+  * Input tags support #20 (By pull request: szibis (Thanks!))
+  * Fix telegraf confguration permissions #19 (By pull request: szibis (Thanks!))
+
 0.6.0 (2017-01-02)
 
   * Fix the Influxdb repo for "hybrid" debian distros (like "jessie/sid") #9 (By pull request: Ismael (Thanks!))

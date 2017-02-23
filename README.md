@@ -1,7 +1,6 @@
-dj-wasabi.telegraf
-=========
+# dj-wasabi.telegraf
 
-Build status:
+## Build status:
 
 [![Build Status](https://travis-ci.org/dj-wasabi/ansible-telegraf.svg?branch=master)](https://travis-ci.org/dj-wasabi/ansible-telegraf)
 
@@ -13,13 +12,21 @@ Design goals are to have a minimal memory footprint with a plugin system so that
 
 (https://github.com/influxdb/telegraf)
 
-Requirements
-------------
+## Requirements
+
 
 No requirements. (Yes, an Influxdb server somewhere on the network will help though ;-) )
 
-Role Variables
---------------
+## Upgrade
+### 0.7.0
+
+There was an issue:
+
+    If I configure a telegraf_plugins_extra, run ansible, delete the plugin and run ansible again, the plugin stays on the machine.
+
+
+
+## Role Variables
 
 The following parameters can be set for the Telegraf agent:
 
@@ -112,12 +119,11 @@ An example might look like this:
 
 
 
-Dependencies
-------------
+## Dependencies
+
 No dependencies
 
-Example Playbook
-----------------
+## Example Playbook
 
     - hosts: servers
       roles:
@@ -133,17 +139,15 @@ The following have contributed to this Ansible role:
   * Ismael
   * romainbureau
 
-# Molecule
+## Molecule
 
 This roles is configured to be tested with Molecule. You can find on this page some more information regarding Molecule: https://werner-dijkerman.nl/2016/07/10/testing-ansible-roles-with-molecule-testinfra-and-docker/
 
-License
--------
+## License
 
 BSD
 
-Author Information
-------------------
+## Author Information
 
 Please let me know if you have issues. Pull requests are also accepted! :-)
 
