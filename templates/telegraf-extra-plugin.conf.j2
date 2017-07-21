@@ -1,5 +1,3 @@
-{% if telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable %}
-{% for item in telegraf_plugins_extra %}
 [[inputs.{{ item.plugin }}]]
 {% if item.interval is defined %}
     interval = "{{ item.interval }}s"
@@ -43,7 +41,5 @@
 [[{{item.plugin}}.specifications]]
 {% for items in item.specifications %}
     {{ items }}
-{% endfor %}
-{% endif %}
 {% endfor %}
 {% endif %}
