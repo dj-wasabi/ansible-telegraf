@@ -56,5 +56,5 @@
   notify: "Restart Telegraf"
   become: yes
   tags:
-  - telegraf
-  - packages
+    - telegraf
+    - packages
