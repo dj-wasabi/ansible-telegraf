@@ -1,7 +1,6 @@
 ---
 # defaults file for ansible-telegraf
 
-#telegraf_agent_version: 0.10.1
 telegraf_agent_version: 1.0.0
 telegraf_agent_hostname: "{{ ansible_fqdn }}"
 telegraf_agent_interval: 10
@@ -10,13 +9,13 @@ telegraf_agent_round_interval: True
 telegraf_agent_flush_interval: 10
 telegraf_agent_flush_jitter: 0
 
-#v0.13 settings (not sure if supported in older version):
+# v0.13 settings (not sure if supported in older version):
 telegraf_agent_collection_jitter: 0
 telegraf_agent_metric_batch_size: 1000
 telegraf_agent_metric_buffer_limit: 10000
 telegraf_agent_quiet: False
 
-#v1.1 settings:
+# v1.1 settings:
 telegraf_agent_logfile: ""
 telegraf_agent_omit_hostname: False
 
