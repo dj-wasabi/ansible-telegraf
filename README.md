@@ -36,6 +36,8 @@ The following parameters can be set for the Telegraf agent:
 * `telegraf_agent_round_interval`: Rounds collection interval to 'interval' Default: True
 * `telegraf_agent_flush_interval`: Default data flushing interval for all outputs. Default: 10
 * `telegraf_agent_flush_jitter`: Jitter the flush interval by a random amount. Default: 0
+* `telegraf_agent_aws_tags`: Configure AWS ec2 tags into Telegraf tags section Default: `False`
+* `telegraf_agent_aws_tags_prefix`: Define a prefix for AWS ec2 tags. Default: `""`
 * `telegraf_agent_collection_jitter`: Jitter the collection by a random amount. Default: 0 (since v0.13)
 * `telegraf_agent_metric_batch_size`: The agent metric batch size. Default: 1000  (since v0.13)
 * `telegraf_agent_metric_buffer_limit`: The agent metric buffer limit. Default: 10000  (since v0.13)
