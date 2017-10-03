@@ -52,7 +52,7 @@
 - name: "Install telegraf package | Debian"
   apt:
     name: telegraf
-    state: installed
+    state: latest
   notify: "Restart Telegraf"
   become: yes
   tags:
