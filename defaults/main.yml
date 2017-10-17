@@ -43,3 +43,6 @@ telegraf_plugins_default:
   - plugin: netstat
 
 telegraf_plugins_extra:
+
+# RedHat specific settings for convenience
+telegraf_redhat_releasever: "$releasever"
