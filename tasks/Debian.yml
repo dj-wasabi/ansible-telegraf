@@ -36,7 +36,7 @@
   tags:
     - telegraf
     - packages
-  when: ansible_lsb is defined
+  when: ansible_lsb is defined and ansible_lsb.codename is defined
 
 - name: Add Influxdb repository.
   apt_repository:
@@ -47,7 +47,7 @@
   tags:
     - telegraf
     - packages
-  when: ansible_lsb is not defined
+  when: ansible_lsb is not defined or ansible_lsb.codename is not defined
 
 - name: "Install telegraf package | Debian"
   apt:
