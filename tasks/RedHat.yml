@@ -1,30 +1,5 @@
 ---
 
-- name: "Enable EPEL"
-  yum:
-    name: epel-release
-    state: installed
-
-- name: "Installing some dependencies"
-  yum:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - python-pip
-    - python-devel
-    - gcc
-    - libffi-devel
-    - openssl-devel
-
-- name: "Installing PIP dependensies"
-  pip:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - urllib3
-    - pyopenssl
-    - ndg-httpsclient
-
 - name: "Add yum repository | RedHat"
   yum_repository:
     name: influxdb
