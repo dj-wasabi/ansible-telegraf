@@ -1,11 +1,13 @@
 ---
 
 - name: "Enable EPEL"
+  become: yes
   yum:
     name: epel-release
     state: installed
 
 - name: "Installing some dependencies"
+  become: yes
   yum:
     name: "{{ item }}"
     state: installed
@@ -17,6 +19,7 @@
     - openssl-devel
 
 - name: "Installing PIP dependensies"
+  become: yes
   pip:
     name: "{{ item }}"
     state: present
@@ -26,6 +29,7 @@
     - ndg-httpsclient
 
 - name: "Add yum repository | RedHat"
+  become: yes
   yum_repository:
     name: influxdb
     description: InfluxDB Repository - RHEL $releasever
@@ -34,6 +38,7 @@
     gpgkey: https://repos.influxdata.com/influxdb.key
 
 - name: "Install telegraf package | RedHat"
+  become: yes
   yum:
     name: "telegraf-{{ telegraf_agent_version }}"
     state: installed
