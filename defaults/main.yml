@@ -19,7 +19,7 @@ telegraf_agent_quiet: False
 telegraf_agent_logfile: ""
 telegraf_agent_omit_hostname: False
 
-telegraf_agent_tags:
+telegraf_global_tags: []
 
 telegraf_agent_output:
   - type: influxdb

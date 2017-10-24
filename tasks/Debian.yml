@@ -18,7 +18,7 @@
     - telegraf
     - packages
 
-- name: Download Influxdb apt key.
+- name: Download Telegraf apt key.
   apt_key:
     url: "https://repos.influxdata.com/influxdb.key"
     state: present
@@ -27,10 +27,10 @@
     - telegraf
     - packages
 
-- name: Add Influxdb repository (using LSB).
+- name: Add Telegraf repository (using LSB).
   apt_repository:
     repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_lsb.codename }} stable"
-    filename: "influxdb"
+    filename: "telegraf"
     state: present
   become: yes
   tags:
@@ -38,10 +38,10 @@
     - packages
   when: ansible_lsb is defined and ansible_lsb.codename is defined
 
-- name: Add Influxdb repository.
+- name: Add Telegraf repository.
   apt_repository:
     repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
-    filename: "influxdb"
+    filename: "telegraf"
     state: present
   become: yes
   tags:

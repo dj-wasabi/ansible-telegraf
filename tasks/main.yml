@@ -34,10 +34,11 @@
 - name: "Copy telegraf extra plugins"
   template:
     src: "telegraf-extra-plugin.conf.j2"
-    dest: "/etc/telegraf/telegraf.d/extra-plugins.conf"
+    dest: "/etc/telegraf/telegraf.d/{{ item.plugin }}.conf"
     owner: telegraf
     group: telegraf
     mode: 0640
+  with_items: "{{ telegraf_plugins_extra }}"
   when: "telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable"
   become: yes
   notify: "Restart Telegraf"
