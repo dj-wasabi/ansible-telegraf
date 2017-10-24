@@ -47,7 +47,7 @@ Full agent settings reference: https://github.com/influxdata/telegraf/blob/maste
 
 You can set tags for the host running telegraf:
 
-	telegraf_agent_tags:
+	telegraf_global_tags:
 	  - tag_name: some_name
 	    tag_value: some_value
 
