@@ -5,6 +5,14 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
+0.8.0 (2017-10-30)
+
+  * Updating to Molecule V2
+  * Test if LSB codename exists before using it #35 (By pull request: tszym (Thanks!))
+  * Remove useless packages on RedHat. fix #28 #36 (By pull request: tszym (Thanks!))
+  * Fix extra plugins by file / Change apt source filename / Change tags by global_tags #37 (By pull request: aarnaud (Thanks!))
+  * Use telegra_global_tags for oldest telegraf versions #38 (By pull request: tszym (Thanks!))
+
 0.7.0 (2017-02-23)
 
   * Replace action by modules #26 (By pull request: tszym (Thanks!))
