@@ -8,6 +8,8 @@ telegraf_agent_debug: False
 telegraf_agent_round_interval: True
 telegraf_agent_flush_interval: 10
 telegraf_agent_flush_jitter: 0
+telegraf_agent_aws_tags: False
+telegraf_agent_aws_tags_prefix: ""
 
 # v0.13 settings (not sure if supported in older version):
 telegraf_agent_collection_jitter: 0
