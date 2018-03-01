@@ -131,7 +131,8 @@ No dependencies
       roles:
          - { role: dj-wasabi.telegraf }
 
-##Contributors
+## Contributors
+
 The following have contributed to this Ansible role:
 
   * aferrari-technisys
