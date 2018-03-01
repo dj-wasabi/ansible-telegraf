@@ -5,7 +5,7 @@ services:
   - docker
 
 install:
-  - pip install molecule ansible docker<3.0
+  - pip install molecule ansible "docker>=3.0"
 
 script:
   - molecule --version
