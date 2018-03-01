@@ -5,7 +5,7 @@ services:
   - docker
 
 install:
-  - pip install molecule ansible docker
+  - pip install molecule==2.8.2 ansible docker
 
 script:
   - molecule --version
