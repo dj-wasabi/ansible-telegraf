@@ -1,3 +1,5 @@
+### MANAGED BY {{ role_path|basename }} ANSIBLE ROLE ###
+
 [[inputs.{{ item.plugin }}]]
 {% if item.interval is defined %}
     interval = "{{ item.interval }}s"

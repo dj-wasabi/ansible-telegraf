@@ -30,6 +30,7 @@ telegraf_agent_output:
       - database = "telegraf"
       - precision = "s"
 
+# defaults - /etc/telegraf/telegraf.conf
 telegraf_plugins_default:
   - plugin: cpu
     config:
@@ -41,8 +42,11 @@ telegraf_plugins_default:
   - plugin: system
   - plugin: swap
   - plugin: netstat
+  - plugin: processes
+  - plugin: kernel
 
-telegraf_plugins_extra:
+# extra configuration - /etc/telegraf/telegraf.d/*
+telegraf_plugins_extra: []
 
 # RedHat specific settings for convenience
 telegraf_redhat_releasever: "$releasever"
