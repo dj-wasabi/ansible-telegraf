@@ -43,7 +43,6 @@ telegraf_plugins_default:
   - plugin: swap
   - plugin: netstat
   - plugin: processes
-  - plugin: diskio
   - plugin: kernel
 
 # extra configuration - /etc/telegraf/telegraf.d/*
