@@ -41,3 +41,5 @@ telegraf_plugins_default:
   - plugin: netstat
 
 telegraf_plugins_extra:
+
+telegraf_plugins_scripts: []

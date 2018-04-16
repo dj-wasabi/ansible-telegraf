@@ -41,3 +41,15 @@
   when: "telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable"
   become: yes
   notify: "Restart Telegraf"
+
+- name: "Deploy script files for exec input plugin"
+  unarchive:
+    src: "{{ item }}"
+    dest: /usr/local/bin
+    remote_src: yes
+    owner: root
+    group: root
+    mode: "0755"
+  with_items: "{{ telegraf_plugins_scripts }}"
+  when: "telegraf_plugins_scripts is defined and telegraf_plugins_scripts is iterable"
+  become: yes
