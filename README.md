@@ -70,7 +70,7 @@ The config will be printed line by line into the configuration, so you could als
 
 and it will be printed in the configuration file.
 
-There are two properties which are the same, but are used differently. Those are:
+There are two properties which are similar, but are used differently. Those are:
 
 * `telegraf_plugins_default`
 * `telegraf_plugins_extra`
@@ -90,11 +90,11 @@ With the property `telegraf_plugins_default` it is set to use the default set of
 
 Every telegraf agent has these as a default configuration.
 
-The 2nd parameter `telegraf_plugins_extra` can be used to add plugins specific to the servers goal. Following is an example for using this parameter for MySQL database servers:
+The 2nd parameter `telegraf_plugins_extra` can be used to add plugins specific to the servers goal. It is a hash instead of a list, so that you can merge values from multiple var files together. Following is an example for using this parameter for MySQL database servers:
 
 	cat group_vars/mysql_database
 	telegraf_plugins_extra:
-		- plugin: mysql
+		mysql:
 		  config:
 		  	- servers = ["root:{{ mysql_root_password }}@tcp(localhost:3306)/"]
 
