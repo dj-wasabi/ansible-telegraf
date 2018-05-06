@@ -135,12 +135,24 @@ No dependencies
 
 The following have contributed to this Ansible role:
 
-  * aferrari-technisys
-  * stvnwrgs
-  * lhoss
-  * thecodeassassin
-  * Ismael
-  * romainbureau
+ * Thomas Szymanski
+ * Alejandro
+ * Slawomir Skowron
+ * Ismael
+ * Laurent Hoss
+ * Anthony ARNAUD
+ * Rick Box
+ * Emerson Knapp
+ * gaelL
+ * Steven Wirges
+ * zend0
+ * Angristan
+ * Olivier Boukili
+ * Romain BUREAU
+ * TheCodeAssassin
+ * tjend
+
+Thank you all!
 
 ## Molecule
 
