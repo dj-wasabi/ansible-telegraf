@@ -46,7 +46,7 @@ telegraf_plugins_default:
   - plugin: kernel
 
 # extra configuration - /etc/telegraf/telegraf.d/*
-telegraf_plugins_extra: []
+telegraf_plugins_extra: {}
 
 # RedHat specific settings for convenience
 telegraf_redhat_releasever: "$releasever"
