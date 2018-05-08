@@ -5,6 +5,11 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
+0.10.0 ()
+
+  * Using specific version for tests
+  * Update minimum Ansible version to 2.4
+
 0.9.0 (2018-05-06)
 
   * plugins: be able to specify the filename of extra plugings #40 (By pull request: gaelL (Thanks!))
