@@ -4,7 +4,7 @@ galaxy_info:
   description: Installing and configuring Telegraf
   company:
   license: license BSD
-  min_ansible_version: 1.2
+  min_ansible_version: 2.4
   platforms:
     - name: EL
       versions:
