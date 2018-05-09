@@ -38,7 +38,7 @@
 - name: "Copy telegraf extra plugins"
   template:
     src: "telegraf-extra-plugin.conf.j2"
-    dest: "/etc/telegraf/telegraf.d/{{ item.value.filename | default(item.key) }}.conf"
+    dest: "/etc/telegraf/telegraf.d/{{ item.key }}.conf"
     owner: telegraf
     group: telegraf
     mode: 0640
