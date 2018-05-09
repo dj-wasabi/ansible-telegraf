@@ -29,7 +29,7 @@
   yum_repository:
     name: influxdb
     description: InfluxDB Repository - RHEL $releasever
-    baseurl: https://repos.influxdata.com/rhel/$releasever/$basearch/stable
+    baseurl: https://repos.influxdata.com/rhel/{{ ansible_distribution_major_version }}/$basearch/stable
     gpgcheck: yes
     gpgkey: https://repos.influxdata.com/influxdb.key
 
