@@ -1,6 +1,6 @@
 ### MANAGED BY {{ role_path|basename }} ANSIBLE ROLE ###
 
-[[inputs.{{ item.key }}]]
+[[inputs.{{ item.value.plugin | default(item.key) }}]]
 {% if item.value.interval is defined %}
     interval = "{{ item.value.interval }}s"
 {% endif %}
@@ -10,37 +10,37 @@
 {% endfor %}
 {% endif %}
 {% if item.value.tags is defined and item.value.tags is iterable %}
-[inputs.{{ item.key }}.tags]
+[inputs.{{ item.value.plugin | default(item.key) }}.tags]
 {% for items in item.value.tags %}
     {{ items }}
 {% endfor %}
 {% endif %}
 {% if item.value.tagpass is defined and item.value.tagpass is iterable %}
-[{{ item.key }}.tagpass]
+[{{ item.value.plugin | default(item.key) }}.tagpass]
 {% for items in item.value.tagpass %}
     {{ items }}
 {% endfor %}
 {% endif %}
 {% if item.value.tagdrop is defined and item.value.tagdrop is iterable %}
-[{{ item.key }}.tagdrop]
+[{{ item.value.plugin | default(item.key) }}.tagdrop]
 {% for items in item.value.tagdrop %}
     {{ items }}
 {% endfor %}
 {% endif %}
 {% if item.value.pass is defined and item.value.pass is iterable %}
-[{{ item.key }}.pass]
+[{{ item.value.plugin | default(item.key) }}.pass]
 {% for items in item.value.pass %}
     {{ items }}
 {% endfor %}
 {% endif %}
 {% if item.value.drop is defined and item.value.drop is iterable %}
-[{{ item.key }}.drop]
+[{{ item.value.plugin | default(item.key) }}.drop]
 {% for items in item.value.drop %}
     {{ items }}
 {% endfor %}
 {% endif %}
 {% if item.value.specifications is defined and item.value.specifications is iterable %}
-[[{{item.key}}.specifications]]
+[[{{item.value.plugin | default(item.key)}}.specifications]]
 {% for items in item.value.specifications %}
     {{ items }}
 {% endfor %}
