@@ -2,15 +2,15 @@
 # tasks file for ansible-telegraf
 
 - name: "Install the correct repository"
-  include: "RedHat.yml"
+  include_tasks: "RedHat.yml"
   when: ansible_os_family == "RedHat"
 
 - name: "Install the correct repository"
-  include: "Debian.yml"
+  include_tasks: "Debian.yml"
   when: ansible_os_family == "Debian"
   tags:
     - telegraf
     - packages
 
 - name: "Configure telegraf"
-  include: "configure.yml"
+  include_tasks: "configure.yml"
