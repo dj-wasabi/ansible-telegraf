@@ -43,7 +43,16 @@
     group: telegraf
     mode: 0640
   with_dict: "{{ telegraf_plugins_extra }}"
-  when: "telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable"
+  when: "telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable and item.value.state|default('present') != 'absent'"
+  become: yes
+  notify: "Restart Telegraf"
+
+- name: "Remove telegraf extra plugins"
+  file:
+    path: "/etc/telegraf/telegraf.d/{{ item.key }}.conf"
+    state: absent
+  with_dict: "{{ telegraf_plugins_extra }}"
+  when: "telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable and item.value.state|default('present') == 'absent'"
   become: yes
   notify: "Restart Telegraf"
 
