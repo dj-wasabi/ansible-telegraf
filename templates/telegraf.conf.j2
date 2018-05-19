@@ -21,13 +21,13 @@
     round_interval = {{ telegraf_agent_round_interval | lower }}
     flush_interval = "{{ telegraf_agent_flush_interval }}s"
     flush_jitter = "{{ telegraf_agent_flush_jitter }}s"
-{% if telegraf_agent_version|version_compare('0.13', '>=') %}
+{% if telegraf_agent_version is version_compare('0.13', '>=') %}
     collection_jitter = "{{ telegraf_agent_collection_jitter }}s"
     metric_batch_size = {{ telegraf_agent_metric_batch_size }}
     metric_buffer_limit = {{ telegraf_agent_metric_buffer_limit }}
     quiet = {{ telegraf_agent_quiet | lower }}
 {% endif %}
-{% if telegraf_agent_version|version_compare('1.1', '>=') %}
+{% if telegraf_agent_version is version_compare('1.1', '>=') %}
     logfile = "{{ telegraf_agent_logfile }}"
     omit_hostname = {{ telegraf_agent_omit_hostname | lower }}
 {% endif %}

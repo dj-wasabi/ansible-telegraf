@@ -37,6 +37,6 @@
 - name: "Install telegraf package | Debian"
   apt:
     name: "telegraf"
-    state: installed
+    state: present
   notify: "Restart Telegraf"
   become: yes

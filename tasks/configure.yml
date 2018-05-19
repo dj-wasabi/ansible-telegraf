@@ -21,7 +21,7 @@
     group: telegraf
     mode: 0640
   become: yes
-  when: telegraf_agent_version|version_compare('0.10.0', '<')
+  when: telegraf_agent_version is version_compare('0.10.0', '<')
   notify: "Restart Telegraf"
 
 - name: "Copy the template for versions >= 0.10.0"
@@ -32,7 +32,7 @@
     group: telegraf
     mode: 0640
   become: yes
-  when: telegraf_agent_version|version_compare('0.10.0', '>=')
+  when: telegraf_agent_version is version_compare('0.10.0', '>=')
   notify: "Restart Telegraf"
 
 - name: "Copy telegraf extra plugins"
