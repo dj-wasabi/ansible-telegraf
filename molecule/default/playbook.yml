@@ -4,12 +4,19 @@
     - name: "Installing which on CentOS"
       yum:
         name: which
-        state: installed
-      when: ansible_distribution == 'CentOS'
+        state: present
+      when:
+        - ansible_os_family == 'RedHat'
+
     - name: "Installing wget on Debian"
       apt:
-        name: wget
-        state: installed
-      when: ansible_distribution == 'Debian'
+        name: "{{ item }}"
+        state: present
+      when:
+        - ansible_os_family == 'Debian'
+      with_items:
+        - wget
+        - gpg
+
   roles:
     - role: ansible-telegraf

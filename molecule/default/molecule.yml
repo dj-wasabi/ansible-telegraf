@@ -13,8 +13,13 @@ platforms:
     image: milcom/centos7-systemd
     privileged: True
   - name: telegraf-debian
-    image: maint/debian-systemd
+    image: minimum2scp/systemd-stretch
     privileged: True
+    command: /sbin/init
+  - name: telegraf-ubuntu
+    image: solita/ubuntu-systemd:bionic
+    privileged: True
+    command: /sbin/init
 
 provisioner:
   name: ansible
