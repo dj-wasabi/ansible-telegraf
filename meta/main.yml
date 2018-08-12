@@ -2,8 +2,8 @@
 galaxy_info:
   author: Werner Dijkerman
   description: Installing and configuring Telegraf
-  company:
-  license: license BSD
+  company: myCompany.Dotcom
+  license: MIT
   min_ansible_version: 2.4
   platforms:
     - name: EL
