@@ -5,8 +5,13 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
-0.10.0 ()
+0.10.0 (2018-08-12)
 
+  * Updating to telegraf 1.7.3
+  * Fix Deprecation warnings #54
+  * Changed 'include' to 'include_tasks' to remove deprecation warning #53 (By pull request: tjend (Thanks!))
+  * Add option to remove extra plugin config files #52 (By pull request: tjend (Thanks!))
+  * Plugins extra hash allow multiple inputs same type #50 (By pull request: tjend (Thanks!))
   * Using specific version for tests
   * Update minimum Ansible version to 2.4
 
