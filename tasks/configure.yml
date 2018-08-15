@@ -39,9 +39,9 @@
   file:
     state: absent
     path: "/etc/telegraf/telegraf.d/"
-    when: "telegraf_plugins_extra_exclusive == True"
-    become: yes
-    notify: "Restart Telegraf"
+  when: "telegraf_plugins_extra_exclusive == True"
+  become: yes
+  notify: "Restart Telegraf"
 
 - name: "Create telegraf extra plugin path"
   file:
@@ -50,9 +50,9 @@
     owner: telegraf
     group: telegraf
     mode: 0640
-    when: "telegraf_plugins_extra_exclusive == True"
-    become: yes
-    notify: "Restart Telegraf"
+  when: "telegraf_plugins_extra_exclusive == True"
+  become: yes
+  notify: "Restart Telegraf"
 
 - name: "Copy telegraf extra plugins"
   template:
