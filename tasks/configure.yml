@@ -35,6 +35,25 @@
   when: telegraf_agent_version is version_compare('0.10.0', '>=')
   notify: "Restart Telegraf"
 
+- name: "Delete telegraf extra plugin path"
+  file:
+    state: absent
+    path: "/etc/telegraf/telegraf.d/"
+    when: "telegraf_plugins_extra_exclusive == True"
+    become: yes
+    notify: "Restart Telegraf"
+
+- name: "Delete telegraf extra plugin path"
+  file:
+    state: present
+    path: "/etc/telegraf/telegraf.d/"
+    owner: telegraf
+    group: telegraf
+    mode: 0640
+    when: "telegraf_plugins_extra_exclusive == True"
+    become: yes
+    notify: "Restart Telegraf"
+
 - name: "Copy telegraf extra plugins"
   template:
     src: "telegraf-extra-plugin.conf.j2"
