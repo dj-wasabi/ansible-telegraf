@@ -43,7 +43,7 @@
     become: yes
     notify: "Restart Telegraf"
 
-- name: "Delete telegraf extra plugin path"
+- name: "Create telegraf extra plugin path"
   file:
     state: present
     path: "/etc/telegraf/telegraf.d/"
