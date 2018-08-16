@@ -45,7 +45,7 @@
 
 - name: "Create telegraf extra plugin path"
   file:
-    state: present
+    state: directory
     path: "/etc/telegraf/telegraf.d/"
     owner: telegraf
     group: telegraf
