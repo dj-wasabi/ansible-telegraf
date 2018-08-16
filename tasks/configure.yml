@@ -49,7 +49,7 @@
     path: "/etc/telegraf/telegraf.d/"
     owner: telegraf
     group: telegraf
-    mode: 0640
+    mode: 0740
   when: "telegraf_plugins_extra_exclusive == True"
   become: yes
   notify: "Restart Telegraf"
