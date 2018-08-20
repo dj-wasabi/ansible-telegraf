@@ -35,7 +35,8 @@
   when: telegraf_agent_version is version_compare('0.10.0', '>=')
   notify: "Restart Telegraf"
 
-- action: stat path=/etc/telegraf/telegraf.d
+- name: "Check if extra plugins directory exists in case of exclusive"
+  action: stat path=/etc/telegraf/telegraf.d
   register: telegraf_directory
   when: telegraf_plugins_extra_exclusive
 
