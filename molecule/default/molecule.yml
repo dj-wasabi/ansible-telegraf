@@ -44,13 +44,6 @@ provisioner:
           - plugin: nginx
             config:
               - urls = ["http://localhost/nginx_status"]
-          - plugin: logparser
-            config:
-              - files = ["/var/log/nginx/access.log"]
-              - from_beginning = true
-              - name_override = "nginx_access_log"
-              - \[logparser.grok\]
-              - patterns = ["%{COMBINED_LOG_FORMAT}"]
 
 scenario:
   name: default
