@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  tasks:
+    - name: "Installing which on CentOS"
+      yum:
+        name: which
+        state: present
+      when:
+        - ansible_os_family == 'RedHat'
+
+    - name: "Installing wget on Debian"
+      apt:
+        name:
+          - wget
+          - gpg
+        state: present
+      when:
+        - ansible_os_family == 'Debian'
