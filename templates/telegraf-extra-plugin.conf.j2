@@ -6,7 +6,7 @@
 {% endif %}
 {% if item.value.config is defined and item.value.config is iterable %}
 {% for items in item.value.config %}
-    {% raw %}{{ items }}{%  endraw %}}
+    {{ items }}
 {% endfor %}
 {% endif %}
 {% if item.value.tags is defined and item.value.tags is iterable %}

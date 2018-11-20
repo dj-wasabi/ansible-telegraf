@@ -21,6 +21,15 @@ def test_telegraf_dot_conf(File):
     assert telegraf.contains('[[inputs.cpu]]')
 
 
+def test_telegraf_dot_d(File):
+    telegraf = File("/etc/telegraf/telegraf.d/percpu-usage.conf")
+    assert telegraf.user == "telegraf"
+    assert telegraf.group == "telegraf"
+    assert telegraf.mode == 0o640
+    assert telegraf.contains('[[inputs.cpu]]')
+    assert telegraf.contains('totalcpu = false')
+
+
 def test_telegraf_package(Package, SystemInfo):
     telegraf = Package('telegraf')
     assert telegraf.is_installed
