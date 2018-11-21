@@ -39,10 +39,19 @@ provisioner:
   inventory:
     group_vars:
       all:
+        telegraf_plugins_extra:
+          percpu-usage:
+            plugin: cpu
+            config:
+              - percpu = true
+              - totalcpu = false
+              - name_override = "percpu_usage"
+              - fielddrop = ["cpu_time*"]
+
         telegraf_plugins_default:
           - plugin: cpu
             config:
-            - percpu = true
+              - percpu = true
           - plugin: disk
           - plugin: io
           - plugin: mem
@@ -54,14 +63,7 @@ provisioner:
           - plugin: kernel
           - plugin: nginx
             config:
-            - urls = ["http://localhost/nginx_status"]
-          - plugin: logparser
-            config:
-              - files = ["/var/log/nginx/access.log"]
-              - from_beginning = true
-              - name_override = "nginx_access_log"
-              - \[logparser.grok\]
-              -   patterns = ["%{COMBINED_LOG_FORMAT}"]
+              - urls = ["http://localhost/nginx_status"]
 
 scenario:
   name: default
