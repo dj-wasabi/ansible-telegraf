@@ -21,6 +21,6 @@ def test_telegraf_dot_conf(File):
     assert telegraf.contains('[[inputs.cpu]]')
 
 
-def test_telegraf_package(Package, SystemInfo):
+def test_telegraf_package(Package):
     telegraf = Package('telegraf')
     assert telegraf.is_installed

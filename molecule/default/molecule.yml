@@ -9,17 +9,28 @@ lint:
     config-file: molecule/default/yaml-lint.yml
 
 platforms:
+  - name: influxdb
+    image: influxdb
+    privileged: True
+    groups:
+      - influxdb
   - name: telegraf-centos
     image: milcom/centos7-systemd
     privileged: True
+    groups:
+      - telegraf
   - name: telegraf-debian
     image: minimum2scp/systemd-stretch
     privileged: True
     command: /sbin/init
+    groups:
+      - telegraf
   - name: telegraf-ubuntu
     image: solita/ubuntu-systemd:bionic
     privileged: True
     command: /sbin/init
+    groups:
+      - telegraf
 
 provisioner:
   name: ansible
