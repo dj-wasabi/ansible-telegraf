@@ -11,6 +11,6 @@
 
 - name: "Install telegraf package | RedHat"
   yum:
-    name: "telegraf-{{ telegraf_agent_version }}"
-    state: installed
+    name: telegraf-{{ telegraf_agent_version }}
+    state: present
   notify: "Restart Telegraf"
