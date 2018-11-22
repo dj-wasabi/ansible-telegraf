@@ -9,17 +9,38 @@ lint:
     config-file: molecule/default/yaml-lint.yml
 
 platforms:
+  - name: influxdb
+    image: influxdb:1.7-alpine
+    command: influxd
+    groups:
+      - tsdb
+    networks:
+      - name: telegraf
+    environment:
+      INFLUXDB_DB: telegraf
   - name: telegraf-centos
     image: milcom/centos7-systemd
     privileged: True
+    groups:
+      - telegraf
+    networks:
+      - name: telegraf
   - name: telegraf-debian
     image: minimum2scp/systemd-stretch
     privileged: True
     command: /sbin/init
+    groups:
+      - telegraf
+    networks:
+      - name: telegraf
   - name: telegraf-ubuntu
     image: solita/ubuntu-systemd:bionic
     privileged: True
     command: /sbin/init
+    groups:
+      - telegraf
+    networks:
+      - name: telegraf
 
 provisioner:
   name: ansible
@@ -28,6 +49,12 @@ provisioner:
   inventory:
     group_vars:
       all:
+        telegraf_agent_output:
+          - type: influxdb
+            config:
+              - urls = ["http://influxdb:8086"]
+              - database = "telegraf"
+              - precision = "s"
         telegraf_plugins_extra:
           percpu-usage:
             plugin: cpu
@@ -50,9 +77,6 @@ provisioner:
           - plugin: netstat
           - plugin: processes
           - plugin: kernel
-          - plugin: nginx
-            config:
-              - urls = ["http://localhost/nginx_status"]
 
 scenario:
   name: default
