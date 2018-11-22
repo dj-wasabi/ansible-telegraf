@@ -1,6 +1,6 @@
 ---
 
-- hosts: all
+- hosts: telegraf
   tasks:
     - name: "Installing which on CentOS"
       yum:

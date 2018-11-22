@@ -3,14 +3,16 @@
 
 - name: Retrieve ec2 facts
   ec2_facts:
-  when: telegraf_agent_aws_tags
+  when:
+    - telegraf_agent_aws_tags
 
 - name: Retrieve all ec2 tags on the instance
   ec2_tag:
     region: '{{ ansible_ec2_placement_region }}'
     resource: '{{ ansible_ec2_instance_id }}'
     state: list
-  when: telegraf_agent_aws_tags
+  when:
+    - telegraf_agent_aws_tags
   register: ec2_tags
 
 - name: "Copy the template for versions < 0.10.0"
@@ -21,7 +23,8 @@
     group: telegraf
     mode: 0640
   become: yes
-  when: telegraf_agent_version is version_compare('0.10.0', '<')
+  when:
+    - telegraf_agent_version is version_compare('0.10.0', '<')
   notify: "Restart Telegraf"
 
 - name: "Copy the template for versions >= 0.10.0"
@@ -32,19 +35,24 @@
     group: telegraf
     mode: 0640
   become: yes
-  when: telegraf_agent_version is version_compare('0.10.0', '>=')
+  when:
+    - telegraf_agent_version is version_compare('0.10.0', '>=')
   notify: "Restart Telegraf"
 
 - name: "Check if extra plugins directory exists in case of exclusive"
-  action: stat path=/etc/telegraf/telegraf.d
+  stat:
+    path: /etc/telegraf/telegraf.d
   register: telegraf_directory
-  when: telegraf_plugins_extra_exclusive
+  when:
+    - telegraf_plugins_extra_exclusive
 
 - name: "Delete telegraf extra plugin path"
   file:
     state: absent
     path: "/etc/telegraf/telegraf.d/"
-  when: telegraf_plugins_extra_exclusive and telegraf_directory.stat.exists
+  when:
+    - telegraf_plugins_extra_exclusive
+    - telegraf_directory.stat.exists
   become: yes
   notify: "Restart Telegraf"
 
@@ -54,8 +62,10 @@
     path: "/etc/telegraf/telegraf.d/"
     owner: telegraf
     group: telegraf
-    mode: 0740
-  when: telegraf_plugins_extra_exclusive and telegraf_directory.stat.exists
+    mode: 0755
+  when:
+    - telegraf_plugins_extra_exclusive
+    - telegraf_directory.stat.exists
   become: yes
   notify: "Restart Telegraf"
 
@@ -69,7 +79,10 @@
   with_dict: "{{ telegraf_plugins_extra }}"
   loop_control:
     label: "{{ item.key }}"
-  when: "telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable and item.value.state|default('present') != 'absent'"
+  when:
+    - telegraf_plugins_extra is defined
+    - telegraf_plugins_extra is iterable
+    - item.value.state|default('present') != 'absent'
   become: yes
   notify: "Restart Telegraf"
 
@@ -80,7 +93,10 @@
   with_dict: "{{ telegraf_plugins_extra }}"
   loop_control:
     label: "{{ item.key }}"
-  when: "telegraf_plugins_extra is defined and telegraf_plugins_extra is iterable and item.value.state|default('present') == 'absent'"
+  when:
+    - telegraf_plugins_extra is defined
+    - telegraf_plugins_extra is iterable
+    - item.value.state|default('present') == 'absent'
   become: yes
   notify: "Restart Telegraf"
 

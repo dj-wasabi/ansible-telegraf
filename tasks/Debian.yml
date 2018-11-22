@@ -9,7 +9,8 @@
   apt:
     name: "apt-transport-https"
     state: present
-  when: not apt_https_transport.stat.exists
+  when:
+    - not apt_https_transport.stat.exists
   become: yes
 
 - name: Download Telegraf apt key.
@@ -25,7 +26,9 @@
     filename: "telegraf"
     state: present
   become: yes
-  when: ansible_lsb is defined and ansible_lsb.codename is defined
+  when:
+    - ansible_lsb is defined
+    - ansible_lsb.codename is defined
 
 - name: Add Telegraf repository.
   apt_repository:
@@ -33,7 +36,8 @@
     filename: "telegraf"
     state: present
   become: yes
-  when: ansible_lsb is not defined or ansible_lsb.codename is not defined
+  when:
+    - ansible_lsb is not defined or ansible_lsb.codename is not defined
 
 - name: "Install telegraf package | Debian"
   apt:
