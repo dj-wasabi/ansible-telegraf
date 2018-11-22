@@ -24,13 +24,13 @@ There was an issue:
 
     If I configure a telegraf_plugins_extra, run ansible, delete the plugin and run ansible again, the plugin stays on the machine.
 
-
-
 ## Role Variables
 
 The following parameters can be set for the Telegraf agent:
 
-* `telegraf_agent_version`: The version of Telegraf to install. Default: `1.0.0`
+* `telegraf_agent_version`: The version of Telegraf to install. Default: `1.9.0`
+* `telegraf_agent_package`: The name of the Telegraf package. Default: `telegraf`
+* `telegraf_agent_package_state`: If the package should be `present` or `latest`. When set to `latest`, `telegraf_agent_version` will be ignored. Default: `present`
 * `telegraf_agent_interval`: The interval configured for sending data to the server. Default: `10`
 * `telegraf_agent_debug`: Run Telegraf in debug mode. Default: `False`
 * `telegraf_agent_round_interval`: Rounds collection interval to 'interval' Default: True

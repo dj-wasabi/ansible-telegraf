@@ -1,5 +1,11 @@
 ---
 
+- name: "Set name if state == latest"
+  set_fact:
+    telegraf_agent_package: telegraf={{ telegraf_agent_version }}-{{ telegraf_agent_version_patch }}
+  when:
+    - telegraf_agent_package_state != "latest"
+
 - name: Ensure the system can use the HTTPS transport for APT.
   stat:
     path: /usr/lib/apt/methods/https
@@ -41,8 +47,8 @@
 
 - name: "Install telegraf package | Debian"
   apt:
-    name: telegraf={{ telegraf_agent_version }}-{{ telegraf_agent_version_patch }}
-    state: present
+    name: "{{ telegraf_agent_package }}"
+    state: "{{ telegraf_agent_package_state }}"
     force: True
   notify: "Restart Telegraf"
   become: yes
