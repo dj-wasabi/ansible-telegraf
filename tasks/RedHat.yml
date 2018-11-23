@@ -1,6 +1,12 @@
 ---
 # description: RedHat specific installation
 
+- name: "Set name if state == latest"
+  set_fact:
+    telegraf_agent_package: telegraf-{{ telegraf_agent_version }}
+  when:
+    - telegraf_agent_package_state != "latest"
+
 - name: "Add yum repository | RedHat"
   yum_repository:
     name: influxdb
@@ -11,6 +17,6 @@
 
 - name: "Install telegraf package | RedHat"
   yum:
-    name: "telegraf-{{ telegraf_agent_version }}"
-    state: installed
+    name: "{{ telegraf_agent_package }}"
+    state: "{{ telegraf_agent_package_state }}"
   notify: "Restart Telegraf"
