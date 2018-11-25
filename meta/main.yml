@@ -15,6 +15,9 @@ galaxy_info:
     - name: Debian
       versions:
         - all
+    - name: Windows
+      versions:
+        - all
   galaxy_tags:
     - monitoring
 
