@@ -98,3 +98,10 @@
 {% endif %}
 {% endfor %}
 {% endif %}
+
+{% if telegraf_plugins_default is defined and telegraf_plugins_default|length == 0 %}
+{% if telegraf_plugins_extra is defined and telegraf_plugins_extra.keys() | length == 0 %}
+# No plugins configured, added a mem plugin so telegraf doesn't stop working.
+[[inputs.mem]]
+{% endif %}
+{% endif %}
