@@ -41,6 +41,13 @@ platforms:
       - telegraf
     networks:
       - name: telegraf
+  - name: telegraf-opensuse
+    image: opensuse/leap
+    privileged: True
+    groups:
+      - telegraf
+    networks:
+      - name: telegraf
 
 provisioner:
   name: ansible

@@ -2,14 +2,14 @@
 
 - hosts: telegraf
   tasks:
-    - name: "Installing which on CentOS"
+    - name: "Installing packages on CentOS"
       yum:
         name: which
         state: present
       when:
         - ansible_os_family == 'RedHat'
 
-    - name: "Installing wget on Debian"
+    - name: "Installing packages on Debian"
       apt:
         name:
           - wget
@@ -17,3 +17,11 @@
         state: present
       when:
         - ansible_os_family == 'Debian'
+
+    - name: "Installing packages on Suse"
+      zypper:
+        name:
+          - sysvinit-tools
+        state: present
+      when:
+        - ansible_os_family == 'Suse'

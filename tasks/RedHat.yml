@@ -1,13 +1,13 @@
 ---
 # description: RedHat specific installation
 
-- name: "Set name if state == latest"
+- name: "RedHat | Set name if state == latest"
   set_fact:
     telegraf_agent_package: telegraf-{{ telegraf_agent_version }}
   when:
     - telegraf_agent_package_state != "latest"
 
-- name: "Add yum repository | RedHat"
+- name: "RedHat | Add yum repository"
   yum_repository:
     name: influxdb
     description: InfluxDB Repository - RHEL $releasever
@@ -15,7 +15,7 @@
     gpgcheck: yes
     gpgkey: https://repos.influxdata.com/influxdb.key
 
-- name: "Install telegraf package | RedHat"
+- name: "RedHat | Install telegraf package"
   yum:
     name: "{{ telegraf_agent_package }}"
     state: "{{ telegraf_agent_package_state }}"

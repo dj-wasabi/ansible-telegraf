@@ -102,3 +102,10 @@
 
 - name: "Force restart service after reread config"
   meta: flush_handlers
+
+- name: "Start Telegraf (If it wasn't running)"
+  service:
+    name: telegraf
+    state: started
+    enabled: yes
+  become: yes
