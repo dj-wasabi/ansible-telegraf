@@ -64,20 +64,6 @@ provisioner:
               - name_override = "percpu_usage"
               - fielddrop = ["cpu_time*"]
 
-        telegraf_plugins_default:
-          - plugin: cpu
-            config:
-              - percpu = true
-          - plugin: disk
-          - plugin: io
-          - plugin: mem
-          - plugin: net
-          - plugin: system
-          - plugin: swap
-          - plugin: netstat
-          - plugin: processes
-          - plugin: kernel
-
 scenario:
   name: default
 verifier:

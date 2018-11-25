@@ -14,8 +14,20 @@ Design goals are to have a minimal memory footprint with a plugin system so that
 
 ## Requirements
 
+### Operating systems
+This role will work on the following operating systems:
 
-No requirements. (Yes, an Influxdb server somewhere on the network will help though ;-) )
+ * Red Hat
+ * Debian
+ * Ubuntu
+ * Windows (Best effort)
+
+So, you'll need one of those operating systems.. :-)
+Please sent Pull Requests or suggestions when you want to use this role for other Operating systems.
+
+### InfluxDB
+
+You'll need an InfluxDB instance running somewhere on your network.
 
 ## Upgrade
 ### 0.7.0
@@ -25,6 +37,8 @@ There was an issue:
     If I configure a telegraf_plugins_extra, run ansible, delete the plugin and run ansible again, the plugin stays on the machine.
 
 ## Role Variables
+
+### Overall variables
 
 The following parameters can be set for the Telegraf agent:
 
@@ -69,6 +83,18 @@ The config will be printed line by line into the configuration, so you could als
 		- # Print an documentation line
 
 and it will be printed in the configuration file.
+
+## Windows specific Variables
+
+**NOTE**
+
+_Supporting Windows is an best effort (I don't have the possibility to either test/verify changes on the various amount of available Windows instances). PR's specific to Windows will almost immediately be merged, unless some one is able to provide a Windows test mechanism via Travis for Pull Requests._
+
+* `telegraf_win_install_dir`: The directory where Telegraf will be installed.
+* `telegraf_win_logfile`: The location to the logfile of Telegraf.
+* `telegraf_win_include`: The directory that will contain all plugin configuration.
+
+## Extra information
 
 There are two properties which are similar, but are used differently. Those are:
 

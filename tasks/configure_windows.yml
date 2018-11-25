@@ -1,0 +1,78 @@
+---
+
+- name: "Windows | Create directory structure"
+  win_file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ telegraf_win_install_dir }}"
+    - "{{ telegraf_win_include }}"
+
+- name: "Windows | Check if file is already downloaded"
+  win_stat:
+    path: '{{ telegraf_win_install_dir }}\telegraf-{{ telegraf_agent_version }}_windows_amd64.zip'
+  register: file_info
+
+- name: "Windows | Download Telegraf Agent Zip file"
+  win_get_url:
+    url: https://dl.influxdata.com/telegraf/releases/telegraf-{{ telegraf_agent_version }}_windows_amd64.zip
+    dest: '{{ telegraf_win_install_dir }}\telegraf-{{ telegraf_agent_version }}_windows_amd64.zip'
+  when:
+    - not file_info.stat.exists
+
+- name: "Windows | Unzip file"
+  win_unzip:
+    src: '{{ telegraf_win_install_dir }}\telegraf-{{ telegraf_agent_version }}_windows_amd64.zip'
+    dest: "{{ telegraf_win_install_dir }}"
+    creates: '{{ telegraf_win_install_dir }}\telegraf\telegraf.exe'
+
+- name: "Windows | Configure Telegraf"
+  win_template:
+    src: telegraf.conf.j2
+    dest: '{{ telegraf_win_install_dir }}\telegraf\telegraf.conf'
+  notify: "Restart Windows Telegraf"
+
+- name: "Windows | Copy telegraf extra plugins"
+  win_template:
+    src: "telegraf-extra-plugin.conf.j2"
+    dest: "/etc/telegraf/telegraf.d/{{ item.key }}.conf"
+  with_dict: "{{ telegraf_plugins_extra }}"
+  loop_control:
+    label: "{{ item.key }}"
+  when:
+    - telegraf_plugins_extra is defined
+    - telegraf_plugins_extra is iterable
+    - item.value.state|default('present') != 'absent'
+  notify: "Restart Windows Telegraf"
+
+- name: "Windows | Remove telegraf extra plugins"
+  win_file:
+    path: "/etc/telegraf/telegraf.d/{{ item.key }}.conf"
+    state: absent
+  with_dict: "{{ telegraf_plugins_extra }}"
+  loop_control:
+    label: "{{ item.key }}"
+  when:
+    - telegraf_plugins_extra is defined
+    - telegraf_plugins_extra is iterable
+    - item.value.state|default('present') == 'absent'
+  notify: "Restart Windows Telegraf"
+
+- name: "Windows | Register Service"
+  win_command: '{{ telegraf_win_install_dir }}\telegraf\telegraf.exe {{ telegraf_win_service_args | join(" ") }}'
+  register: telegraf_windows_install
+  args:
+    creates: '{{ telegraf_win_install_dir }}\.installed'
+
+- name: "Windows | Create done file so it won't register itself again"
+  win_file:
+    path: '{{ telegraf_win_install_dir }}\.installed'
+    state: touch
+  when:
+    - telegraf_windows_install is changed
+
+- name: "Windows | Set service startup mode to auto and ensure it is started"
+  win_service:
+    name: Telegraf
+    start_mode: auto
+    state: started
