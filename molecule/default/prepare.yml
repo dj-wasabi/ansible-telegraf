@@ -22,6 +22,8 @@
       zypper:
         name:
           - sysvinit-tools
+          - insserv-compat
+          - aaa_base
         state: present
       when:
         - ansible_os_family == 'Suse'
