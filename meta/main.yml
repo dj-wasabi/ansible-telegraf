@@ -18,6 +18,9 @@ galaxy_info:
     - name: opensuse
       versions:
         - all
+    - name: Windows
+      versions:
+        - all
 
   galaxy_tags:
     - monitoring
