@@ -28,7 +28,11 @@
     quiet = {{ telegraf_agent_quiet | lower }}
 {% endif %}
 {% if telegraf_agent_version is version_compare('1.1', '>=') %}
+{% if ansible_os_family == "Windows" %}
+    logfile = "{{ telegraf_win_logfile }}"
+{% else %}
     logfile = "{{ telegraf_agent_logfile }}"
+{% endif %}
     omit_hostname = {{ telegraf_agent_omit_hostname | lower }}
 {% endif %}
 

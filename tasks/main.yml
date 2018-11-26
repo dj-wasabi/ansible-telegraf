@@ -3,14 +3,23 @@
 
 - name: "Install the correct repository"
   include_tasks: "RedHat.yml"
-  when: ansible_os_family == "RedHat"
+  when:
+    - ansible_os_family == "RedHat"
 
 - name: "Install the correct repository"
   include_tasks: "Debian.yml"
-  when: ansible_os_family == "Debian"
+  when:
+    - ansible_os_family == "Debian"
   tags:
     - telegraf
     - packages
 
 - name: "Configure telegraf"
-  include_tasks: "configure.yml"
+  include_tasks: "configure_linux.yml"
+  when:
+    - ansible_os_family != "Windows"
+
+- name: "Install / Configure telegraf on Windows"
+  include_tasks: "configure_windows.yml"
+  when:
+    - ansible_os_family == "Windows"
