@@ -1,0 +1,51 @@
+---
+
+- name: "Suse | Adding telegraf group"
+  group:
+    name: telegraf
+    state: present
+
+- name: "Suse | Adding telegraf user"
+  user:
+    name: telegraf
+    group: telegraf
+    state: present
+  become: yes
+
+- name: "Suse | Install repo dependencies"
+  zypper:
+    name: ["python-libxml2", "python-xml"]
+    update_cache: True
+    state: present
+  become: yes
+
+- name: "Suse | Install basic repo file"
+  zypper_repository:
+    repo: "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Factory/"
+    name: The Go Programming Language (openSUSE_Factory)
+    state: present
+    auto_import_keys: True
+  become: yes
+
+- name: "Suse | Install Telegraf"
+  zypper:
+    name: "{{ telegraf_agent_package }}"
+    state: "{{ telegraf_agent_package_state }}"
+  become: yes
+
+- name: "Suse | Create directories for telegraf"
+  file:
+    path: "{{ item.path }}"
+    owner: "{{ item.owner }}"
+    state: directory
+  with_items:
+    - path: /etc/telegraf/telegraf.d/
+      owner: root
+    - path: /var/log/telegraf
+      owner: telegraf
+
+- name: "Suse | Install init file"
+  copy:
+    src: telegraf.init
+    dest: /etc/init.d/telegraf
+    mode: 0755

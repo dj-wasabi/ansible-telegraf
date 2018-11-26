@@ -41,6 +41,14 @@ platforms:
       - telegraf
     networks:
       - name: telegraf
+  - name: telegraf-opensuse
+    image: reszelaz/leap-systemd
+    privileged: True
+    command: /sbin/init
+    groups:
+      - telegraf
+    networks:
+      - name: telegraf
 
 provisioner:
   name: ansible

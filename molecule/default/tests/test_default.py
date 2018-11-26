@@ -6,10 +6,11 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('telegraf')
 
 
-def test_telegraf_running_and_enabled(Service):
+def test_telegraf_running_and_enabled(Service, SystemInfo):
     telegraf = Service("telegraf")
-    assert telegraf.is_enabled
-    assert telegraf.is_running
+    if SystemInfo.distribution not in ['opensuse-leap']:
+        assert telegraf.is_enabled
+        assert telegraf.is_running
 
 
 def test_telegraf_dot_conf(File):

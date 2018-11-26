@@ -1,17 +1,17 @@
 ---
 
-- name: "Set name if state == latest"
+- name: "Debian | Set name if state == latest"
   set_fact:
     telegraf_agent_package: telegraf={{ telegraf_agent_version }}-{{ telegraf_agent_version_patch }}
   when:
     - telegraf_agent_package_state != "latest"
 
-- name: Ensure the system can use the HTTPS transport for APT.
+- name: "Debian | Ensure the system can use the HTTPS transport for APT"
   stat:
     path: /usr/lib/apt/methods/https
   register: apt_https_transport
 
-- name: Install APT HTTPS transport.
+- name: "Debian | Install APT HTTPS transport"
   apt:
     name: "apt-transport-https"
     state: present
@@ -19,14 +19,14 @@
     - not apt_https_transport.stat.exists
   become: yes
 
-- name: Download Telegraf apt key.
+- name: "Debian | Download Telegraf apt key"
   apt_key:
     url: "https://repos.influxdata.com/influxdb.key"
     id: 2582E0C5
     state: present
   become: yes
 
-- name: Add Telegraf repository (using LSB).
+- name: "Debian | Add Telegraf repository (using LSB)"
   apt_repository:
     repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_lsb.codename }} stable"
     filename: "telegraf"
@@ -36,7 +36,7 @@
     - ansible_lsb is defined
     - ansible_lsb.codename is defined
 
-- name: Add Telegraf repository.
+- name: "Debian | Add Telegraf repository"
   apt_repository:
     repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
     filename: "telegraf"
@@ -45,7 +45,7 @@
   when:
     - ansible_lsb is not defined or ansible_lsb.codename is not defined
 
-- name: "Install telegraf package | Debian"
+- name: "Debian | Install telegraf package"
   apt:
     name: "{{ telegraf_agent_package }}"
     state: "{{ telegraf_agent_package_state }}"
