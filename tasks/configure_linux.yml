@@ -2,7 +2,7 @@
 # description: Configure telegraf and get all relevent ec2 information
 
 - name: Retrieve ec2 facts
-  ec2_facts:
+  ec2_metadata_facts:
   when:
     - telegraf_agent_aws_tags
 
