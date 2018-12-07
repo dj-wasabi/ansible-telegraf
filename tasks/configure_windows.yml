@@ -35,7 +35,7 @@
 - name: "Windows | Copy telegraf extra plugins"
   win_template:
     src: "telegraf-extra-plugin.conf.j2"
-    dest: "/etc/telegraf/telegraf.d/{{ item.key }}.conf"
+    dest: '{{ telegraf_win_include }}\{{ item.key }}.conf'
   with_dict: "{{ telegraf_plugins_extra }}"
   loop_control:
     label: "{{ item.key }}"
@@ -47,7 +47,7 @@
 
 - name: "Windows | Remove telegraf extra plugins"
   win_file:
-    path: "/etc/telegraf/telegraf.d/{{ item.key }}.conf"
+    path: '{{ telegraf_win_include }}\{{ item.key }}.conf'
     state: absent
   with_dict: "{{ telegraf_plugins_extra }}"
   loop_control:
