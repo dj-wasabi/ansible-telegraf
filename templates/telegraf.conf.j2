@@ -94,6 +94,16 @@
     {{ items }}
 {% endfor %}
 {% endif %}
+{% if item.objects is defined and item.objects is iterable %}
+{% for object in item.objects %}
+[[inputs.{{ item.plugin }}.object]]
+  ObjectName = {{ object.name | tojson }}
+  Instances = {{ object.instances | default(["*"]) }}
+  Counters = {{ object.counters | default(["*"]) }}
+  Measurement = {{ object.measurement | default("win_perf_counters") | tojson }}
+  IncludeTotal = {{ object.total | default(false) | string | lower }}
+{% endfor %}
+{% endif %}
 {% if item.specifications is defined and item.specifications is iterable %}
 [[{{item.plugin}}.specifications]]
 {% for items in item.specifications %}
