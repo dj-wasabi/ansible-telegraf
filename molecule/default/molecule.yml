@@ -42,7 +42,7 @@ platforms:
     networks:
       - name: telegraf
   - name: telegraf-opensuse
-    image: opensuse/leap
+    image: wdijkerman/molecule-systemd-leap
     privileged: True
     groups:
       - telegraf
