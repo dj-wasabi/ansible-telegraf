@@ -24,6 +24,7 @@
     repo: "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Factory/"
     name: The Go Programming Language (openSUSE_Factory)
     state: present
+    runrefresh: True
     auto_import_keys: True
   become: yes
 

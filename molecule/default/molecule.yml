@@ -42,9 +42,11 @@ platforms:
     networks:
       - name: telegraf
   - name: telegraf-opensuse
-    image: reszelaz/leap-systemd
+    image: wdijkerman/molecule-systemd-leap
     privileged: True
     command: /sbin/init
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     groups:
       - telegraf
     networks:
