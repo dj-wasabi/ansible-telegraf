@@ -5,6 +5,22 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
+0.11.0 (2018-12-11)
+
+  * Added support for plugins being managed exclusively by this playbook #60 (By pull request: gaizeror (Thanks!))
+  * Pin apt key ID #61 (By pull request: tszym (Thanks!))
+  * Wen copying/removing plugins show only plugin name #62 (By pull request: mprasil (Thanks!))
+  * Using base ci requirements.txt #64
+  * telegraf-extra-plugin.conf.j2: fix template typo #65 (By pull request: gaelL (Thanks!))
+  * Some small improvements #66
+  * Want to use latest #67
+  * Added Windows as OS #68
+  * Added support for (Open)Suse #69
+  * Added default pluging if nothing is configured #70
+  * Replace 'ec2_facts' with 'ec2_metadata_facts' to fix a deprecation warning #72 (By pull request: Rylon (Thanks!))
+  * A few enhancements and fixes to windows support #73 (By pull request: jdivy (Thanks!))
+  * Renamed the tojson to to_json #74
+
 0.10.0 (2018-08-12)
 
   * Updating to telegraf 1.7.3
