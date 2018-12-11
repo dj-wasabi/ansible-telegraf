@@ -42,9 +42,8 @@ platforms:
     networks:
       - name: telegraf
   - name: telegraf-opensuse
-    image: reszelaz/leap-systemd
+    image: opensuse/leap
     privileged: True
-    command: /sbin/init
     groups:
       - telegraf
     networks:
