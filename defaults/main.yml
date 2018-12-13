@@ -1,7 +1,7 @@
 ---
 # defaults file for ansible-telegraf
 
-telegraf_agent_version: 1.9.0
+telegraf_agent_version: 1.9.1
 telegraf_agent_version_patch: 1
 telegraf_agent_package: telegraf
 telegraf_agent_package_state: present
