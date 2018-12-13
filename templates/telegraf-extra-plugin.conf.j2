@@ -39,6 +39,16 @@
     {{ items }}
 {% endfor %}
 {% endif %}
+{% if item.value.objects is defined and item.value.objects is iterable %}
+{% for object in item.value.objects %}
+[[inputs.{{ item.value.plugin | default(item.key) }}.object]]
+  ObjectName = {{ object.name | to_json }}
+  Instances = {{ object.instances | default(["*"]) | to_json }}
+  Counters = {{ object.counters | default(["*"]) | to_json }}
+  Measurement = {{ object.measurement | default("win_perf_counters") | to_json }}
+  IncludeTotal = {{ object.total | default(false) | string | lower }}
+{% endfor %}
+{% endif %}
 {% if item.value.specifications is defined and item.value.specifications is iterable %}
 [[{{item.value.plugin | default(item.key)}}.specifications]]
 {% for items in item.value.specifications %}
