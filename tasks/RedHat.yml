@@ -16,7 +16,7 @@
     gpgkey: https://repos.influxdata.com/influxdb.key
 
 - name: "RedHat | Install telegraf package"
-  yum:
+  package:
     name: "{{ telegraf_agent_package }}"
     state: "{{ telegraf_agent_package_state }}"
   notify: "Restart Telegraf"
