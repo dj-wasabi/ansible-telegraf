@@ -7,6 +7,11 @@
   when:
     - telegraf_agent_package_state != "latest"
 
+- name: Use RHEL 7 packages for Fedora
+  set_fact:
+    telegraf_redhat_releasever: 7
+  when: ansible_distribution == "Fedora"
+
 - name: "RedHat | Add yum repository"
   yum_repository:
     name: influxdb
@@ -16,7 +21,7 @@
     gpgkey: https://repos.influxdata.com/influxdb.key
 
 - name: "RedHat | Install telegraf package"
-  yum:
+  package:
     name: "{{ telegraf_agent_package }}"
     state: "{{ telegraf_agent_package_state }}"
   notify: "Restart Telegraf"
