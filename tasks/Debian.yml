@@ -49,6 +49,7 @@
   apt:
     name: "{{ telegraf_agent_package }}"
     state: "{{ telegraf_agent_package_state }}"
+    cache_valid_time: 900
     force: True
   notify: "Restart Telegraf"
   become: yes
