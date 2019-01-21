@@ -16,13 +16,13 @@
 {% endfor %}
 {% endif %}
 {% if item.value.tagpass is defined and item.value.tagpass is iterable %}
-[{{ item.value.plugin | default(item.key) }}.tagpass]
+[inputs.{{ item.value.plugin | default(item.key) }}.tagpass]
 {% for items in item.value.tagpass %}
     {{ items }}
 {% endfor %}
 {% endif %}
 {% if item.value.tagdrop is defined and item.value.tagdrop is iterable %}
-[{{ item.value.plugin | default(item.key) }}.tagdrop]
+[inputs.{{ item.value.plugin | default(item.key) }}.tagdrop]
 {% for items in item.value.tagdrop %}
     {{ items }}
 {% endfor %}

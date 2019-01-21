@@ -75,8 +75,8 @@ Specifying an output. The default is set to localhost, you'll have to specify th
 	    config:
 	      - urls = ["http://localhost:8086"]
 	      - database = "telegraf"
-            tagpass:
-              - diskmetrics = ["true"]
+        tagpass:
+          - diskmetrics = ["true"]
 
 The config will be printed line by line into the configuration, so you could also use:
 

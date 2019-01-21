@@ -27,6 +27,18 @@
 {% for items in item.config %}
     {{ items }}
 {% endfor %}
+{% if item.tagpass is defined and item.tagpass is iterable %}
+[outputs.{{ item.type }}.tagpass]
+{% for items in item.tagpass %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.tagdrop is defined and item.tagdrop is iterable %}
+[outputs.{{ item.type }}.tagdrop]
+{% for items in item.tagdrop %}
+    {{ items }}
+{% endfor %}
+{% endif %}
 {% endfor %}
 {% endif %}
 
@@ -43,13 +55,13 @@
 {% endfor %}
 {% endif %}
 {% if item.tagpass is defined and item.tagpass is iterable %}
-[{{ item.plugin }}.tagpass]
+[inputs.{{ item.plugin }}.tagpass]
 {% for items in item.tagpass %}
     {{ items }}
 {% endfor %}
 {% endif %}
 {% if item.tagdrop is defined and item.tagdrop is iterable %}
-[{{ item.plugin }}.tagdrop]
+[inputs.{{ item.plugin }}.tagdrop]
 {% for items in item.tagdrop %}
     {{ items }}
 {% endfor %}
