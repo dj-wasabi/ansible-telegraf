@@ -43,13 +43,13 @@
 {% endfor %}
 {% endif %}
 {% if item.tagpass is defined and item.tagpass is iterable %}
-[{{ item.plugin }}.tagpass]
+[item.{{ item.plugin }}.tagpass]
 {% for items in item.tagpass %}
     {{ items }}
 {% endfor %}
 {% endif %}
 {% if item.tagdrop is defined and item.tagdrop is iterable %}
-[{{ item.plugin }}.tagdrop]
+[item.{{ item.plugin }}.tagdrop]
 {% for items in item.tagdrop %}
     {{ items }}
 {% endfor %}
