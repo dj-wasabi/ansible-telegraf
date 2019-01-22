@@ -66,25 +66,6 @@
     {{ items }}
 {% endfor %}
 {% endif %}
-{% if item.pass is defined and item.pass is iterable %}
-[{{ item.plugin }}.pass]
-{% for items in item.pass %}
-    {{ items }}
-{% endfor %}
-{% endif %}
-{% if item.drop is defined and item.drop is iterable %}
-[{{ item.plugin }}.drop]
-{% for items in item.drop %}
-    {{ items }}
-{% endfor %}
-{% endif %}
-{% if item.specifications is defined and item.specifications is iterable %}
-[[{{item.plugin}}.specifications]]
-{% for items in item.specifications %}
-    {{ items }}
-{% endfor %}
-{% endif %}
-
 
 {% endfor %}
 {% endif %}
