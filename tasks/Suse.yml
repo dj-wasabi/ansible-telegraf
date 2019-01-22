@@ -1,11 +1,11 @@
 ---
 
-- name: "Suse | Adding telegraf group"
+- name: "Suse | Adding Telegraf group"
   group:
     name: telegraf
     state: present
 
-- name: "Suse | Adding telegraf user"
+- name: "Suse | Adding Telegraf user"
   user:
     name: telegraf
     group: telegraf

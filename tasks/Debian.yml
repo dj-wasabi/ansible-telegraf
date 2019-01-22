@@ -45,7 +45,7 @@
   when:
     - ansible_lsb is not defined or ansible_lsb.codename is not defined
 
-- name: "Debian | Install telegraf package"
+- name: "Debian | Install Telegraf package"
   apt:
     name: "{{ telegraf_agent_package }}"
     state: "{{ telegraf_agent_package_state }}"

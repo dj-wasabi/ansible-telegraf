@@ -25,7 +25,9 @@
   become: yes
   when:
     - telegraf_agent_version is version_compare('0.10.0', '<')
-  notify: "Restart Telegraf"
+  notify:
+    - Restart Telegraf
+    - Restart Telegraf container
 
 - name: "Copy the template for versions >= 0.10.0"
   template:
@@ -37,7 +39,9 @@
   become: yes
   when:
     - telegraf_agent_version is version_compare('0.10.0', '>=')
-  notify: "Restart Telegraf"
+  notify:
+    - Restart Telegraf
+    - Restart Telegraf container
 
 - name: "Check if extra plugins directory exists in case of exclusive"
   stat:
@@ -54,7 +58,9 @@
     - telegraf_plugins_extra_exclusive
     - telegraf_directory.stat.exists
   become: yes
-  notify: "Restart Telegraf"
+  notify:
+    - Restart Telegraf
+    - Restart Telegraf container
 
 - name: "Create telegraf extra plugin path"
   file:
@@ -67,7 +73,9 @@
     - telegraf_plugins_extra_exclusive
     - telegraf_directory.stat.exists
   become: yes
-  notify: "Restart Telegraf"
+  notify:
+    - Restart Telegraf
+    - Restart Telegraf container
 
 - name: "Copy telegraf extra plugins"
   template:
@@ -84,7 +92,9 @@
     - telegraf_plugins_extra is iterable
     - item.value.state|default('present') != 'absent'
   become: yes
-  notify: "Restart Telegraf"
+  notify:
+    - Restart Telegraf
+    - Restart Telegraf container
 
 - name: "Remove telegraf extra plugins"
   file:
@@ -98,7 +108,9 @@
     - telegraf_plugins_extra is iterable
     - item.value.state|default('present') == 'absent'
   become: yes
-  notify: "Restart Telegraf"
+  notify:
+    - Restart Telegraf
+    - Restart Telegraf container
 
 - name: "Force restart service after reread config"
   meta: flush_handlers
@@ -109,3 +121,4 @@
     state: started
     enabled: yes
   become: yes
+  when: not telegraf_agent_docker
