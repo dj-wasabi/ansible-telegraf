@@ -1,3 +1,5 @@
+---
+
 - name: Adding Telegraf group
   group:
     name: telegraf
