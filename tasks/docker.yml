@@ -1,0 +1,57 @@
+---
+
+- name: Adding Telegraf group
+  group:
+    name: telegraf
+    state: present
+    gid: 995
+
+- name: Adding Telegraf user
+  user:
+    name: telegraf
+    group: telegraf
+    state: present
+    create_home: False
+    home: /etc/telegraf
+    uid: 998
+    system: True
+  become: yes
+
+- name: Create /etc/telegraf (home) directory
+  file:
+    path: /etc/telegraf
+    owner: telegraf
+    group: telegraf
+    mode: 0750
+    state: directory
+  become: yes
+
+- name: Create /etc/telegraf.d directory
+  file:
+    path: /etc/telegraf/telegraf.d
+    owner: telegraf
+    group: telegraf
+    mode: 0750
+    state: directory
+  become: yes
+
+- name: Ensure Telegraf Docker container is running
+  docker_container:
+    name: "{{ telegraf_agent_docker_name }}"
+    image: "telegraf:{{ telegraf_agent_version }}"
+    state: started
+    restart_policy: "{{ telegraf_agent_docker_restart_policy }}"
+    command: -config /etc/telegraf/telegraf.conf -config-directory /etc/telegraf/telegraf.d
+    network_mode: "{{ telegraf_agent_docker_network_mode }}"
+    volumes:
+      - /etc/telegraf:/etc/telegraf:ro
+      - /:/hostfs:ro
+      - /etc:/hostfs/etc:ro
+      - /proc:/hostfs/proc:ro
+      - /sys:/hostfs/sys:ro
+      - /var/run:/var/run:ro
+    env:
+      HOST_MOUNT_PREFIX: /hostfs
+      HOST_ETC: /hostfs/etc
+      HOST_PROC: /hostfs/proc
+      HOST_SYS: /hostfs/sys

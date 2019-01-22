@@ -20,7 +20,7 @@
     gpgcheck: yes
     gpgkey: https://repos.influxdata.com/influxdb.key
 
-- name: "RedHat | Install telegraf package"
+- name: "RedHat | Install Telegraf package"
   package:
     name: "{{ telegraf_agent_package }}"
     state: "{{ telegraf_agent_package_state }}"

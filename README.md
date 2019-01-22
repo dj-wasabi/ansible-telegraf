@@ -14,21 +14,29 @@ Design goals are to have a minimal memory footprint with a plugin system so that
 
 ## Requirements
 
-### Operating systems
-This role will work on the following operating systems:
+### Supported systems
+This role supports the following systems:
 
  * Red Hat
  * Debian
  * Ubuntu
+ * Docker container
  * Windows (Best effort)
  * (Open)Suse
 
-So, you'll need one of those operating systems.. :-)
-Please sent Pull Requests or suggestions when you want to use this role for other Operating systems.
+So, you'll need one of those systems.. :-)
+Please sent Pull Requests or suggestions when you want to use this role for other systems.
 
 ### InfluxDB
 
 You'll need an InfluxDB instance running somewhere on your network.
+
+### Docker
+
+Docker needs to be installed on the target host. I can recommend these roles to install Docker:
+
+* [jgeusebroek.docker](https://galaxy.ansible.com/jgeusebroek/docker)
+* [geerlingguy.docker](https://galaxy.ansible.com/geerlingguy/docker)
 
 ## Upgrade
 ### 0.7.0
@@ -60,7 +68,14 @@ The following parameters can be set for the Telegraf agent:
 * `telegraf_agent_logfile`: The agent logfile name. Default: '' (means to log to stdout) (since v1.1)
 * `telegraf_agent_omit_hostname`: Do no set the "host" tag in the agent. Default: `False` (since v1.1)
 
-Full agent settings reference: https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent-configuration
+Docker specific role variables:
+
+* `telegraf_agent_docker`: Install Telegraf as a docker container. Default: `False`
+* `telegraf_agent_docker_name`: Name of the docker container. Default: `telegraf`
+* `telegraf_agent_docker_network_mode`: Networking mode of the docker container. Default: `bridge`
+* `telegraf_agent_docker_restart_policy`: Docker container restart policy. Default: `unless-stopped`
+
+Full agent settings reference: [https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent-configuration](https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent-configuration).
 
 You can set tags for the host running telegraf:
 
@@ -84,6 +99,55 @@ The config will be printed line by line into the configuration, so you could als
 		- # Print an documentation line
 
 and it will be printed in the configuration file.
+	
+### Docker specifics
+
+#### Docker image
+
+The official [Influxdata Telegraf image](https://hub.docker.com/_/telegraf) is used. 	`telegraf_agent_version` will translate to the image tag.
+
+#### Docker mounts
+
+Please note that the Docker container bind mounts basicly your whole system (read-only) to monitor the Docker Engine Host from within the container. To be precise:
+
+	- /etc/telegraf:/etc/telegraf:ro
+	- /:/hostfs:ro
+	- /etc:/hostfs/etc:ro
+	- /proc:/hostfs/proc:ro
+	- /sys:/hostfs/sys:ro
+	- /var/run:/var/run:ro
+
+More information: [https://github.com/influxdata/telegraf/blob/master/docs/FAQ.md](https://github.com/influxdata/telegraf/blob/master/docs/FAQ.md).
+
+#### Example Docker configuration
+
+	telegraf_agent_docker: True
+	# Force host networking mode, so Docker Engine Host traffic metrics can be gathered.
+	telegraf_agent_docker_network_mode: host
+	# Force a specific image tag.
+	telegraf_agent_version: 1.9.2-alpine
+
+	telegraf_plugins_default:
+	  - plugin: cpu
+	    config:
+	      - percpu = "true"
+	  - plugin: disk
+	    tags:
+	      - diskmetrics = "true"
+	    tagpass:
+	      - fstype = [ "ext4", "xfs" ]
+	    tagdrop:
+	      - path = [ "/etc", "/etc/telegraf", "/etc/hostname", "/etc/hosts", "/etc/resolv.conf" ]
+	  - plugin: io
+	  - plugin: mem
+	  - plugin: system
+	  - plugin: swap
+	  - plugin: netstat
+	  - plugin: processes
+	  - plugin: docker
+	    config:
+	      - endpoint = "unix:///var/run/docker.sock"
+	      - timeout = "5s"
 
 ## Windows specific Variables
 
@@ -177,6 +241,7 @@ The following have contributed to this Ansible role:
  * Romain BUREAU
  * TheCodeAssassin
  * tjend
+ * Jeroen Geusebroek
 
 Thank you all!
 
