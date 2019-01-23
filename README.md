@@ -29,7 +29,7 @@ Please sent Pull Requests or suggestions when you want to use this role for othe
 
 ### InfluxDB
 
-You'll need an InfluxDB instance running somewhere on your network.
+You'll need an InfluxDB instance running somewhere on your network. Or 1 of the other output types found on https://github.com/influxdata/telegraf/#output-plugins
 
 ### Docker
 
@@ -37,6 +37,8 @@ Docker needs to be installed on the target host. I can recommend these roles to 
 
 * [jgeusebroek.docker](https://galaxy.ansible.com/jgeusebroek/docker)
 * [geerlingguy.docker](https://galaxy.ansible.com/geerlingguy/docker)
+
+This is only the case when the configuration is needed for a Telegraf inside a Docker container (When `telegraf_agent_docker: True`).
 
 ## Upgrade
 ### 0.7.0
@@ -99,7 +101,7 @@ The config will be printed line by line into the configuration, so you could als
 		- # Print an documentation line
 
 and it will be printed in the configuration file.
-	
+
 ### Docker specifics
 
 #### Docker image
@@ -153,7 +155,7 @@ More information: [https://github.com/influxdata/telegraf/blob/master/docs/FAQ.m
 
 **NOTE**
 
-_Supporting Windows is an best effort (I don't have the possibility to either test/verify changes on the various amount of available Windows instances). PR's specific to Windows will almost immediately be merged, unless some one is able to provide a Windows test mechanism via Travis for Pull Requests._
+_Supporting Windows is an best effort (I don't have the possibility to either test/verify changes on the various amount of available Windows instances). PR's specific to Windows will almost immediately be merged, unless some one is able to provide a Windows test mechanism via Travis or other service for Pull Requests._
 
 * `telegraf_win_install_dir`: The directory where Telegraf will be installed.
 * `telegraf_win_logfile`: The location to the logfile of Telegraf.
@@ -223,25 +225,34 @@ No dependencies
 
 ## Contributors
 
-The following have contributed to this Ansible role:
+The following have contributed to this Ansible role (Provided with: `git shortlog -s -n`):
 
- * Thomas Szymanski
- * Alejandro
- * Slawomir Skowron
- * Ismael
- * Laurent Hoss
- * Anthony ARNAUD
- * Rick Box
- * Emerson Knapp
- * gaelL
- * Steven Wirges
- * zend0
- * Angristan
- * Olivier Boukili
- * Romain BUREAU
- * TheCodeAssassin
- * tjend
- * Jeroen Geusebroek
+* Werner Dijkerman
+* Thomas Szymanski
+* Jeroen Geusebroek
+* or
+* Alejandro
+* Troy Jendra
+* Slawomir Skowron
+* gaelL
+* Laurent Hoss
+* Ismael
+* Anthony ARNAUD
+* Ilkka Tengvall
+* Rick Box
+* Steven Wirges
+* Jack Ivy
+* Emerson Knapp
+* zend0
+* Angristan
+* Miroslav Prasil
+* Olivier Boukili
+* Pascal
+* Romain BUREAU
+* Ryan Conway
+* Steve Durrheimer
+* TheCodeAssassin
+* aroglian
 
 Thank you all!
 
