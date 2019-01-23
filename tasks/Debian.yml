@@ -15,6 +15,8 @@
   apt:
     name: "apt-transport-https"
     state: present
+  register: are_telegraf_dependencies_packages_installed
+  until: are_telegraf_dependencies_packages_installed is succeeded
   when:
     - not apt_https_transport.stat.exists
   become: yes
@@ -51,5 +53,7 @@
     state: "{{ telegraf_agent_package_state }}"
     cache_valid_time: 900
     force: True
+  register: is_telegraf_package_installed
+  until: is_telegraf_package_installed is succeeded
   notify: "Restart Telegraf"
   become: yes
