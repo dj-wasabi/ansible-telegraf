@@ -59,6 +59,7 @@ provisioner:
   inventory:
     group_vars:
       all:
+        telegraf_agent_package_state: latest
         telegraf_agent_output:
           - type: influxdb
             config:
