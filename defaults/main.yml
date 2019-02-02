@@ -15,6 +15,8 @@ telegraf_agent_aws_tags: False
 telegraf_agent_aws_tags_prefix: ""
 
 # Docker specific settings
+telegraf_uid_docker: 998
+telegraf_gid_docker: 995
 telegraf_agent_docker: False
 telegraf_agent_docker_name: telegraf
 telegraf_agent_docker_network_mode: bridge
