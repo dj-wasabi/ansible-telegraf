@@ -76,6 +76,8 @@ Docker specific role variables:
 * `telegraf_agent_docker_name`: Name of the docker container. Default: `telegraf`
 * `telegraf_agent_docker_network_mode`: Networking mode of the docker container. Default: `bridge`
 * `telegraf_agent_docker_restart_policy`: Docker container restart policy. Default: `unless-stopped`
+* `telegraf_uid_docker`: Override user id. Default: `995`
+* `telegraf_gid_docker`: Override group id. Default: `998`
 
 Full agent settings reference: [https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent-configuration](https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent-configuration).
 

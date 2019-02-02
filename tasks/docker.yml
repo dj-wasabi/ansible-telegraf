@@ -4,7 +4,7 @@
   group:
     name: telegraf
     state: present
-    gid: 995
+    gid: "{{ telegraf_gid_docker }}"
 
 - name: Adding Telegraf user
   user:
@@ -13,7 +13,7 @@
     state: present
     create_home: False
     home: /etc/telegraf
-    uid: 998
+    uid: "{{ telegraf_uid_docker }}"
     system: True
   become: yes
 
@@ -43,6 +43,8 @@
     restart_policy: "{{ telegraf_agent_docker_restart_policy }}"
     command: -config /etc/telegraf/telegraf.conf -config-directory /etc/telegraf/telegraf.d
     network_mode: "{{ telegraf_agent_docker_network_mode }}"
+    security_opts:
+      - apparmor:unconfined
     volumes:
       - /etc/telegraf:/etc/telegraf:ro
       - /:/hostfs:ro
