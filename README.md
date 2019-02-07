@@ -129,7 +129,7 @@ More information: [https://github.com/influxdata/telegraf/blob/master/docs/FAQ.m
 	# Force host networking mode, so Docker Engine Host traffic metrics can be gathered.
 	telegraf_agent_docker_network_mode: host
 	# Force a specific image tag.
-	telegraf_agent_version: 1.9.3-alpine
+	telegraf_agent_version: 1.9.4-alpine
 
 	telegraf_plugins_default:
 	  - plugin: cpu
