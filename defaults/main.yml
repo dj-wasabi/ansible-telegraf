@@ -1,9 +1,11 @@
 ---
 # defaults file for ansible-telegraf
 
-telegraf_agent_version: 1.9.5
+telegraf_agent_version: 1.10.0
 telegraf_agent_version_patch: 1
 telegraf_agent_package: telegraf
+telegraf_agent_package_path: /tmp
+telegraf_agent_package_method: repo
 telegraf_agent_package_state: present
 telegraf_agent_hostname: "{{ ansible_fqdn }}"
 telegraf_agent_interval: 10

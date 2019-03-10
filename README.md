@@ -49,13 +49,30 @@ There was an issue:
 
 ## Role Variables
 
-### Overall variables
+### Ansible role specific variables
 
-The following parameters can be set for the Telegraf agent:
+Specifying the version to be installed:
 
-* `telegraf_agent_version`: The version of Telegraf to install. Default: `1.9.0`
-* `telegraf_agent_package`: The name of the Telegraf package. Default: `telegraf`
+* `telegraf_agent_version`: The version of Telegraf to install. Default: `1.10.0`
+
+How `Telegraf` needs to be installed. There are 3 methods in getting `Telegraf` installed on the target host:
+
+* Via the package manager, like `yum`, `apt` or `zypper` ("repo");
+* Via a download from the `https://dl.influxdata.com/` site ("online");
+* Already provided and is already available on the target host, but not yet installed/configured ("offline");
+
+This can be configured by setting `telegraf_agent_package_method` to one of the appropriate values ( `repo`, `online` or `offline`).
+
+#### Telegraf Package
+
+These properties set in how and what package will be installed.
+
+* `telegraf_agent_package`: The name of the Telegraf package to install. When `telegraf_agent_package_method` is set to `online` or `offline`, it needs to have the full path of the file. Example: `telegraf_agent_package: /tmp/telegraf.rpm`. Default: `telegraf_agent_package: telegraf`.
+* `telegraf_agent_package_method`: The installation method to be used. Can choose between: `repo`, `offline` or `online`.
 * `telegraf_agent_package_state`: If the package should be `present` or `latest`. When set to `latest`, `telegraf_agent_version` will be ignored. Default: `present`
+
+### Telegraf agent process configuration.
+
 * `telegraf_agent_interval`: The interval configured for sending data to the server. Default: `10`
 * `telegraf_agent_debug`: Run Telegraf in debug mode. Default: `False`
 * `telegraf_agent_round_interval`: Rounds collection interval to 'interval' Default: True
@@ -70,7 +87,7 @@ The following parameters can be set for the Telegraf agent:
 * `telegraf_agent_logfile`: The agent logfile name. Default: '' (means to log to stdout) (since v1.1)
 * `telegraf_agent_omit_hostname`: Do no set the "host" tag in the agent. Default: `False` (since v1.1)
 
-Docker specific role variables:
+### Docker specific role variables:
 
 * `telegraf_agent_docker`: Install Telegraf as a docker container. Default: `False`
 * `telegraf_agent_docker_name`: Name of the docker container. Default: `telegraf`
@@ -80,6 +97,9 @@ Docker specific role variables:
 * `telegraf_gid_docker`: Override group id. Default: `998`
 
 Full agent settings reference: [https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent-configuration](https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent-configuration).
+
+## Extra information
+### Setting tags
 
 You can set tags for the host running telegraf:
 
@@ -129,7 +149,7 @@ More information: [https://github.com/influxdata/telegraf/blob/master/docs/FAQ.m
 	# Force host networking mode, so Docker Engine Host traffic metrics can be gathered.
 	telegraf_agent_docker_network_mode: host
 	# Force a specific image tag.
-	telegraf_agent_version: 1.9.5-alpine
+	telegraf_agent_version: 1.10.0-alpine
 
 	telegraf_plugins_default:
 	  - plugin: cpu

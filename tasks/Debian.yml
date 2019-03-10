@@ -6,6 +6,16 @@
   when:
     - telegraf_agent_package_state != "latest"
 
+- name: "Debian | Set telegraf_agent_package_arch"
+  set_fact:
+    telegraf_agent_package_arch: "{{ ansible_architecture }}"
+
+- name: "Debian | Set telegraf_agent_package_arch specific for x86_64"
+  set_fact:
+    telegraf_agent_package_arch: "amd64"
+  when:
+    - ansible_architecture == "x86_64"
+
 - name: "Debian | Ensure the system can use the HTTPS transport for APT"
   stat:
     path: /usr/lib/apt/methods/https
@@ -29,6 +39,8 @@
   register: are_telegraf_dependencies_keys_installed
   until: are_telegraf_dependencies_keys_installed is succeeded
   become: yes
+  when:
+    - telegraf_agent_package_method == "repo"
 
 - name: "Debian | Add Telegraf repository (using LSB)"
   apt_repository:
@@ -37,6 +49,7 @@
     state: present
   become: yes
   when:
+    - telegraf_agent_package_method == "repo"
     - ansible_lsb is defined
     - ansible_lsb.codename is defined
 
@@ -47,15 +60,34 @@
     state: present
   become: yes
   when:
+    - telegraf_agent_package_method == "repo"
     - ansible_lsb is not defined or ansible_lsb.codename is not defined
+
+- name: "Debian | Download Telegraf package (online)"
+  get_url:
+    url: https://dl.influxdata.com/telegraf/releases/telegraf_{{ telegraf_agent_version }}-{{ telegraf_agent_version_patch }}_{{ telegraf_agent_package_arch }}.deb
+    dest: "{{ telegraf_agent_package }}"
+  when:
+    - telegraf_agent_package_method == "online"
 
 - name: "Debian | Install Telegraf package"
   apt:
     name: "{{ telegraf_agent_package }}"
     state: "{{ telegraf_agent_package_state }}"
-    cache_valid_time: 900
-    force: True
   register: is_telegraf_package_installed
   until: is_telegraf_package_installed is succeeded
   notify: "Restart Telegraf"
   become: yes
+  when:
+    - telegraf_agent_package_method == "repo"
+
+- name: "Debian | Install Telegraf package"
+  apt:
+    deb: "{{ telegraf_agent_package }}"
+    state: "present"
+  register: is_telegraf_package_installed
+  until: is_telegraf_package_installed is succeeded
+  notify: "Restart Telegraf"
+  become: yes
+  when:
+    - telegraf_agent_package_method != "repo"
