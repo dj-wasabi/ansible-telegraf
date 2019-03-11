@@ -57,6 +57,10 @@ provisioner:
   lint:
     name: ansible-lint
   inventory:
+    host_vars:
+      telegraf-debian:
+        telegraf_agent_package: /tmp/telegraf_amd64.deb
+        telegraf_agent_package_method: online
     group_vars:
       all:
         telegraf_agent_package_state: latest
