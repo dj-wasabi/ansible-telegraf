@@ -5,6 +5,21 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
+0.12.0 (2019-03-12)
+
+  * Add support for extra win_perf_counters and prevent python u'' strings #76 (By pull request: jdivy (Thanks!))
+  * Fix to work with Fedora Linux #78 (By pull request: ikke-t (Thanks!))
+  * Add Yum repo support for Amazon Linux #79 (By pull request: anthonysr-mc (Thanks!))
+  * Updating Telegraf default to 1.9.2 #80 (and some to other versions as well) (By pull request: sdurrheimer (Thanks!))
+  * [bug] debian - add cache_valid_time #81 (By pull request: pad92 (Thanks!))
+  * Fix tagpass and tagdrop #83 (By pull request: jgeusebroek (Thanks!))
+  * Remove legacy options #84 (By pull request: jgeusebroek (Thanks!))
+  * Add Docker container support #85 (By pull request: jgeusebroek (Thanks!))
+  * Added register for installation of packages #86
+  * Docker enhancements #88 (By pull request: jgeusebroek (Thanks!))
+  * Updated to Telegraf 1.10.0;Different installation methods #93
+  * Add processors section in Telegraf config #94 (By pull request: ph4r5h4d (Thanks!))
+
 0.11.0 (2018-12-11)
 
   * Added support for plugins being managed exclusively by this playbook #60 (By pull request: gaizeror (Thanks!))
