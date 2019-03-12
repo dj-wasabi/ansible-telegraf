@@ -113,3 +113,18 @@
 [[inputs.mem]]
 {% endif %}
 {% endif %}
+
+###############################################################################
+#                                  PROCESSORS                                    #
+###############################################################################
+
+{% if telegraf_processors is defined and telegraf_processors is iterable %}
+{% for item in telegraf_processors %}
+[[processors.{{ item.processor }}]]
+{% if item.config is defined and item.config is iterable %}
+{% for items in item.config %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endif %}
