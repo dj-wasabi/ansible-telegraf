@@ -10,7 +10,8 @@
 - name: Use RHEL 7 packages for Fedora
   set_fact:
     telegraf_redhat_releasever: 7
-  when: ansible_distribution == "Fedora"
+  when:
+    - ansible_distribution == "Fedora"
 
 - name: "RedHat | Add yum repository"
   yum_repository:
@@ -24,7 +25,7 @@
 
 - name: "RedHat | Download Telegraf package (online)"
   get_url:
-    url: https://dl.influxdata.com/telegraf/releases/telegraf-{{ telegraf_agent_version }}-{{ telegraf_agent_version_patch }}.{{ ansible_architecture }}.rpm
+    url: https://dl.influxdata.com/telegraf/releases/{{ telegraf_agent_package_file_rpm }}
     dest: "{{ telegraf_agent_package }}"
   when:
     - telegraf_agent_package_method == "online"
