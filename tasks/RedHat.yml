@@ -27,6 +27,7 @@
   get_url:
     url: https://dl.influxdata.com/telegraf/releases/{{ telegraf_agent_package_file_rpm }}
     dest: "{{ telegraf_agent_package }}"
+    use_proxy: "{{ true if http_proxy is defined and http_proxy else false }}"
   when:
     - telegraf_agent_package_method == "online"
 
