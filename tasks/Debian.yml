@@ -65,7 +65,7 @@
 
 - name: "Debian | Download Telegraf package (online)"
   get_url:
-    url: https://dl.influxdata.com/telegraf/releases/telegraf_{{ telegraf_agent_version }}-{{ telegraf_agent_version_patch }}_{{ telegraf_agent_package_arch }}.deb
+    url: https://dl.influxdata.com/telegraf/releases/{{ telegraf_agent_package_file_deb }}
     dest: "{{ telegraf_agent_package }}"
   when:
     - telegraf_agent_package_method == "online"

@@ -4,6 +4,8 @@
 telegraf_agent_version: 1.10.0
 telegraf_agent_version_patch: 1
 telegraf_agent_package: telegraf
+telegraf_agent_package_file_deb: telegraf_{{ telegraf_agent_version }}-{{ telegraf_agent_version_patch }}_{{ telegraf_agent_package_arch }}.deb
+telegraf_agent_package_file_rpm: telegraf-{{ telegraf_agent_version }}-{{ telegraf_agent_version_patch }}.{{ ansible_architecture }}.rpm
 telegraf_agent_package_path: /tmp
 telegraf_agent_package_method: repo
 telegraf_agent_package_state: present
