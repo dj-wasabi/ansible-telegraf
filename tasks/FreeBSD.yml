@@ -1,0 +1,20 @@
+---
+# description: FreeBSD specific installation
+
+- name: "FreeBSD | set package name"
+  set_fact:
+    telegraf_agent_package: telegraf
+
+- name: "FreeBSD | Install Telegraf package"
+  pkgng:
+    name: "{{ telegraf_agent_package }}"
+    state: "{{ telegraf_agent_package_state }}"
+  register: is_telegraf_package_installed
+  until: is_telegraf_package_installed is succeeded
+  notify: "Restart Telegraf"
+
+- name: "FreeBSD | add telegraf_flags for extra plugins"
+  shell: sysrc telegraf_flags="-quiet -config-directory=/usr/local/etc/telegraf.d"
+
+- name: "FreeBSD | add telegraf to init"
+  shell: sysrc telegraf_enable="YES"
