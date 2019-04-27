@@ -6,6 +6,12 @@
   when:
     - telegraf_agent_aws_tags
 
+- name: "Add prefix path"
+  set_fact:
+    telegraf_agent_config_path: /usr/local/etc/telegraf
+  when:
+    - ansible_os_family == "FreeBSD"
+
 - name: Retrieve all ec2 tags on the instance
   ec2_tag:
     region: '{{ ansible_ec2_placement_region }}'
@@ -32,7 +38,7 @@
 - name: "Copy the template for versions >= 0.10.0"
   template:
     src: telegraf.conf.j2
-    dest: /etc/telegraf/telegraf.conf
+    dest: "{{ telegraf_agent_config_path }}/telegraf.conf"
     owner: telegraf
     group: telegraf
     mode: 0640
@@ -45,7 +51,7 @@
 
 - name: "Check if extra plugins directory exists in case of exclusive"
   stat:
-    path: /etc/telegraf/telegraf.d
+    path: "{{ telegraf_agent_config_path }}/telegraf.d"
   register: telegraf_directory
   when:
     - telegraf_plugins_extra_exclusive
@@ -53,7 +59,7 @@
 - name: "Delete telegraf extra plugin path"
   file:
     state: absent
-    path: "/etc/telegraf/telegraf.d/"
+    path: "{{ telegraf_agent_config_path }}/telegraf.d/"
   when:
     - telegraf_plugins_extra_exclusive
     - telegraf_directory.stat.exists
@@ -65,7 +71,7 @@
 - name: "Create telegraf extra plugin path"
   file:
     state: directory
-    path: "/etc/telegraf/telegraf.d/"
+    path: "{{ telegraf_agent_config_path }}/telegraf.d/"
     owner: telegraf
     group: telegraf
     mode: 0755
@@ -80,7 +86,7 @@
 - name: "Copy telegraf extra plugins"
   template:
     src: "telegraf-extra-plugin.conf.j2"
-    dest: "/etc/telegraf/telegraf.d/{{ item.key }}.conf"
+    dest: "{{ telegraf_agent_config_path }}/telegraf.d/{{ item.key }}.conf"
     owner: telegraf
     group: telegraf
     mode: 0640
@@ -98,7 +104,7 @@
 
 - name: "Remove telegraf extra plugins"
   file:
-    path: "/etc/telegraf/telegraf.d/{{ item.key }}.conf"
+    path: "{{ telegraf_agent_config_path }}/telegraf.d/{{ item.key }}.conf"
     state: absent
   with_dict: "{{ telegraf_plugins_extra }}"
   loop_control:

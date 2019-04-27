@@ -15,14 +15,16 @@ Design goals are to have a minimal memory footprint with a plugin system so that
 ## Requirements
 
 ### Supported systems
+
 This role supports the following systems:
 
  * Red Hat
  * Debian
  * Ubuntu
  * Docker container
- * Windows (Best effort)
  * (Open)Suse
+ * Windows (Best effort)
+ * FreeBSD (Best effort)
 
 So, you'll need one of those systems.. :-)
 Please sent Pull Requests or suggestions when you want to use this role for other systems.

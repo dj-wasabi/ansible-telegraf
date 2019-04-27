@@ -27,11 +27,6 @@
   when: telegraf_agent_docker
 
 - name: "Configure Telegraf"
-  include_tasks: "configure_FreeBSD.yml"
-  when:
-    - ansible_os_family == "FreeBSD"
-
-- name: "Configure Telegraf"
   include_tasks: "configure_linux.yml"
   when:
     - ansible_os_family != "Windows"

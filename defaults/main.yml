@@ -17,6 +17,7 @@ telegraf_agent_flush_interval: 10
 telegraf_agent_flush_jitter: 0
 telegraf_agent_aws_tags: False
 telegraf_agent_aws_tags_prefix: ""
+telegraf_agent_config_path: /etc/telegraf
 
 # Docker specific settings
 telegraf_uid_docker: 998
