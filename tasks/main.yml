@@ -18,8 +18,18 @@
   include_tasks: "Suse.yml"
   when: ansible_os_family == "Suse" and not telegraf_agent_docker
 
+- name: "Install on FreeBSD"
+  include_tasks: "FreeBSD.yml"
+  when:
+    - ansible_os_family == "FreeBSD" and not telegraf_agent_docker
+
 - include_tasks: "docker.yml"
   when: telegraf_agent_docker
+
+- name: "Configure Telegraf"
+  include_tasks: "configure_FreeBSD.yml"
+  when:
+    - ansible_os_family == "FreeBSD"
 
 - name: "Configure Telegraf"
   include_tasks: "configure_linux.yml"
