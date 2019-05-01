@@ -8,7 +8,7 @@
 
 - name: "Add prefix path"
   set_fact:
-    telegraf_agent_config_path: /usr/local/etc/telegraf
+    telegraf_agent_config_path: /usr/local/etc
   when:
     - ansible_os_family == "FreeBSD"
 
