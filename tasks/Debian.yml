@@ -74,6 +74,7 @@
   apt:
     name: "{{ telegraf_agent_package }}"
     state: "{{ telegraf_agent_package_state }}"
+    update_cache: yes
   register: is_telegraf_package_installed
   until: is_telegraf_package_installed is succeeded
   notify: "Restart Telegraf"
