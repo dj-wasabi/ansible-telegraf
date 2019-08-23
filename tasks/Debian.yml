@@ -16,6 +16,12 @@
   when:
     - ansible_architecture == "x86_64"
 
+- name: "Debian | Set telegraf_agent_package_arch specific for arm64"
+  set_fact:
+    telegraf_agent_package_arch: "armhf"
+  when:
+    - ansible_architecture == "arm64"
+
 - name: "Debian | Ensure the system can use the HTTPS transport for APT"
   stat:
     path: /usr/lib/apt/methods/https
