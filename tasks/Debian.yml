@@ -4,7 +4,7 @@
   set_fact:
     telegraf_agent_package: telegraf={{ telegraf_agent_version }}-{{ telegraf_agent_version_patch }}
   when:
-    - telegraf_agent_package_state != "latest"
+    - telegraf_agent_package_state == "latest"
 
 - name: "Debian | Set telegraf_agent_package_arch"
   set_fact:
