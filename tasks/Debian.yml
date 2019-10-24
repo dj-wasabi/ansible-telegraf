@@ -72,7 +72,7 @@
 - name: "Debian | Download Telegraf package (online)"
   get_url:
     url: https://dl.influxdata.com/telegraf/releases/{{ telegraf_agent_package_file_deb }}
-    dest: "{{ telegraf_agent_package }}"
+    dest: "{{ telegraf_agent_package_path }}/{{ telegraf_agent_package }}"
     use_proxy: "{{ true if http_proxy is defined and http_proxy else false }}"
   environment:
     http_proxy: "{{ http_proxy | default(None) | default(omit) }}"
@@ -94,7 +94,7 @@
 
 - name: "Debian | Install Telegraf package"
   apt:
-    deb: "{{ telegraf_agent_package }}"
+    deb: "{{ telegraf_agent_package_path }}/{{ telegraf_agent_package }}"
     state: "present"
   register: is_telegraf_package_installed
   until: is_telegraf_package_installed is succeeded
