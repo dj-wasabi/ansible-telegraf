@@ -31,6 +31,7 @@ platforms:
     command: /sbin/init
     groups:
       - telegraf
+      - debian
     networks:
       - name: telegraf
   - name: telegraf-ubuntu
@@ -39,6 +40,7 @@ platforms:
     command: /sbin/init
     groups:
       - telegraf
+      - debian
     networks:
       - name: telegraf
   - name: telegraf-opensuse
@@ -57,11 +59,9 @@ provisioner:
   lint:
     name: ansible-lint
   inventory:
-    host_vars:
-      telegraf-debian:
-        telegraf_agent_package: /tmp/telegraf_amd64.deb
-        telegraf_agent_package_method: online
     group_vars:
+      debian:
+        telegraf_agent_package_method: online
       all:
         telegraf_agent_package_state: latest
         telegraf_agent_output:
