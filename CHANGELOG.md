@@ -7,6 +7,19 @@ Version (Release date)
 
 0.12.0 (2019-03-12)
 
+  * Download from influxdb #109
+  * Don't override package name unless "latest" #108 (By pull request: matttrach (Thanks!))
+  * Adding support for arm64 systems #106 (By pull request: remkade (Thanks!))
+  * Use items() instead of iteritems() #104 (By pull request: diego1q2w
+  * Fix: ensure apt-cache is updated before install #103 (By pull request: asfaltboy (Thanks!))
+  * on FreeBSD the telegeraf.conf is in root of /usr/local/etc. #102 (By pull request: langerma (Thanks!))
+  * Some changes for fixing FreeBSD #101
+  * basic FreeBSD support #100 (By pull request: langerma (Thanks!))
+  * Added the use_proxy argument to use a proxy (or not) #98
+  * Various small changes for molecule #97
+
+0.12.0 (2019-03-12)
+
   * Add support for extra win_perf_counters and prevent python u'' strings #76 (By pull request: jdivy (Thanks!))
   * Fix to work with Fedora Linux #78 (By pull request: ikke-t (Thanks!))
   * Add Yum repo support for Amazon Linux #79 (By pull request: anthonysr-mc (Thanks!))
