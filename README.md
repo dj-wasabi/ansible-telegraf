@@ -1,8 +1,37 @@
 # dj-wasabi.telegraf
 
+- [dj-wasabi.telegraf](#dj-wasabitelegraf)
+  * [Build status:](#build-status-)
+  * [Requirements](#requirements)
+    + [Supported systems](#supported-systems)
+    + [InfluxDB](#influxdb)
+    + [Docker](#docker)
+  * [Upgrade](#upgrade)
+    + [0.7.0](#070)
+  * [Role Variables](#role-variables)
+    + [Ansible role specific variables](#ansible-role-specific-variables)
+      - [Telegraf Package](#telegraf-package)
+    + [Telegraf agent process configuration.](#telegraf-agent-process-configuration)
+    + [Docker specific role variables:](#docker-specific-role-variables-)
+  * [Extra information](#extra-information)
+    + [ansible_fqdn problematic for getting hostname](#ansible-fqdn-problematic-for-getting-hostname)
+    + [Setting tags](#setting-tags)
+    + [Docker specifics](#docker-specifics)
+      - [Docker image](#docker-image)
+      - [Docker mounts](#docker-mounts)
+      - [Example Docker configuration](#example-docker-configuration)
+  * [Windows specific Variables](#windows-specific-variables)
+  * [Extra information](#extra-information-1)
+  * [Dependencies](#dependencies)
+  * [Example Playbook](#example-playbook)
+  * [Contributors](#contributors)
+  * [Molecule](#molecule)
+  * [License](#license)
+  * [Author Information](#author-information)
+
 ## Build status:
 
-[![Build Status](https://travis-ci.org/dj-wasabi/ansible-telegraf.svg?branch=master)](https://travis-ci.org/dj-wasabi/ansible-telegraf)
+[![Build Status](https://travis-ci.org/dj-wasabi/ansible-telegraf.svg?branch=master)](https://travis-ci.org/dj-wasabi/ansible-telegraf) <img src="https://img.shields.io/ansible/role/d/5173"/> <img src="https://img.shields.io/ansible/quality/5173"/>
 
 This role will install and configure telegraf.
 
@@ -101,6 +130,23 @@ These properties set in how and what package will be installed.
 Full agent settings reference: [https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent-configuration](https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#agent-configuration).
 
 ## Extra information
+
+### ansible_fqdn problematic for getting hostname
+
+Extra info regarding: ansible_fqdn problematic for getting hostname #105
+
+*Describe the bug*
+
+In some nodes I'm getting weird hostnames, mostly localhost.localdomain. Those nodes show proper configuration in hostnamectl. I've seen you're using 'ansible_fqdn' as default.
+
+Seems like ansible_fqdn and ansible_hostname can give different results, and sometimes even very weird results, as it sometimes makes DNS calls (which is not under my control in that cases) to infer that names.
+
+*Fix proposal*
+
+In my playbook I've added this parameter:
+
+	telegraf_agent_hostname: "{{ ansible_nodename }}"
+
 ### Setting tags
 
 You can set tags for the host running telegraf:
