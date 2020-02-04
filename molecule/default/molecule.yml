@@ -71,13 +71,15 @@ provisioner:
               - database = "telegraf"
               - precision = "s"
         telegraf_plugins_extra:
-          percpu-usage:
-            plugin: cpu
+          logparser:
+            plugin: logparser
             config:
-              - percpu = true
-              - totalcpu = false
-              - name_override = "percpu_usage"
-              - fielddrop = ["cpu_time*"]
+              - files = ["/var/log/messages"]
+              - from_beginning = false
+            filter:
+              name: grok
+              config:
+                - patterns = ["invoked oom-killer"]
 
 scenario:
   name: default

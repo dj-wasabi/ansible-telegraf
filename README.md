@@ -22,6 +22,8 @@
       - [Example Docker configuration](#example-docker-configuration)
   * [Windows specific Variables](#windows-specific-variables)
   * [Extra information](#extra-information-1)
+    + [telegraf_plugins_default](#telegraf-plugins-default)
+    + [telegraf_plugins_extra](#telegraf-plugins-extra)
   * [Dependencies](#dependencies)
   * [Example Playbook](#example-playbook)
   * [Contributors](#contributors)
@@ -238,6 +240,8 @@ There are two properties which are similar, but are used differently. Those are:
 * `telegraf_plugins_default`
 * `telegraf_plugins_extra`
 
+### telegraf_plugins_default
+
 With the property `telegraf_plugins_default` it is set to use the default set of Telegraf plugins. You could override it with more plugins, which should be enabled at default.
 
 	telegraf_plugins_default:
@@ -252,6 +256,8 @@ With the property `telegraf_plugins_default` it is set to use the default set of
 	  - plugin: netstat
 
 Every telegraf agent has these as a default configuration.
+
+### telegraf_plugins_extra
 
 The 2nd parameter `telegraf_plugins_extra` can be used to add plugins specific to the servers goal. It is a hash instead of a list, so that you can merge values from multiple var files together. Following is an example for using this parameter for MySQL database servers:
 
@@ -269,6 +275,8 @@ Telegraf plugin options:
 * `tagpass`: (added in Telegraf 0.1.5) tag names and arrays of strings that are used to filter metrics by the current plugin. Each string in the array is tested as an exact match against the tag name, and if it matches the metric is emitted.
 * `tagdrop`: (added in Telegraf 0.1.5) The inverse of tagpass. If a tag matches, the metric is not emitted. This is tested on metrics that have passed the tagpass test.
 * `interval`: How often to gather this metric. Normal plugins use a single global interval, but if one particular plugin should be run less or more often, you can configure that here.
+* `filter.name`: Like when there is an extra filter that needs to be configured, like `grok` for a `logparser` plugin.
+* `filter.config`: The extra configuration for the - in the `filter.name` example - `grok` filter. (See example below)
 
 An example might look like this:
 
@@ -291,6 +299,19 @@ telegraf_processors:
         - tag = "level"
         - dest = "LogLevel"
 ```
+
+When you want to make use of the `grok` filter for the logparser:
+
+	telegraf_plugins_extra:
+		logparser:
+		plugin: logparser
+		config:
+			- files = ["/var/log/messages"]
+			- from_beginning = false
+		filter:
+			name: grok
+			config:
+			- patterns = ["invoked oom-killer"]
 
 ## Dependencies
 

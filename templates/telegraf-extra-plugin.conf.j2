@@ -27,6 +27,16 @@
     {{ items }}
 {% endfor %}
 {% endif %}
+{% if item.value.filter is defined %}
+{% if item.value.filter.name is defined %}
+[inputs.{{ item.value.plugin | default(item.key) }}.{{ item.value.filter.name | default("grok") }}]
+{% if item.value.filter.config is defined and item.value.filter.config is iterable %}
+{% for items in item.value.filter.config %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% endif %}
 {% if item.value.objects is defined and item.value.objects is iterable %}
 {% for object in item.value.objects %}
 [[inputs.{{ item.value.plugin | default(item.key) }}.object]]
