@@ -47,3 +47,11 @@
   IncludeTotal = {{ object.total | default(false) | string | lower }}
 {% endfor %}
 {% endif %}
+{% if item.value.queries is defined and item.value.queries is iterable %}
+{% for query in item.value.queries %}
+[[inputs.{{ item.value.plugin | default(item.key) }}.query]]
+{% for item in item.value.queries[query] %}
+    {{ item }}
+{% endfor %}
+{% endfor %}
+{% endif %}
