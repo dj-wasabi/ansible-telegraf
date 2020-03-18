@@ -101,4 +101,4 @@
   notify: "Restart Telegraf"
   become: yes
   when:
-    - telegraf_agent_package_method != "repo"
+    - telegraf_agent_package_method == "online" or telegraf_agent_package_method == "offline"

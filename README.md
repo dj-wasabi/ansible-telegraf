@@ -88,13 +88,14 @@ Specifying the version to be installed:
 
 * `telegraf_agent_version`: The version of Telegraf to install. Default: `1.10.0`
 
-How `Telegraf` needs to be installed. There are 3 methods in getting `Telegraf` installed on the target host:
+How `Telegraf` needs to be installed. There are 4 methods in getting `Telegraf` installed on the target host:
 
 * Via the package manager, like `yum`, `apt` or `zypper` ("repo");
 * Via a download from the `https://dl.influxdata.com/` site ("online");
 * Already provided and is already available on the target host, but not yet installed/configured ("offline");
+* Already installed on the target host or done manually, but not yet configured ("manual");
 
-This can be configured by setting `telegraf_agent_package_method` to one of the appropriate values ( `repo`, `online` or `offline`).
+This can be configured by setting `telegraf_agent_package_method` to one of the appropriate values ( `repo`, `online`, `offline` or `manual`).
 
 #### Telegraf Package
 
