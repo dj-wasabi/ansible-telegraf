@@ -20,6 +20,7 @@
     baseurl: "{{ telegraf_yum_baseurl[ansible_distribution|lower] | default(telegraf_yum_baseurl['default']) }}"
     gpgcheck: yes
     gpgkey: https://repos.influxdata.com/influxdb.key
+  become: yes
   when:
     - telegraf_agent_package_method == "repo"
 
