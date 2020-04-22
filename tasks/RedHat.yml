@@ -41,4 +41,5 @@
     state: "{{ telegraf_agent_package_state }}"
   register: is_telegraf_package_installed
   until: is_telegraf_package_installed is succeeded
+  become: yes
   notify: "Restart Telegraf"
