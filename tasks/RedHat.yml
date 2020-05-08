@@ -20,6 +20,7 @@
     baseurl: "{{ telegraf_yum_baseurl[ansible_distribution|lower] | default(telegraf_yum_baseurl['default']) }}"
     gpgcheck: yes
     gpgkey: https://repos.influxdata.com/influxdb.key
+  become: yes
   when:
     - telegraf_agent_package_method == "repo"
 
@@ -29,8 +30,8 @@
     dest: "{{ telegraf_agent_package }}"
     use_proxy: "{{ true if http_proxy is defined and http_proxy else false }}"
   environment:
-    http_proxy: "{{ http_proxy | default(None) | omit }}"
-    https_proxy: "{{ https_proxy | default(None) | omit }}"
+    http_proxy: "{{ http_proxy | default(None) | default(omit) }}"
+    https_proxy: "{{ https_proxy | default(None) | default(omit) }}"
   when:
     - telegraf_agent_package_method == "online"
 
@@ -40,4 +41,5 @@
     state: "{{ telegraf_agent_package_state }}"
   register: is_telegraf_package_installed
   until: is_telegraf_package_installed is succeeded
+  become: yes
   notify: "Restart Telegraf"
