@@ -18,8 +18,8 @@
     name: influxdb
     description: InfluxDB Repository - RHEL $releasever
     baseurl: "{{ telegraf_yum_baseurl[ansible_distribution|lower] | default(telegraf_yum_baseurl['default']) }}"
-    gpgcheck: yes
-    gpgkey: https://repos.influxdata.com/influxdb.key
+    gpgcheck: "{{ telegraf_yum_gpgcheck | default('true') }}"
+    gpgkey: "{{ telegraf_yum_gpgkey }}"
   become: yes
   when:
     - telegraf_agent_package_method == "repo"
