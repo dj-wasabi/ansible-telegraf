@@ -22,6 +22,9 @@ galaxy_info:
     - name: Windows
       versions:
         - all
+    - name: MacOS
+      versions:
+        - all
 
   galaxy_tags:
     - monitoring

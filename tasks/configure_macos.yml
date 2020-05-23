@@ -1,0 +1,128 @@
+---
+# description: Configure telegraf and get all relevent ec2 information
+
+- name: Retrieve ec2 facts
+  ec2_metadata_facts:
+  when:
+    - telegraf_agent_aws_tags
+
+- name: "Add prefix path"
+  set_fact:
+    telegraf_agent_config_path: /usr/local/etc
+  when:
+    - ansible_os_family in ["FreeBSD", "Darwin"]
+
+- name: Retrieve all ec2 tags on the instance
+  ec2_tag:
+    region: '{{ ansible_ec2_placement_region }}'
+    resource: '{{ ansible_ec2_instance_id }}'
+    state: list
+  when:
+    - telegraf_agent_aws_tags
+  register: ec2_tags
+
+- name: "Copy the template for versions < 0.10.0"
+  template:
+    src: etc-opt-telegraf-telegraf.conf.j2
+    dest: /etc/opt/telegraf/telegraf.conf
+    owner: "{{ telegraf_mac_user }}"
+    group: "{{ telegraf_mac_group }}"
+    mode: 0640
+  become: yes
+  when:
+    - telegraf_agent_version is version_compare('0.10.0', '<')
+  notify:
+    - Restart Telegraf
+    - Restart Telegraf container
+
+- name: "Copy the template for versions >= 0.10.0"
+  template:
+    src: telegraf.conf.j2
+    dest: "{{ telegraf_agent_config_path }}/telegraf.conf"
+    owner: "{{ telegraf_mac_user }}"
+    group: "{{ telegraf_mac_group }}"
+    mode: 0640
+  become: yes
+  when:
+    - telegraf_agent_version is version_compare('0.10.0', '>=')
+  notify:
+    - Restart MacOS Telegraf
+    - Restart Telegraf container
+
+- name: "Check if extra plugins directory exists in case of exclusive"
+  stat:
+    path: "{{ telegraf_agent_config_path }}/telegraf.d"
+  register: telegraf_directory
+  when:
+    - telegraf_plugins_extra_exclusive
+
+- name: "Delete telegraf extra plugin path"
+  file:
+    state: absent
+    path: "{{ telegraf_agent_config_path }}/telegraf.d/"
+  when:
+    - telegraf_plugins_extra_exclusive
+    - telegraf_directory.stat.exists
+  become: yes
+  notify:
+    - Restart MacOS Telegraf
+    - Restart Telegraf container
+
+- name: "Create telegraf extra plugin path"
+  file:
+    state: directory
+    path: "{{ telegraf_agent_config_path }}/telegraf.d/"
+    owner: "{{ telegraf_mac_user }}"
+    group: "{{ telegraf_mac_group }}"
+    mode: 0755
+  when:
+    - telegraf_plugins_extra_exclusive
+    - telegraf_directory.stat.exists
+  become: yes
+  notify:
+    - Restart MacOS Telegraf
+    - Restart Telegraf container
+
+- name: "Copy telegraf extra plugins"
+  template:
+    src: "telegraf-extra-plugin.conf.j2"
+    dest: "{{ telegraf_agent_config_path }}/telegraf.d/{{ item.key }}.conf"
+    owner: "{{ telegraf_mac_user }}"
+    group: "{{ telegraf_mac_group }}"
+    mode: 0640
+  with_dict: "{{ telegraf_plugins_extra }}"
+  loop_control:
+    label: "{{ item.key }}"
+  when:
+    - telegraf_plugins_extra is defined
+    - telegraf_plugins_extra is iterable
+    - item.value.state|default('present') != 'absent'
+  become: yes
+  notify:
+    - Restart MacOS Telegraf
+    - Restart Telegraf container
+
+- name: "Remove telegraf extra plugins"
+  file:
+    path: "{{ telegraf_agent_config_path }}/telegraf.d/{{ item.key }}.conf"
+    state: absent
+  with_dict: "{{ telegraf_plugins_extra }}"
+  loop_control:
+    label: "{{ item.key }}"
+  when:
+    - telegraf_plugins_extra is defined
+    - telegraf_plugins_extra is iterable
+    - item.value.state|default('present') == 'absent'
+  become: yes
+  notify:
+    - Restart MacOS Telegraf
+    - Restart Telegraf container
+
+- name: "Force restart service after reread config"
+  meta: flush_handlers
+
+- name: "Start Telegraf (If it wasn't running)"
+  shell: brew services start telegraf
+  register: brew_services_start_telegraf
+  changed_when: '"Successfully started `telegraf`" in brew_services_start_telegraf.stdout'
+  when: not telegraf_agent_docker

@@ -23,15 +23,25 @@
   when:
     - ansible_os_family == "FreeBSD" and not telegraf_agent_docker
 
+- name: "Install on MacOS"
+  include_tasks: "MacOS.yml"
+  when:
+    - ansible_os_family == "Darwin" and not telegraf_agent_docker
+
 - include_tasks: "docker.yml"
   when: telegraf_agent_docker
 
 - name: "Configure Telegraf"
   include_tasks: "configure_linux.yml"
   when:
-    - ansible_os_family != "Windows"
+    - ansible_os_family not in ['Windows', 'Darwin']
 
 - name: "Install / Configure telegraf on Windows"
   include_tasks: "configure_windows.yml"
   when:
     - ansible_os_family == "Windows" and not telegraf_agent_docker
+
+- name: "Install / Configure telegraf on MacOS"
+  include_tasks: "configure_macos.yml"
+  when:
+    - ansible_os_family == "Darwin" and not telegraf_agent_docker
