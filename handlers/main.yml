@@ -20,3 +20,6 @@
     name: Telegraf
     start_mode: auto
     state: restarted
+
+- name: "Restart MacOS Telegraf"
+  shell: brew services restart telegraf

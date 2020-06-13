@@ -234,6 +234,14 @@ _Supporting Windows is an best effort (I don't have the possibility to either te
 * `telegraf_win_logfile`: The location to the logfile of Telegraf.
 * `telegraf_win_include`: The directory that will contain all plugin configuration.
 
+## MacOS specific Variables
+
+**NOTE**
+
+_MacOS support is as the Window Support an best effort and not officially supported._
+
+* `telegraf_mac_user`:  Telegraf will run as this user (needed as running things as other users using brew is problematic)
+
 ## Extra information
 
 There are two properties which are similar, but are used differently. Those are:

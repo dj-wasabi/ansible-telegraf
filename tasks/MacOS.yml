@@ -1,0 +1,14 @@
+---
+# description: MacOS specific installation
+
+- name: "MacOS | set package name"
+  set_fact:
+    telegraf_agent_package: telegraf
+
+- name: "MacOS | Install Telegraf package"
+  package:
+    name: "{{ telegraf_agent_package }}"
+    state: "{{ telegraf_agent_package_state }}"
+  register: is_telegraf_package_installed
+  until: is_telegraf_package_installed is succeeded
+  notify: "Restart Telegraf"

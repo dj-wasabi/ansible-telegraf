@@ -2,6 +2,7 @@
 galaxy_info:
   author: Werner Dijkerman
   description: Installing and configuring Telegraf
+  role_name: telegraf
   company: myCompany.Dotcom
   license: MIT
   min_ansible_version: 2.4
@@ -19,6 +20,9 @@ galaxy_info:
       versions:
         - all
     - name: Windows
+      versions:
+        - all
+    - name: MacOS
       versions:
         - all
 

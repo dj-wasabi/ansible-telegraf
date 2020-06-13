@@ -82,3 +82,6 @@ telegraf_win_service_args:
   - -service install
   - -config {{ telegraf_win_install_dir }}\telegraf\telegraf.conf
   - --config-directory {{ telegraf_win_include }}
+
+telegraf_mac_user: user
+telegraf_mac_group: admin
