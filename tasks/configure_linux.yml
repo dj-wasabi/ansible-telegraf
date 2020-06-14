@@ -128,3 +128,61 @@
     enabled: yes
   become: yes
   when: not telegraf_agent_docker
+
+- name: Configure system for for docker plugin
+  block:
+    - name: Add telegraf user to docker group
+      user:
+        name: telegraf
+        groups: docker
+        append: true
+      become: true
+      notify:
+        - Restart Telegraf
+
+  when: "'docker' in telegraf_plugins_extra and not telegraf_agent_docker"
+
+- name: Configure system for for smart plugin
+  block:
+    - name: Install smartmontools
+      become: true
+      package:
+        name: smartmontools
+
+    - name: Find path of smartctl
+      shell: which smartctl
+      register: which_smartctl
+      ignore_errors: true
+      changed_when: false
+      become: true
+
+    - name: Ensure telegraf user can execute smartctl
+      blockinfile:
+        marker: "# {mark} ANSIBLE MANAGED BLOCK (Ensure telegraf user can execute smartctl)"
+        dest: "/etc/sudoers.d/telegraf"
+        block: "telegraf ALL=(root) NOPASSWD: {{ which_smartctl.stdout }}"
+        create: true
+      become: true
+      notify:
+        - Restart Telegraf
+
+  when: "'smart' in telegraf_plugins_extra and not telegraf_agent_docker"
+
+- name: Configure system for for sensors plugin
+  block:
+    - name: Debian | Install lm-sensors
+      package:
+        name: lm-sensors
+      become: true
+      notify:
+        - Restart Telegraf
+      when: ansible_os_family == "Debian"
+    - name: RedHat | Install lm-sensors
+      package:
+        name: lm_sensors
+      become: true
+      notify:
+        - Restart Telegraf
+      when: ansible_os_family == "RedHat"
+
+  when: "'sensors' in telegraf_plugins_extra and not telegraf_agent_docker"
