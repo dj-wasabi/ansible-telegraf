@@ -1,4 +1,5 @@
 ---
+telegraf_enabled: True
 # defaults file for ansible-telegraf
 
 telegraf_agent_version: 1.10.0
