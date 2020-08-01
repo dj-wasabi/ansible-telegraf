@@ -13,7 +13,8 @@
       apt:
         name:
           - wget
-          # - gpg
+          - gpg-agent
+        update_cache: True
         state: present
       when:
         - ansible_os_family == 'Debian'
