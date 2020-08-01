@@ -41,9 +41,9 @@ jobs:
             image: geerlingguy/docker-debian9-ansible:latest
           - container: debian8
             image: geerlingguy/docker-debian8-ansible:latest
-          # - container: opensuse-leap
-          #   image: wdijkerman/molecule-systemd-leap
-          #   command: /sbin/init
+          - container: opensuse-leap
+            image: wdijkerman/molecule-systemd-leap:new
+            command: /sbin/init
 
     steps:
       - name: Check out code
