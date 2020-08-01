@@ -1,4 +1,4 @@
-name: "community.zabbix.zabbix_server"
+name: "ansible-telegraf"
 on:
   push:
     paths:
@@ -41,8 +41,6 @@ jobs:
             image: geerlingguy/docker-debian9-ansible:latest
           - container: debian8
             image: geerlingguy/docker-debian8-ansible:latest
-        collection_role:
-          - zabbix_server
     steps:
       - name: Check out code
         uses: actions/checkout@v1
@@ -63,4 +61,4 @@ jobs:
           MY_MOLECULE_IMAGE=${{ matrix.molecule_distro.image }}
           MY_MOLECULE_GROUP=${{ matrix.molecule_distro.group }}
           MY_MOLECULE_DOCKER_COMMAND=${{ matrix.molecule_distro.command }}
-          molecule test -s ${{ matrix.collection_role }}
+          molecule test 
