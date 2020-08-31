@@ -33,7 +33,7 @@
 
 ## Build status:
 
-[![Build Status](https://travis-ci.org/dj-wasabi/ansible-telegraf.svg?branch=master)](https://travis-ci.org/dj-wasabi/ansible-telegraf) <img src="https://img.shields.io/ansible/role/d/5173"/> <img src="https://img.shields.io/ansible/quality/5173"/>
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fdj-wasabi%2Fansible-telegraf%2Fbadge%3Fref%3Dmaster&style=flat)](https://actions-badge.atrox.dev/dj-wasabi/ansible-telegraf/goto?ref=master) <img src="https://img.shields.io/ansible/role/d/5173"/> <img src="https://img.shields.io/ansible/quality/5173"/>
 
 This role will install and configure telegraf.
 
