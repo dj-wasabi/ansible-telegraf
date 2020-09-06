@@ -205,10 +205,8 @@ More information: [https://github.com/influxdata/telegraf/blob/master/docs/FAQ.m
 	telegraf_plugins_default:
 	  - plugin: cpu
 	    config:
-	      - percpu = "true"
+	      - percpu = true
 	  - plugin: disk
-	    tags:
-	      - diskmetrics = "true"
 	    tagpass:
 	      - fstype = [ "ext4", "xfs" ]
 	    tagdrop:
