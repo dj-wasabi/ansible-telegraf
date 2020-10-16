@@ -150,7 +150,7 @@
         name: smartmontools
 
     - name: Find path of smartctl
-      shell: which smartctl
+      command: which smartctl
       register: which_smartctl
       ignore_errors: true
       changed_when: false
