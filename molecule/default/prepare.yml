@@ -10,7 +10,7 @@
         - ansible_os_family == 'RedHat'
 
     - name: "Apt get update"
-      command: apt-get update && apt-get install -y python-apt
+      shell: apt-get update && apt-get install -y python-apt
       when:
         - ansible_os_family == 'Debian'
 
