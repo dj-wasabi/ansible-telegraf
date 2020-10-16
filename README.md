@@ -330,39 +330,6 @@ No dependencies
       roles:
          - { role: dj-wasabi.telegraf }
 
-## Contributors
-
-The following have contributed to this Ansible role (Provided with: `git shortlog -s -n`):
-
-* Werner Dijkerman
-* Thomas Szymanski
-* Jeroen Geusebroek
-* or
-* Alejandro
-* Troy Jendra
-* Slawomir Skowron
-* gaelL
-* Laurent Hoss
-* Ismael
-* Anthony ARNAUD
-* Ilkka Tengvall
-* Rick Box
-* Steven Wirges
-* Jack Ivy
-* Emerson Knapp
-* zend0
-* Angristan
-* Miroslav Prasil
-* Olivier Boukili
-* Pascal
-* Romain BUREAU
-* Ryan Conway
-* Steve Durrheimer
-* TheCodeAssassin
-* aroglian
-
-Thank you all!
-
 ## Molecule
 
 This roles is configured to be tested with Molecule. You can find on this page some more information regarding Molecule: https://werner-dijkerman.nl/2016/07/10/testing-ansible-roles-with-molecule-testinfra-and-docker/
