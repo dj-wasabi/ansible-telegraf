@@ -30,7 +30,7 @@
     mode: 0640
   become: yes
   when:
-    - telegraf_agent_version is version_compare('0.10.0', '<')
+    - telegraf_agent_version is version('0.10.0', '<')
   notify:
     - Restart Telegraf
     - Restart Telegraf container
@@ -44,7 +44,7 @@
     mode: 0640
   become: yes
   when:
-    - telegraf_agent_version is version_compare('0.10.0', '>=')
+    - telegraf_agent_version is version('0.10.0', '>=')
   notify:
     - Restart MacOS Telegraf
     - Restart Telegraf container

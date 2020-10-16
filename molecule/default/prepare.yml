@@ -10,13 +10,9 @@
         - ansible_os_family == 'RedHat'
 
     - name: "Apt get update"
-      shell: apt-get update && apt-get install -y python-apt
+      command: apt-get update && apt-get install -y python-apt
       when:
         - ansible_os_family == 'Debian'
-
-    - name: debug
-      debug:
-        var: ansible_distribution_major_version
 
     - name: "Installing packages on Debian"
       apt:
