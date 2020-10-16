@@ -296,12 +296,12 @@ An example might look like this:
 	      - fstype = [ "ext4", "xfs" ]
     	  - path = [ "/opt", "/home" ]
 
-If you want to define processors you can simply use `telegraf_processors` variable.  
+If you want to define processors you can simply use `telegraf_processors` variable.
 An example might look like this:
 ```
-telegraf_processors: 
+telegraf_processors:
   - processor: rename
-  - processor: rename.replace  
+  - processor: rename.replace
     config:
         - tag = "level"
         - dest = "LogLevel"
