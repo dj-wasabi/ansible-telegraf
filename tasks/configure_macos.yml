@@ -122,7 +122,7 @@
   meta: flush_handlers
 
 - name: "Start Telegraf (If it wasn't running)"
-  shell: brew services start telegraf
+  command: brew services start telegraf
   register: brew_services_start_telegraf
   changed_when: '"Successfully started `telegraf`" in brew_services_start_telegraf.stdout'
   when: not telegraf_agent_docker
