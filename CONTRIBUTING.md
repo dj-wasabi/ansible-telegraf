@@ -22,9 +22,9 @@ Please note that this project is released with a Contributor Code of Conduct. By
 2. Create a branch and apply your changes to this branch.
 
     a. Make sure you have updated the documentation when adding new variables;
-    
+
     b. Don't forget to add/update tests so we can test the functionality during each Pull Request;
-    
+
     c. Make sure the tests will succeed.
 
 3. Push the branch to your fork and submit a pull request.
@@ -85,4 +85,4 @@ Some web pages describing for virtual env:
 
 [Molecule V2 with your own role](https://werner-dijkerman.nl/2017/09/05/using-molecule-v2-to-test-ansible-roles/)
 
-**End note**: Have fun making changes. If a feature helps you, then others find it helpful too and I will happily have it merged. 
+**End note**: Have fun making changes. If a feature helps you, then others find it helpful too and I will happily have it merged.
