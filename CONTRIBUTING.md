@@ -44,13 +44,14 @@ Style guides are important because they ensure consistency in the content, look,
 
 ## (local) Development
 
-This role make use of Molecule to test the execution of the role and verificate it. In the root of the repository, a file named `requirements.txt` exists and contains the versions used by the tests.
+This role make use of Molecule to test the execution of the role and verificate it. In the repository https://github.com/dj-wasabi/dj-wasabi-release, a file named `requirements.txt` exists and contains the versions used by the tests.
 
 ### Requirements
 
 You can install them with the following command:
 
 ```
+wget https://raw.githubusercontent.com/dj-wasabi/dj-wasabi-release/main/requirements.txt
 pip install -r requirements.txt
 ```
 
@@ -66,6 +67,10 @@ molecule test
 It should run without any issues.
 
 # Other
+
+## pre-commit
+
+This repository contains a pre-commit hook. This means that when you want to commit the changes, 1 or more tests are executed to validate the changes. Please take a look at how to install the `pre-commit` package from the official [site](https://pre-commit.com/). Also make sure to install `ansible-lint` via `pip install ansible-lint` as this is 1 of the tools that is executed while a pre-commit hooks runs.
 
 ## Virtualenv
 

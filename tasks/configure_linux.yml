@@ -161,6 +161,7 @@
         marker: "# {mark} ANSIBLE MANAGED BLOCK (Ensure telegraf user can execute smartctl)"
         dest: "/etc/sudoers.d/telegraf"
         block: "telegraf ALL=(root) NOPASSWD: {{ which_smartctl.stdout }}"
+        mode: 0400
         create: true
       become: true
       notify:

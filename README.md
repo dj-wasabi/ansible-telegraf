@@ -26,7 +26,6 @@
     + [telegraf_plugins_extra](#telegraf-plugins-extra)
   * [Dependencies](#dependencies)
   * [Example Playbook](#example-playbook)
-  * [Contributors](#contributors)
   * [Molecule](#molecule)
   * [License](#license)
   * [Author Information](#author-information)

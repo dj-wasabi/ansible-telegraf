@@ -22,4 +22,4 @@
     state: restarted
 
 - name: "Restart MacOS Telegraf"
-  shell: brew services restart telegraf
+  command: brew services restart telegraf
