@@ -38,7 +38,7 @@
 - name: Ensure Telegraf Docker container is running
   docker_container:
     name: "{{ telegraf_agent_docker_name }}"
-    image: "telegraf:{{ telegraf_agent_version }}"
+    image: "telegraf:{{ telegraf_agent_docker_image_version }}"
     state: started
     restart_policy: "{{ telegraf_agent_docker_restart_policy }}"
     command: -config /etc/telegraf/telegraf.conf -config-directory /etc/telegraf/telegraf.d
