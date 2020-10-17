@@ -42,6 +42,7 @@
   file:
     path: "{{ item.path }}"
     owner: "{{ item.owner }}"
+    mode: 0755
     state: directory
   with_items:
     - path: /etc/telegraf/telegraf.d/
