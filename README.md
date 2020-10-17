@@ -85,7 +85,7 @@ There was an issue:
 
 Specifying the version to be installed:
 
-* `telegraf_agent_version`: The version of Telegraf to install. Default: `1.10.0`
+* `telegraf_agent_version`: The version of Telegraf to install. If `telegraf_agent_package_state` is set to `latest`, then this property and value is ignored. Default: `1.10.0`
 
 How `Telegraf` needs to be installed. There are 4 methods in getting `Telegraf` installed on the target host:
 
