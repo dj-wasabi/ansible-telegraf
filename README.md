@@ -118,6 +118,7 @@ These properties set in how and what package will be installed.
 * `telegraf_agent_metric_buffer_limit`: The agent metric buffer limit. Default: 10000  (since v0.13)
 * `telegraf_agent_quiet`: Run Telegraf in quiet mode (error messages only). Default: `False` (since v0.13)
 * `telegraf_agent_logfile`: The agent logfile name. Default: '' (means to log to stdout) (since v1.1)
+* `telegraf_agent_hostname`: The agent hostname.  Default: `ansible_fqdn`
 * `telegraf_agent_omit_hostname`: Do no set the "host" tag in the agent. Default: `False` (since v1.1)
 
 ### Docker specific role variables:

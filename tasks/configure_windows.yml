@@ -20,11 +20,27 @@
   when:
     - not file_info.stat.exists
 
-- name: "Windows | Unzip file"
+- name: "Windows | Unzip file (newer than 1.15)"
   win_unzip:
     src: '{{ telegraf_win_install_dir }}\telegraf-{{ telegraf_agent_version }}_windows_amd64.zip'
     dest: "{{ telegraf_win_install_dir }}"
+    creates: '{{ telegraf_win_install_dir }}\telegraf-{{ telegraf_agent_version }}\telegraf.exe'
+  when: telegraf_agent_version is version('1.15', '>=')
+
+- name: "Windows | Move extracted directory (newer than 1.15)"
+  win_copy:
+    src: '{{ telegraf_win_install_dir }}\telegraf-{{ telegraf_agent_version }}\'
+    dest: '{{ telegraf_win_install_dir }}\telegraf'
+    remote_src: yes
+  when: telegraf_agent_version is version('1.15', '>=')
+
+- name: "Windows | Unzip file"
+  win_unzip:
+    src: '{{ telegraf_win_install_dir }}\telegraf-{{ telegraf_agent_version }}_windows_amd64.zip'
+    dest: '{{ telegraf_win_install_dir }}'
     creates: '{{ telegraf_win_install_dir }}\telegraf\telegraf.exe'
+    delete_archive: yes
+  when: telegraf_agent_version is version('1.15', '<')
 
 - name: "Windows | Configure Telegraf"
   win_template:
@@ -76,3 +92,9 @@
     name: Telegraf
     start_mode: auto
     state: started
+
+- name: "Windows | Cleanup"
+  win_file:
+    path: '{{ telegraf_win_install_dir }}\telegraf-{{ telegraf_agent_version }}'
+    state: absent
+  when: telegraf_agent_version is version('1.15', '>=')
