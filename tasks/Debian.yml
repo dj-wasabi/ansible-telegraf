@@ -80,7 +80,7 @@
   when:
     - telegraf_agent_package_method == "online"
 
-- name: "Debian | Install Telegraf package"
+- name: "Debian | Install Telegraf package (repo)"
   apt:
     name: "{{ telegraf_agent_package }}"
     state: "{{ telegraf_agent_package_state }}"
@@ -92,7 +92,7 @@
   when:
     - telegraf_agent_package_method == "repo"
 
-- name: "Debian | Install Telegraf package"
+- name: "Debian | Install Telegraf package (online)"
   apt:
     deb: "{{ telegraf_agent_package_path }}/{{ telegraf_agent_package }}"
     state: "present"
@@ -102,3 +102,18 @@
   become: yes
   when:
     - telegraf_agent_package_method == "online" or telegraf_agent_package_method == "offline"
+
+- name: "Debian | Check if the repository is installed"
+  stat:
+    path: "/etc/apt/sources.list.d/telegraf.list"
+  register: is_telegraf_repository_installed
+  when:
+    - telegraf_agent_package_method == "online" or telegraf_agent_package_method == "offline"
+
+- name: "Debian | Remove repository (online install)"
+  file:
+    path: "/etc/apt/sources.list.d/telegraf.list"
+    state: absent
+  become: yes
+  when:
+    - is_telegraf_repository_installed.stat.exists and (telegraf_agent_package_method == "online" or telegraf_agent_package_method == "offline")
