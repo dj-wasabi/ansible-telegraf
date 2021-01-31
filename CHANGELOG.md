@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.13.1](https://github.com/dj-wasabi/ansible-telegraf/tree/0.13.1) (2021-01-06)
+
+[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.13.0...0.13.1)
+
+**Implemented enhancements:**
+
+- Added GH Action to automatically update CHANGELOG.md [\#141](https://github.com/dj-wasabi/ansible-telegraf/pull/141) ([dj-wasabi](https://github.com/dj-wasabi))
+
+**Fixed bugs:**
+
+- adjustments for Windows \>= 1.15 [\#139](https://github.com/dj-wasabi/ansible-telegraf/pull/139) ([billabongrob](https://github.com/billabongrob))
+
+**Closed issues:**
+
+- Newer versions of Telegraf fail on Windows [\#138](https://github.com/dj-wasabi/ansible-telegraf/issues/138)
+
+**Merged pull requests:**
+
+- Added property telegraf\_agent\_docker\_image\_version for using a specific version of the Docker image [\#137](https://github.com/dj-wasabi/ansible-telegraf/pull/137) ([dj-wasabi](https://github.com/dj-wasabi))
+- Apply ansible-lint in pre-commit hook and fix changes [\#136](https://github.com/dj-wasabi/ansible-telegraf/pull/136) ([dj-wasabi](https://github.com/dj-wasabi))
+- Using version as version\_compare is deprecated [\#135](https://github.com/dj-wasabi/ansible-telegraf/pull/135) ([dj-wasabi](https://github.com/dj-wasabi))
+- Using command instead of shell module [\#134](https://github.com/dj-wasabi/ansible-telegraf/pull/134) ([dj-wasabi](https://github.com/dj-wasabi))
+
 ## [0.13.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.13.0) (2020-10-16)
 
 [Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.12.0...0.13.0)
