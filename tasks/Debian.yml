@@ -103,18 +103,10 @@
   when:
     - telegraf_agent_package_method == "online" or telegraf_agent_package_method == "offline"
 
-- name: "Debian | Check if the repository is installed"
-  stat:
-    path: "/etc/apt/sources.list.d/telegraf.list"
-  register: is_telegraf_repository_installed
-  when:
-    - telegraf_agent_package_method == "online" or telegraf_agent_package_method == "offline"
-
-- name: "Debian | Remove repository (online install)"
+- name: "Debian | Remove repository (online/offline install)"
   file:
     path: "/etc/apt/sources.list.d/telegraf.list"
     state: absent
   become: yes
   when:
-    - is_telegraf_repository_installed.stat.exists
     - telegraf_agent_package_method == "online" or telegraf_agent_package_method == "offline"
