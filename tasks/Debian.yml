@@ -116,4 +116,5 @@
     state: absent
   become: yes
   when:
-    - is_telegraf_repository_installed.stat.exists and (telegraf_agent_package_method == "online" or telegraf_agent_package_method == "offline")
+    - is_telegraf_repository_installed.stat.exists
+    - telegraf_agent_package_method == "online" or telegraf_agent_package_method == "offline"
