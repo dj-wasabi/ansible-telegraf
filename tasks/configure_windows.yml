@@ -30,7 +30,7 @@
 - name: "Windows | Move extracted directory (newer than 1.15)"
   win_copy:
     src: '{{ telegraf_win_install_dir }}\telegraf-{{ telegraf_agent_version }}\'
-    dest: '{{ telegraf_win_install_dir }}\telegraf'
+    dest: '{{ telegraf_win_install_dir }}'
     remote_src: yes
   when: telegraf_agent_version is version('1.15', '>=')
 
@@ -38,14 +38,14 @@
   win_unzip:
     src: '{{ telegraf_win_install_dir }}\telegraf-{{ telegraf_agent_version }}_windows_amd64.zip'
     dest: '{{ telegraf_win_install_dir }}'
-    creates: '{{ telegraf_win_install_dir }}\telegraf\telegraf.exe'
+    creates: '{{ telegraf_win_install_dir }}\telegraf.exe'
     delete_archive: yes
   when: telegraf_agent_version is version('1.15', '<')
 
 - name: "Windows | Configure Telegraf"
   win_template:
     src: telegraf.conf.j2
-    dest: '{{ telegraf_win_install_dir }}\telegraf\telegraf.conf'
+    dest: '{{ telegraf_win_install_dir }}\telegraf.conf'
   notify: "Restart Windows Telegraf"
 
 - name: "Windows | Copy telegraf extra plugins"
@@ -75,7 +75,7 @@
   notify: "Restart Windows Telegraf"
 
 - name: "Windows | Register Service"
-  win_command: '{{ telegraf_win_install_dir }}\telegraf\telegraf.exe {{ telegraf_win_service_args | join(" ") }}'
+  win_command: '"{{ telegraf_win_install_dir }}\telegraf.exe" {{ telegraf_win_service_args | join(" ") }}'
   register: telegraf_windows_install
   args:
     creates: '{{ telegraf_win_install_dir }}\.installed'
