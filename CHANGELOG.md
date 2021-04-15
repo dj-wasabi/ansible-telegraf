@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/dj-wasabi/ansible-telegraf/tree/HEAD)
+
+[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.13.2...HEAD)
+
+**Merged pull requests:**
+
+- Fixed issues with Windows paths containing spaces & removed redundant "telegraf" folder in path [\#144](https://github.com/dj-wasabi/ansible-telegraf/pull/144) ([treanorjp](https://github.com/treanorjp))
+
 ## [0.13.2](https://github.com/dj-wasabi/ansible-telegraf/tree/0.13.2) (2021-03-05)
 
 [Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.13.1...0.13.2)
@@ -134,6 +142,7 @@
 - Some small improvements [\#66](https://github.com/dj-wasabi/ansible-telegraf/pull/66) ([dj-wasabi](https://github.com/dj-wasabi))
 - telegraf-extra-plugin.conf.j2: fix template typo [\#65](https://github.com/dj-wasabi/ansible-telegraf/pull/65) ([gaelL](https://github.com/gaelL))
 - Using base ci requirements.txt [\#64](https://github.com/dj-wasabi/ansible-telegraf/pull/64) ([dj-wasabi](https://github.com/dj-wasabi))
+- Wen copying/removing plugins show only plugin name [\#62](https://github.com/dj-wasabi/ansible-telegraf/pull/62) ([mprasil](https://github.com/mprasil))
 - Pin apt key ID [\#61](https://github.com/dj-wasabi/ansible-telegraf/pull/61) ([tszym](https://github.com/tszym))
 - Added support for plugins being managed exclusively by this playbook [\#60](https://github.com/dj-wasabi/ansible-telegraf/pull/60) ([gaizeror](https://github.com/gaizeror))
 
@@ -149,7 +158,6 @@
 
 **Merged pull requests:**
 
-- Wen copying/removing plugins show only plugin name [\#62](https://github.com/dj-wasabi/ansible-telegraf/pull/62) ([mprasil](https://github.com/mprasil))
 - Updating to Telegraf 1.7.3;Updating changelog [\#58](https://github.com/dj-wasabi/ansible-telegraf/pull/58) ([dj-wasabi](https://github.com/dj-wasabi))
 - Added bunch of files [\#55](https://github.com/dj-wasabi/ansible-telegraf/pull/55) ([dj-wasabi](https://github.com/dj-wasabi))
 - Fix Deprecation warnings [\#54](https://github.com/dj-wasabi/ansible-telegraf/pull/54) ([dj-wasabi](https://github.com/dj-wasabi))
