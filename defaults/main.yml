@@ -82,8 +82,8 @@ telegraf_win_logfile: 'C:\\Telegraf\\telegraf.log'
 telegraf_win_include: 'C:\Telegraf\telegraf_agent.d'
 telegraf_win_service_args:
   - -service install
-  - -config {{ telegraf_win_install_dir }}\telegraf\telegraf.conf
-  - --config-directory {{ telegraf_win_include }}
+  - '-config "{{ telegraf_win_install_dir }}\telegraf.conf"'
+  - '--config-directory "{{ telegraf_win_include }}"'
 
 telegraf_mac_user: user
 telegraf_mac_group: admin
