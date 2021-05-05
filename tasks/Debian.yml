@@ -40,7 +40,7 @@
 - name: "Debian | Download Telegraf apt key"
   apt_key:
     url: "https://repos.influxdata.com/influxdb.key"
-    id: E8EE6FD0
+    id: A4B94A8C145F4C456133EFEFAB162277E8EE6FD0
     state: present
   register: are_telegraf_dependencies_keys_installed
   until: are_telegraf_dependencies_keys_installed is succeeded
