@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Add Windows feature of upgrade agents [\#146](https://github.com/dj-wasabi/ansible-telegraf/pull/146) ([PeterSzegedi](https://github.com/PeterSzegedi))
 - Fixed issues with Windows paths containing spaces & removed redundant "telegraf" folder in path [\#144](https://github.com/dj-wasabi/ansible-telegraf/pull/144) ([treanorjp](https://github.com/treanorjp))
 
 ## [0.13.2](https://github.com/dj-wasabi/ansible-telegraf/tree/0.13.2) (2021-03-05)
