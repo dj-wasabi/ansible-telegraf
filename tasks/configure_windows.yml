@@ -29,8 +29,8 @@
 
 - name: "Windows | Move extracted directory (newer than 1.15)"
   win_copy:
-    src: '{{ telegraf_win_install_dir }}\telegraf-{{ telegraf_agent_version }}\'
-    dest: '{{ telegraf_win_install_dir }}'
+    src: '{{ telegraf_win_install_dir }}\telegraf-{{ telegraf_agent_version }}\telegraf.exe'
+    dest: '{{ telegraf_win_install_dir }}\telegraf.exe'
     remote_src: yes
   when: telegraf_agent_version is version('1.15', '>=')
 
@@ -40,6 +40,13 @@
     dest: '{{ telegraf_win_install_dir }}'
     creates: '{{ telegraf_win_install_dir }}\telegraf.exe'
     delete_archive: yes
+  when: telegraf_agent_version is version('1.15', '<')
+
+- name: "Windows | Move extracted executable"
+  win_copy:
+    src: '{{ telegraf_win_install_dir }}\telegraf\telegraf.exe'
+    dest: '{{ telegraf_win_install_dir }}\telegraf.exe'
+    remote_src: yes
   when: telegraf_agent_version is version('1.15', '<')
 
 - name: "Windows | Configure Telegraf"
@@ -74,18 +81,31 @@
     - item.value.state|default('present') == 'absent'
   notify: "Restart Windows Telegraf"
 
-- name: "Windows | Register Service"
-  win_command: '"{{ telegraf_win_install_dir }}\telegraf.exe" {{ telegraf_win_service_args | join(" ") }}'
-  register: telegraf_windows_install
-  args:
-    creates: '{{ telegraf_win_install_dir }}\.installed'
+- name: "Windows | Check if Telegraf service is already in place"
+  win_service:
+    name: telegraf
+  register: service_result
+  failed_when: service_result is not defined
 
-- name: "Windows | Create done file so it won't register itself again"
-  win_file:
-    path: '{{ telegraf_win_install_dir }}\.installed'
-    state: touch
+- debug: msg={{ service_result }}
+
+- name: "Windows | Set service startup mode to auto and ensure it is started"
+  win_service:
+    name: Telegraf
+    start_mode: auto
+    state: stopped
   when:
-    - telegraf_windows_install is changed
+    - service_result.exists
+
+- name: "Windows | Unregister Service"
+  win_command: '{{ telegraf_win_install_dir }}\telegraf.exe --service uninstall'
+  register: telegraf_windows_uninstall
+  when:
+    - service_result.exists
+
+- name: "Windows | Register Service"
+  win_command: '{{ telegraf_win_install_dir }}\telegraf.exe {{ telegraf_win_service_args | join(" ") }}'
+  register: telegraf_windows_install
 
 - name: "Windows | Set service startup mode to auto and ensure it is started"
   win_service:
