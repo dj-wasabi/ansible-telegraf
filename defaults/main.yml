@@ -76,6 +76,7 @@ telegraf_yum_baseurl:
   centos: "https://repos.influxdata.com/rhel/{{ telegraf_redhat_releasever }}/$basearch/stable"
   default: "https://repos.influxdata.com/{{ ansible_distribution|lower }}/{{ telegraf_redhat_releasever }}/$basearch/stable"
   redhat: "https://repos.influxdata.com/rhel/{{ telegraf_redhat_releasever }}/$basearch/stable"
+  rocky: "https://repos.influxdata.com/rhel/{{ telegraf_redhat_releasever }}/$basearch/stable"
 telegraf_yum_gpgkey: "https://repos.influxdata.com/influxdb.key"
 
 telegraf_win_install_dir: 'C:\Telegraf'
