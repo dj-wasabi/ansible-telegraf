@@ -233,6 +233,10 @@ _Supporting Windows is an best effort (I don't have the possibility to either te
 * `telegraf_win_logfile`: The location to the logfile of Telegraf.
 * `telegraf_win_include`: The directory that will contain all plugin configuration.
 
+## openSUSE specific Variables
+
+* `telegraf_zypper_baseurl`:  The URL to the openSUSE repository that hosts Telegraf (for example, for openSUSE Leap: "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Leap_{{ ansible_distribution_version }}/")
+
 ## MacOS specific Variables
 
 **NOTE**
