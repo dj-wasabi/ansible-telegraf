@@ -11,6 +11,7 @@
 
 **Merged pull requests:**
 
+- Add variable for openSUSE RPM repository [\#151](https://github.com/dj-wasabi/ansible-telegraf/pull/151) ([kingphil](https://github.com/kingphil))
 - Fixed issues with Windows paths containing spaces & removed redundant "telegraf" folder in path [\#144](https://github.com/dj-wasabi/ansible-telegraf/pull/144) ([treanorjp](https://github.com/treanorjp))
 
 ## [0.13.2](https://github.com/dj-wasabi/ansible-telegraf/tree/0.13.2) (2021-03-05)
@@ -122,6 +123,7 @@
 - Add Yum repo support for Amazon Linux [\#79](https://github.com/dj-wasabi/ansible-telegraf/pull/79) ([anthonysr](https://github.com/anthonysr))
 - Fix to work with Fedora Linux [\#78](https://github.com/dj-wasabi/ansible-telegraf/pull/78) ([ikke-t](https://github.com/ikke-t))
 - Updating to newer version of Telegraf [\#77](https://github.com/dj-wasabi/ansible-telegraf/pull/77) ([dj-wasabi](https://github.com/dj-wasabi))
+- Add support for extra win\_perf\_counters and prevent python u'' strings [\#76](https://github.com/dj-wasabi/ansible-telegraf/pull/76) ([jdivy](https://github.com/jdivy))
 
 ## [0.11.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.11.0) (2018-12-11)
 
@@ -136,7 +138,6 @@
 
 **Merged pull requests:**
 
-- Add support for extra win\_perf\_counters and prevent python u'' strings [\#76](https://github.com/dj-wasabi/ansible-telegraf/pull/76) ([jdivy](https://github.com/jdivy))
 - Renamed the tojson to to\_json [\#74](https://github.com/dj-wasabi/ansible-telegraf/pull/74) ([dj-wasabi](https://github.com/dj-wasabi))
 - A few enhancements and fixes to windows support [\#73](https://github.com/dj-wasabi/ansible-telegraf/pull/73) ([jdivy](https://github.com/jdivy))
 - Replace 'ec2\_facts' with 'ec2\_metadata\_facts' to fix a deprecation warning [\#72](https://github.com/dj-wasabi/ansible-telegraf/pull/72) ([Rylon](https://github.com/Rylon))
