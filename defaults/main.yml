@@ -79,6 +79,8 @@ telegraf_yum_baseurl:
   rocky: "https://repos.influxdata.com/rhel/{{ telegraf_redhat_releasever }}/$basearch/stable"
 telegraf_yum_gpgkey: "https://repos.influxdata.com/influxdb.key"
 
+telegraf_zypper_baseurl: "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Factory/"
+
 telegraf_win_install_dir: 'C:\Telegraf'
 telegraf_win_logfile: 'C:\\Telegraf\\telegraf.log'
 telegraf_win_include: 'C:\Telegraf\telegraf_agent.d'

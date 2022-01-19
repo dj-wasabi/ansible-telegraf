@@ -23,8 +23,8 @@
 
 - name: "Suse | Install basic repo file"
   zypper_repository:
-    repo: "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Factory/"
-    name: The Go Programming Language (openSUSE_Factory)
+    repo: "{{ telegraf_zypper_baseurl }}"
+    name: "telegraf"
     state: present
     runrefresh: True
     auto_import_keys: True
