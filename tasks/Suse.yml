@@ -12,14 +12,28 @@
     state: present
   become: yes
 
-- name: "Suse | Install repo dependencies"
+- name: "Suse | Install repo dependencies for Python 2"
   zypper:
-    name: ["python-libxml2", "python-xml"]
+    name:
+      - python-libxml2
+      - python-xml
     update_cache: True
     state: present
   register: are_telegraf_dependencies_packages_installed
   until: are_telegraf_dependencies_packages_installed is succeeded
   become: yes
+  when: ansible_python.version.major == 2
+
+- name: "Suse | Install repo dependencies for Python >= 3"
+  zypper:
+    name:
+      - python3-libxml2-python
+    update_cache: True
+    state: present
+  register: are_telegraf_dependencies_packages_installed
+  until: are_telegraf_dependencies_packages_installed is succeeded
+  become: yes
+  when: ansible_python.version.major >= 3
 
 - name: "Suse | Install basic repo file"
   zypper_repository:
