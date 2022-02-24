@@ -35,7 +35,17 @@
   become: yes
   when: ansible_python.version.major >= 3
 
-- name: "Suse | Install basic repo file"
+- name: "Suse | Add default Open Build Service repository"
+  zypper_repository:
+    repo: "{{ telegraf_zypper_repos[ansible_distribution|lower] | default(telegraf_zypper_repos['default']) }}"
+    name: "telegraf"
+    state: present
+    runrefresh: True
+    auto_import_keys: True
+  become: yes
+  when: telegraf_zypper_baseurl is not defined
+
+- name: "Suse | Add specified package repository"
   zypper_repository:
     repo: "{{ telegraf_zypper_baseurl }}"
     name: "telegraf"
@@ -43,6 +53,7 @@
     runrefresh: True
     auto_import_keys: True
   become: yes
+  when: telegraf_zypper_baseurl is defined
 
 - name: "Suse | Install Telegraf"
   zypper:
