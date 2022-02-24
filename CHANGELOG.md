@@ -11,6 +11,7 @@
 
 **Merged pull requests:**
 
+- Improve usage on SUSE releases [\#155](https://github.com/dj-wasabi/ansible-telegraf/pull/155) ([jeffmahoney](https://github.com/jeffmahoney))
 - Add variable for openSUSE RPM repository [\#151](https://github.com/dj-wasabi/ansible-telegraf/pull/151) ([kingphil](https://github.com/kingphil))
 - Fixed issues with Windows paths containing spaces & removed redundant "telegraf" folder in path [\#144](https://github.com/dj-wasabi/ansible-telegraf/pull/144) ([treanorjp](https://github.com/treanorjp))
 
