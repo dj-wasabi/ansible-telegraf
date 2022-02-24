@@ -12,16 +12,40 @@
     state: present
   become: yes
 
-- name: "Suse | Install repo dependencies"
+- name: "Suse | Install repo dependencies for Python 2"
   zypper:
-    name: ["python-libxml2", "python-xml"]
+    name:
+      - python-libxml2
+      - python-xml
     update_cache: True
     state: present
   register: are_telegraf_dependencies_packages_installed
   until: are_telegraf_dependencies_packages_installed is succeeded
   become: yes
+  when: ansible_python.version.major == 2
 
-- name: "Suse | Install basic repo file"
+- name: "Suse | Install repo dependencies for Python >= 3"
+  zypper:
+    name:
+      - python3-libxml2-python
+    update_cache: True
+    state: present
+  register: are_telegraf_dependencies_packages_installed
+  until: are_telegraf_dependencies_packages_installed is succeeded
+  become: yes
+  when: ansible_python.version.major >= 3
+
+- name: "Suse | Add default Open Build Service repository"
+  zypper_repository:
+    repo: "{{ telegraf_zypper_repos[ansible_distribution|lower] | default(telegraf_zypper_repos['default']) }}"
+    name: "telegraf"
+    state: present
+    runrefresh: True
+    auto_import_keys: True
+  become: yes
+  when: telegraf_zypper_baseurl is not defined
+
+- name: "Suse | Add specified package repository"
   zypper_repository:
     repo: "{{ telegraf_zypper_baseurl }}"
     name: "telegraf"
@@ -29,6 +53,7 @@
     runrefresh: True
     auto_import_keys: True
   become: yes
+  when: telegraf_zypper_baseurl is defined
 
 - name: "Suse | Install Telegraf"
   zypper:
@@ -49,9 +74,3 @@
       owner: root
     - path: /var/log/telegraf
       owner: telegraf
-
-- name: "Suse | Install init file"
-  copy:
-    src: telegraf.init
-    dest: /etc/init.d/telegraf
-    mode: 0755

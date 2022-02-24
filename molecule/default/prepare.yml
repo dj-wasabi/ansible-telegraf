@@ -28,8 +28,6 @@
     - name: "Installing packages on Suse"
       zypper:
         name:
-          - sysvinit-tools
-          - insserv-compat
           - aaa_base
         state: present
       when:

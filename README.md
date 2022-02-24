@@ -235,7 +235,7 @@ _Supporting Windows is an best effort (I don't have the possibility to either te
 
 ## openSUSE specific Variables
 
-* `telegraf_zypper_baseurl`:  The URL to the openSUSE repository that hosts Telegraf (for example, for openSUSE Leap: "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Leap_{{ ansible_distribution_version }}/")
+* `telegraf_zypper_baseurl`:  The URL to the openSUSE repository that hosts Telegraf (for example, for openSUSE Leap: "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Leap_{{ ansible_distribution_version }}/").  If this is unspecified, a default repository will be used.
 
 ## MacOS specific Variables
 

@@ -79,7 +79,11 @@ telegraf_yum_baseurl:
   rocky: "https://repos.influxdata.com/rhel/{{ telegraf_redhat_releasever }}/$basearch/stable"
 telegraf_yum_gpgkey: "https://repos.influxdata.com/influxdb.key"
 
-telegraf_zypper_baseurl: "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Factory/"
+telegraf_zypper_repos:
+  "opensuse tumbleweed": "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Factory/"
+  "default": "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Factory/"
+  "sles": "http://download.opensuse.org/repositories/devel:/languages:/go/SLE_{{ ansible_distribution_major_version }}_SP{{ ansible_distribution_release }}/"
+  "opensuse leap": "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Leap_{{ ansible_distribution_version }}/"
 
 telegraf_win_install_dir: 'C:\Telegraf'
 telegraf_win_logfile: 'C:\\Telegraf\\telegraf.log'
