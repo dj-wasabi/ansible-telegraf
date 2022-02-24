@@ -49,9 +49,3 @@
       owner: root
     - path: /var/log/telegraf
       owner: telegraf
-
-- name: "Suse | Install init file"
-  copy:
-    src: telegraf.init
-    dest: /etc/init.d/telegraf
-    mode: 0755
