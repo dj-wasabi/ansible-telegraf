@@ -24,6 +24,7 @@ def test_telegraf_dot_conf(host):
     assert telegraf.contains('[[outputs.influxdb]]')
     assert telegraf.contains('["http://influxdb:8086"]')
     assert telegraf.contains('[[inputs.net]]')
+    assert telegraf.contains('[[aggregators.basicstats]]')
 
 
 def test_telegraf_dot_d_dir(host):

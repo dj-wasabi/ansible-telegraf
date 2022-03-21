@@ -118,7 +118,7 @@
 {% endif %}
 
 ###############################################################################
-#                                  PROCESSORS                                    #
+#                                  PROCESSORS                                 #
 ###############################################################################
 
 {% if telegraf_processors is defined and telegraf_processors is iterable %}
@@ -126,6 +126,45 @@
 [[processors.{{ item.processor }}]]
 {% if item.config is defined and item.config is iterable %}
 {% for items in item.config %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.tagpass is defined and item.tagpass is iterable %}
+[processors.{{ item.processor }}.tagpass]
+{% for items in item.tagpass %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.tagdrop is defined and item.tagdrop is iterable %}
+[processors.{{ item.processor }}.tagdrop]
+{% for items in item.tagdrop %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+###############################################################################
+#                                  AGGREGATORS                                #
+###############################################################################
+
+{% if telegraf_aggregators is defined and telegraf_aggregators is iterable %}
+{% for item in telegraf_aggregators %}
+[[aggregators.{{ item.aggregator }}]]
+{% if item.config is defined and item.config is iterable %}
+{% for items in item.config %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.tagpass is defined and item.tagpass is iterable %}
+[aggregators.{{ item.aggregator }}.tagpass]
+{% for items in item.tagpass %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.tagdrop is defined and item.tagdrop is iterable %}
+[aggregators.{{ item.aggregator }}.tagdrop]
+{% for items in item.tagdrop %}
     {{ items }}
 {% endfor %}
 {% endif %}

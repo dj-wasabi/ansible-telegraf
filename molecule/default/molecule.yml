@@ -52,6 +52,13 @@ provisioner:
               name: grok
               config:
                 - patterns = ["invoked oom-killer"]
+        telegraf_aggregators:
+          - aggregator: basicstats
+            config:
+              - drop_original = false
+              - stats = ['mean']
+            tagpass:
+              - cpu = ["cpu-total"]
 
 scenario:
   name: default
