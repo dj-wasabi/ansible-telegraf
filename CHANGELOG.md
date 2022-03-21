@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Adding support for aggregators [\#156](https://github.com/dj-wasabi/ansible-telegraf/pull/156) ([simo-tuomisto](https://github.com/simo-tuomisto))
 - Add support for Rocky Linux [\#147](https://github.com/dj-wasabi/ansible-telegraf/pull/147) ([maxwondercorn](https://github.com/maxwondercorn))
 - Add Windows feature of upgrade agents [\#146](https://github.com/dj-wasabi/ansible-telegraf/pull/146) ([PeterSzegedi](https://github.com/PeterSzegedi))
 
