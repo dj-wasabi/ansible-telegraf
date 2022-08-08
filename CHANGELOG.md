@@ -94,7 +94,6 @@
 - Some changes for fixing FreeBSD [\#101](https://github.com/dj-wasabi/ansible-telegraf/pull/101) ([dj-wasabi](https://github.com/dj-wasabi))
 - basic FreeBSD support [\#100](https://github.com/dj-wasabi/ansible-telegraf/pull/100) ([langerma](https://github.com/langerma))
 - Added the use\_proxy argument to use a proxy \(or not\) [\#98](https://github.com/dj-wasabi/ansible-telegraf/pull/98) ([dj-wasabi](https://github.com/dj-wasabi))
-- Various small changes for molecule [\#97](https://github.com/dj-wasabi/ansible-telegraf/pull/97) ([dj-wasabi](https://github.com/dj-wasabi))
 
 ## [0.12.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.12.0) (2019-03-12)
 
@@ -110,6 +109,7 @@
 
 **Merged pull requests:**
 
+- Various small changes for molecule [\#97](https://github.com/dj-wasabi/ansible-telegraf/pull/97) ([dj-wasabi](https://github.com/dj-wasabi))
 - Add processors section in Telegraf config [\#94](https://github.com/dj-wasabi/ansible-telegraf/pull/94) ([ph4r5h4d](https://github.com/ph4r5h4d))
 - Updated to Telegraf 1.10.0;Different installation methods [\#93](https://github.com/dj-wasabi/ansible-telegraf/pull/93) ([dj-wasabi](https://github.com/dj-wasabi))
 - Updating Telegraf default to 1.9.5 [\#92](https://github.com/dj-wasabi/ansible-telegraf/pull/92) ([sdurrheimer](https://github.com/sdurrheimer))
@@ -167,6 +167,7 @@
 **Merged pull requests:**
 
 - Updating to Telegraf 1.7.3;Updating changelog [\#58](https://github.com/dj-wasabi/ansible-telegraf/pull/58) ([dj-wasabi](https://github.com/dj-wasabi))
+- Added bunch of files [\#55](https://github.com/dj-wasabi/ansible-telegraf/pull/55) ([dj-wasabi](https://github.com/dj-wasabi))
 - Fix Deprecation warnings [\#54](https://github.com/dj-wasabi/ansible-telegraf/pull/54) ([dj-wasabi](https://github.com/dj-wasabi))
 - Changed 'include' to 'include\_tasks' to remove deprecation warning [\#53](https://github.com/dj-wasabi/ansible-telegraf/pull/53) ([tjend](https://github.com/tjend))
 - Add option to remove extra plugin config files [\#52](https://github.com/dj-wasabi/ansible-telegraf/pull/52) ([tjend](https://github.com/tjend))
@@ -183,7 +184,6 @@
 
 **Merged pull requests:**
 
-- Added bunch of files [\#55](https://github.com/dj-wasabi/ansible-telegraf/pull/55) ([dj-wasabi](https://github.com/dj-wasabi))
 - Updating to 0.9.0 [\#47](https://github.com/dj-wasabi/ansible-telegraf/pull/47) ([dj-wasabi](https://github.com/dj-wasabi))
 - Convert the telegraf\_plugins\_extra varaible to a hash so that we can … [\#46](https://github.com/dj-wasabi/ansible-telegraf/pull/46) ([tjend](https://github.com/tjend))
 - Improved comments, split up role, moved tags and added defaults [\#45](https://github.com/dj-wasabi/ansible-telegraf/pull/45) ([boxrick](https://github.com/boxrick))
@@ -223,6 +223,7 @@
 - Updating to release 0.7.0 [\#27](https://github.com/dj-wasabi/ansible-telegraf/pull/27) ([dj-wasabi](https://github.com/dj-wasabi))
 - Replace action by modules [\#26](https://github.com/dj-wasabi/ansible-telegraf/pull/26) ([tszym](https://github.com/tszym))
 - Use yum repository to install telegraf on RedHat [\#25](https://github.com/dj-wasabi/ansible-telegraf/pull/25) ([tszym](https://github.com/tszym))
+- Remove for-loop in extra-plugin template [\#24](https://github.com/dj-wasabi/ansible-telegraf/pull/24) ([emersondispatch](https://github.com/emersondispatch))
 - Update Debian.yml [\#23](https://github.com/dj-wasabi/ansible-telegraf/pull/23) ([zend0](https://github.com/zend0))
 - extra plugins tags [\#21](https://github.com/dj-wasabi/ansible-telegraf/pull/21) ([oboukili](https://github.com/oboukili))
 - Input tags support [\#20](https://github.com/dj-wasabi/ansible-telegraf/pull/20) ([szibis](https://github.com/szibis))
@@ -234,7 +235,6 @@
 
 **Merged pull requests:**
 
-- Remove for-loop in extra-plugin template [\#24](https://github.com/dj-wasabi/ansible-telegraf/pull/24) ([emersondispatch](https://github.com/emersondispatch))
 - update the README with the latest v0.13 - v1.1 agent settings [\#17](https://github.com/dj-wasabi/ansible-telegraf/pull/17) ([lhoss](https://github.com/lhoss))
 - support missing agent settings upto telegraf v1.1 [\#16](https://github.com/dj-wasabi/ansible-telegraf/pull/16) ([lhoss](https://github.com/lhoss))
 - Fixing molecule [\#15](https://github.com/dj-wasabi/ansible-telegraf/pull/15) ([dj-wasabi](https://github.com/dj-wasabi))
