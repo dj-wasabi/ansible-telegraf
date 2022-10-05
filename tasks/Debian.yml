@@ -96,7 +96,7 @@
   apt:
     deb: "{{ telegraf_agent_package_path }}/{{ telegraf_agent_package }}"
     state: "present"
-    force: yes
+    allow_downgrade: yes
   register: is_telegraf_package_installed
   until: is_telegraf_package_installed is succeeded
   notify: "Restart Telegraf"
