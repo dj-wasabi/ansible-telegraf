@@ -9,6 +9,35 @@
     {{ items }}
 {% endfor %}
 {% endif %}
+{% if item.value.fields is defined and item.value.fields is iterable %}
+
+{% for field in item.value.fields %}
+[[inputs.{{ item.value.plugin }}.field]]
+{% for items in item.value.fields[field] %}
+    {{ items }}
+{% endfor %}
+
+{% endfor %}
+{% endif %}
+
+{% if item.value.subplugin is defined and item.value.subplugin is iterable %}
+{% for subpluginname in item.value.subplugin %}
+  [[inputs.{{ item.value.plugin | default(item.key) }}.{{ subpluginname }}]]
+{% for items in item.value.subplugin[subpluginname] %}
+    {{ items }}
+{% endfor %}
+
+{% for field in item.value.subfields %}
+    [[inputs.{{ item.value.plugin | default(item.key) }}.{{ subpluginname }}.field]]
+{% for items in item.value.subfields[field] %}
+      {{ items }}
+{% endfor %}
+
+{% endfor %}
+{% endfor %}
+{% endif %}
+
+
 {% if item.value.tags is defined and item.value.tags is iterable %}
 [inputs.{{ item.value.plugin | default(item.key) }}.tags]
 {% for items in item.value.tags %}

@@ -15,11 +15,5 @@
     restart: True
   when: telegraf_agent_docker
 
-- name: "Restart Windows Telegraf"
-  win_service:
-    name: Telegraf
-    start_mode: auto
-    state: restarted
-
 - name: "Restart MacOS Telegraf"
   command: brew services restart telegraf
