@@ -1,0 +1,86 @@
+### MANAGED BY {{ role_path|basename }} ANSIBLE ROLE ###
+
+[[inputs.{{ item.value.plugin | default(item.key) }}]]
+{% if item.value.interval is defined %}
+    interval = "{{ item.value.interval }}s"
+{% endif %}
+{% if item.value.config is defined and item.value.config is iterable %}
+{% for items in item.value.config %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.value.fields is defined and item.value.fields is iterable %}
+
+{% for field in item.value.fields %}
+[[inputs.{{ item.value.plugin }}.field]]
+{% for items in item.value.fields[field] %}
+    {{ items }}
+{% endfor %}
+
+{% endfor %}
+{% endif %}
+
+{% if item.value.subplugin is defined and item.value.subplugin is iterable %}
+{% for subpluginname in item.value.subplugin %}
+  [[inputs.{{ item.value.plugin | default(item.key) }}.{{ subpluginname }}]]
+{% for items in item.value.subplugin[subpluginname] %}
+    {{ items }}
+{% endfor %}
+
+{% for field in item.value.subfields %}
+    [[inputs.{{ item.value.plugin | default(item.key) }}.{{ subpluginname }}.field]]
+{% for items in item.value.subfields[field] %}
+      {{ items }}
+{% endfor %}
+
+{% endfor %}
+{% endfor %}
+{% endif %}
+
+
+{% if item.value.tags is defined and item.value.tags is iterable %}
+[inputs.{{ item.value.plugin | default(item.key) }}.tags]
+{% for items in item.value.tags %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.value.tagpass is defined and item.value.tagpass is iterable %}
+[inputs.{{ item.value.plugin | default(item.key) }}.tagpass]
+{% for items in item.value.tagpass %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.value.tagdrop is defined and item.value.tagdrop is iterable %}
+[inputs.{{ item.value.plugin | default(item.key) }}.tagdrop]
+{% for items in item.value.tagdrop %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% if item.value.filter is defined %}
+{% if item.value.filter.name is defined %}
+[inputs.{{ item.value.plugin | default(item.key) }}.{{ item.value.filter.name | default("grok") }}]
+{% if item.value.filter.config is defined and item.value.filter.config is iterable %}
+{% for items in item.value.filter.config %}
+    {{ items }}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% endif %}
+{% if item.value.objects is defined and item.value.objects is iterable %}
+{% for object in item.value.objects %}
+[[inputs.{{ item.value.plugin | default(item.key) }}.object]]
+  ObjectName = {{ object.name | to_json }}
+  Instances = {{ object.instances | default(["*"]) | to_json }}
+  Counters = {{ object.counters | default(["*"]) | to_json }}
+  Measurement = {{ object.measurement | default("win_perf_counters") | to_json }}
+  IncludeTotal = {{ object.total | default(false) | string | lower }}
+{% endfor %}
+{% endif %}
+{% if item.value.queries is defined and item.value.queries is iterable %}
+{% for query in item.value.queries %}
+[[inputs.{{ item.value.plugin | default(item.key) }}.query]]
+{% for item in item.value.queries[query] %}
+    {{ item }}
+{% endfor %}
+{% endfor %}
+{% endif %}

@@ -102,6 +102,25 @@
     - Restart Telegraf
     - Restart Telegraf container
 
+- name: "Copy telegraf extra custom plugins"
+  template:
+    src: "telegraf-custom-extra-plugin.conf.j2"
+    dest: "{{ telegraf_agent_config_path }}/telegraf.d/{{ item.key }}.conf"
+    owner: telegraf
+    group: telegraf
+    mode: 0640
+  with_dict: "{{ telegraf_plugins_custom }}"
+  loop_control:
+    label: "{{ item.key }}"
+  when:
+    - telegraf_plugins_custom is defined
+    - telegraf_plugins_custom is iterable
+    - item.value.state|default('present') != 'absent'
+  become: yes
+  notify:
+    - Restart Telegraf
+    - Restart Telegraf container
+
 - name: "Remove telegraf extra plugins"
   file:
     path: "{{ telegraf_agent_config_path }}/telegraf.d/{{ item.key }}.conf"
