@@ -27,6 +27,7 @@
     {{ items }}
 {% endfor %}
 
+{% if item.value.subfields is defined and item.value.subfields is iterable %}
 {% for field in item.value.subfields %}
     [[inputs.{{ item.value.plugin | default(item.key) }}.{{ subpluginname }}.field]]
 {% for items in item.value.subfields[field] %}
