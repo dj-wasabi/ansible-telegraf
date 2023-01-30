@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.13.3...HEAD)
 
+**Implemented enhancements:**
+
+- Ensure check-mode works [\#163](https://github.com/dj-wasabi/ansible-telegraf/pull/163) ([pieterlexis-tomtom](https://github.com/pieterlexis-tomtom))
+
 **Fixed bugs:**
 
 - Fix the molecule run as part of CI process [\#166](https://github.com/dj-wasabi/ansible-telegraf/pull/166) ([dj-wasabi](https://github.com/dj-wasabi))
