@@ -1,5 +1,19 @@
 # Changelog
 
+## [Unreleased](https://github.com/dj-wasabi/ansible-telegraf/tree/HEAD)
+
+[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.13.3...HEAD)
+
+**Implemented enhancements:**
+
+- Ensure check-mode works [\#163](https://github.com/dj-wasabi/ansible-telegraf/pull/163) ([pieterlexis-tomtom](https://github.com/pieterlexis-tomtom))
+- Downgrade support [\#160](https://github.com/dj-wasabi/ansible-telegraf/pull/160) ([maxnasonov](https://github.com/maxnasonov))
+
+**Fixed bugs:**
+
+- Fix the molecule run as part of CI process [\#166](https://github.com/dj-wasabi/ansible-telegraf/pull/166) ([dj-wasabi](https://github.com/dj-wasabi))
+- Fixed issues with Windows paths containing spaces [\#162](https://github.com/dj-wasabi/ansible-telegraf/pull/162) ([KlettIT](https://github.com/KlettIT))
+
 ## [0.13.3](https://github.com/dj-wasabi/ansible-telegraf/tree/0.13.3) (2022-03-21)
 
 [Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.13.2...0.13.3)
@@ -27,6 +41,7 @@
 **Merged pull requests:**
 
 - Fix spacing for telegraf\_plugins\_extra example in readme.md [\#143](https://github.com/dj-wasabi/ansible-telegraf/pull/143) ([isclever](https://github.com/isclever))
+- Using version as version\_compare is deprecated [\#135](https://github.com/dj-wasabi/ansible-telegraf/pull/135) ([dj-wasabi](https://github.com/dj-wasabi))
 
 ## [0.13.1](https://github.com/dj-wasabi/ansible-telegraf/tree/0.13.1) (2021-01-06)
 
@@ -48,7 +63,6 @@
 
 - Added property telegraf\_agent\_docker\_image\_version for using a specific version of the Docker image [\#137](https://github.com/dj-wasabi/ansible-telegraf/pull/137) ([dj-wasabi](https://github.com/dj-wasabi))
 - Apply ansible-lint in pre-commit hook and fix changes [\#136](https://github.com/dj-wasabi/ansible-telegraf/pull/136) ([dj-wasabi](https://github.com/dj-wasabi))
-- Using version as version\_compare is deprecated [\#135](https://github.com/dj-wasabi/ansible-telegraf/pull/135) ([dj-wasabi](https://github.com/dj-wasabi))
 - Using command instead of shell module [\#134](https://github.com/dj-wasabi/ansible-telegraf/pull/134) ([dj-wasabi](https://github.com/dj-wasabi))
 
 ## [0.13.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.13.0) (2020-10-16)
@@ -94,6 +108,7 @@
 - Some changes for fixing FreeBSD [\#101](https://github.com/dj-wasabi/ansible-telegraf/pull/101) ([dj-wasabi](https://github.com/dj-wasabi))
 - basic FreeBSD support [\#100](https://github.com/dj-wasabi/ansible-telegraf/pull/100) ([langerma](https://github.com/langerma))
 - Added the use\_proxy argument to use a proxy \(or not\) [\#98](https://github.com/dj-wasabi/ansible-telegraf/pull/98) ([dj-wasabi](https://github.com/dj-wasabi))
+- Various small changes for molecule [\#97](https://github.com/dj-wasabi/ansible-telegraf/pull/97) ([dj-wasabi](https://github.com/dj-wasabi))
 
 ## [0.12.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.12.0) (2019-03-12)
 
@@ -109,7 +124,6 @@
 
 **Merged pull requests:**
 
-- Various small changes for molecule [\#97](https://github.com/dj-wasabi/ansible-telegraf/pull/97) ([dj-wasabi](https://github.com/dj-wasabi))
 - Add processors section in Telegraf config [\#94](https://github.com/dj-wasabi/ansible-telegraf/pull/94) ([ph4r5h4d](https://github.com/ph4r5h4d))
 - Updated to Telegraf 1.10.0;Different installation methods [\#93](https://github.com/dj-wasabi/ansible-telegraf/pull/93) ([dj-wasabi](https://github.com/dj-wasabi))
 - Updating Telegraf default to 1.9.5 [\#92](https://github.com/dj-wasabi/ansible-telegraf/pull/92) ([sdurrheimer](https://github.com/sdurrheimer))
