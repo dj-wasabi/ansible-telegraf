@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/dj-wasabi/ansible-telegraf/tree/HEAD)
+## [0.14.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.14.0) (2023-01-30)
 
-[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.13.3...HEAD)
+[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.13.3...0.14.0)
 
 **Implemented enhancements:**
 
