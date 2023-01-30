@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Added/removed OS'es for Molecule CI testing [\#167](https://github.com/dj-wasabi/ansible-telegraf/pull/167) ([dj-wasabi](https://github.com/dj-wasabi))
 - Ensure check-mode works [\#163](https://github.com/dj-wasabi/ansible-telegraf/pull/163) ([pieterlexis-tomtom](https://github.com/pieterlexis-tomtom))
 - Downgrade support [\#160](https://github.com/dj-wasabi/ansible-telegraf/pull/160) ([maxnasonov](https://github.com/maxnasonov))
 
