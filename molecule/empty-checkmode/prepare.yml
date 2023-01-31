@@ -1,0 +1,46 @@
+---
+
+- hosts: telegraf
+  tasks:
+    - name: "Installing packages on CentOS"
+      yum:
+        name: which
+        state: present
+      when:
+        - ansible_os_family == 'RedHat'
+
+    - name: "Apt get update"
+      shell: apt-get update
+      when:
+        - ansible_os_family == 'Debian'
+
+    - name: "Installing packages on Debian"
+      apt:
+        name:
+          - wget
+          - "{{ 'gnupg-agent' if ansible_distribution_major_version in ['8', '18', '16'] else 'gpg-agent' }}"
+        update_cache: True
+        state: present
+      when:
+        - ansible_os_family == 'Debian'
+        - ansible_distribution_major_version not in [9, 10]
+
+    - name: "Installing packages on Debian"
+      apt:
+        name:
+          - wget
+          - python-apt
+          - "{{ 'gnupg-agent' if ansible_distribution_major_version in ['8', '18', '16'] else 'gpg-agent' }}"
+        update_cache: True
+        state: present
+      when:
+        - ansible_os_family == 'Debian'
+        - ansible_distribution_major_version in [9, 10]
+
+    - name: "Installing packages on Suse"
+      zypper:
+        name:
+          - aaa_base
+        state: present
+      when:
+        - ansible_os_family == 'Suse'
