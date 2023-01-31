@@ -62,6 +62,7 @@
   register: is_telegraf_package_installed
   until: is_telegraf_package_installed is succeeded
   become: yes
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: "Suse | Create directories for telegraf"
   file:
