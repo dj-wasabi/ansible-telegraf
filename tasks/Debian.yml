@@ -91,6 +91,7 @@
   become: yes
   when:
     - telegraf_agent_package_method == "repo"
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: "Debian | Install Telegraf package (online)"
   apt:
@@ -103,6 +104,7 @@
   become: yes
   when:
     - telegraf_agent_package_method == "online" or telegraf_agent_package_method == "offline"
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: "Debian | Remove repository (online/offline install)"
   file:

@@ -60,6 +60,14 @@ jobs:
           curl -so requirements.txt 'https://raw.githubusercontent.com/dj-wasabi/dj-wasabi-release/main/requirements.txt'
           pip install -r requirements.txt
 
+      - name: Run role tests on empty systems in check-mode
+        run: >-
+          MY_MOLECULE_CONTAINER=${{ matrix.molecule_distro.container }}
+          MY_MOLECULE_IMAGE=${{ matrix.molecule_distro.image }}
+          MY_MOLECULE_GROUP=${{ matrix.molecule_distro.group }}
+          MY_MOLECULE_DOCKER_COMMAND=${{ matrix.molecule_distro.command }}
+          molecule test -s empty-checkmode
+
       - name: Run role tests
         run: >-
           MY_MOLECULE_CONTAINER=${{ matrix.molecule_distro.container }}
