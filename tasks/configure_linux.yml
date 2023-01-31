@@ -128,6 +128,7 @@
     enabled: "{{ telegraf_enabled }}"
   become: yes
   when: not telegraf_agent_docker
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Configure system for for docker plugin
   block:
