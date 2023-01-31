@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/dj-wasabi/ansible-telegraf/tree/HEAD)
+
+[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.14.0...HEAD)
+
+**Implemented enhancements:**
+
+- Fix check-mode failures [\#168](https://github.com/dj-wasabi/ansible-telegraf/pull/168) ([pieterlexis-tomtom](https://github.com/pieterlexis-tomtom))
+
 ## [0.14.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.14.0) (2023-01-30)
 
 [Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.13.3...0.14.0)
