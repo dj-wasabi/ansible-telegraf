@@ -38,19 +38,17 @@
   become: yes
 
 - name: "Debian | Download Telegraf apt key"
-  apt_key:
+  when: telegraf_agent_package_method == "repo"
+  ansible.builtin.get_url:
     url: "https://repos.influxdata.com/influxdata-archive.key"
-    id: 7df8b07e
-    state: present
+    dest: /etc/apt/trusted.gpg.d/influxdata-archive.asc
   register: are_telegraf_dependencies_keys_installed
   until: are_telegraf_dependencies_keys_installed is succeeded
   become: yes
-  when:
-    - telegraf_agent_package_method == "repo"
 
 - name: "Debian | Add Telegraf repository (using LSB)"
   apt_repository:
-    repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_lsb.codename }} stable"
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive.asc] https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_lsb.codename }} stable"
     filename: "telegraf"
     state: present
   become: yes
@@ -61,7 +59,7 @@
 
 - name: "Debian | Add Telegraf repository"
   apt_repository:
-    repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive.asc] https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
     filename: "telegraf"
     state: present
   become: yes
