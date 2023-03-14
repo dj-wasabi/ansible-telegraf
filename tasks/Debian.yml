@@ -36,19 +36,41 @@
   when:
     - not apt_https_transport.stat.exists
   become: yes
-
+  
+- name: "Debian | Install cURL and GPG packages"
+  apt:
+    name:
+      - curl
+      - gpg
+    state: "present"
+  become: yes
+  
+- name: "Debian | Ensure the shared keyrings directory exists"
+  stat:
+    path: /usr/share/keyrings
+  register: usr_share_keyrings
+  
+- name: "Debian | Create shared keyrings directory"
+  file:
+    state: directory
+    path: /usr/share/keyrings
+    owner: root
+    group: root
+    mode: 0755
+  when:
+    - not usr_share_keyrings.stat.exists
+  become: yes
+  
 - name: "Debian | Download Telegraf apt key"
   when: telegraf_agent_package_method == "repo"
-  ansible.builtin.get_url:
-    url: "https://repos.influxdata.com/influxdata-archive.key"
-    dest: /etc/apt/trusted.gpg.d/influxdata-archive.asc
+  command: "curl https://repos.influxdata.com/influxdata-archive.key | gpg --dearmor --o /usr/share/keyrings/influxdata-archive.gpg"
   register: are_telegraf_dependencies_keys_installed
   until: are_telegraf_dependencies_keys_installed is succeeded
   become: yes
 
 - name: "Debian | Add Telegraf repository (using LSB)"
   apt_repository:
-    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive.asc] https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_lsb.codename }} stable"
+    repo: "deb [signed-by=/usr/share/keyrings/influxdata-archive.gpg] https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_lsb.codename }} stable"
     filename: "telegraf"
     state: present
   become: yes
@@ -59,7 +81,7 @@
 
 - name: "Debian | Add Telegraf repository"
   apt_repository:
-    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive.asc] https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
+    repo: "deb [signed-by=/usr/share/keyrings/influxdata-archive.gpg] https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
     filename: "telegraf"
     state: present
   become: yes
