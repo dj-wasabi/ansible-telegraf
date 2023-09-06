@@ -5,9 +5,9 @@
   service:
     name: telegraf
     state: restarted
-    enabled: yes
+    enabled: true
   when: not telegraf_agent_docker
-  become: yes
+  become: true
 
 - name: "Restart Telegraf container"
   docker_container:

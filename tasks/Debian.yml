@@ -35,7 +35,7 @@
   until: are_telegraf_dependencies_packages_installed is succeeded
   when:
     - not apt_https_transport.stat.exists
-  become: yes
+  become: true
 
 - name: "Debian | Download Telegraf apt key"
   apt_key:
@@ -44,7 +44,7 @@
     state: present
   register: are_telegraf_dependencies_keys_installed
   until: are_telegraf_dependencies_keys_installed is succeeded
-  become: yes
+  become: true
   when:
     - telegraf_agent_package_method == "repo"
 
@@ -53,7 +53,7 @@
     repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_lsb.codename }} stable"
     filename: "telegraf"
     state: present
-  become: yes
+  become: true
   when:
     - telegraf_agent_package_method == "repo"
     - ansible_lsb is defined
@@ -64,7 +64,7 @@
     repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
     filename: "telegraf"
     state: present
-  become: yes
+  become: true
   when:
     - telegraf_agent_package_method == "repo"
     - ansible_lsb is not defined or ansible_lsb.codename is not defined
@@ -84,11 +84,11 @@
   apt:
     name: "{{ telegraf_agent_package }}"
     state: "{{ telegraf_agent_package_state }}"
-    update_cache: yes
+    update_cache: true
   register: is_telegraf_package_installed
   until: is_telegraf_package_installed is succeeded
   notify: "Restart Telegraf"
-  become: yes
+  become: true
   when:
     - telegraf_agent_package_method == "repo"
 
@@ -99,7 +99,7 @@
   register: is_telegraf_package_installed
   until: is_telegraf_package_installed is succeeded
   notify: "Restart Telegraf"
-  become: yes
+  become: true
   when:
     - telegraf_agent_package_method == "online" or telegraf_agent_package_method == "offline"
 
@@ -107,6 +107,6 @@
   file:
     path: "/etc/apt/sources.list.d/telegraf.list"
     state: absent
-  become: yes
+  become: true
   when:
     - telegraf_agent_package_method == "online" or telegraf_agent_package_method == "offline"

@@ -20,7 +20,7 @@
     baseurl: "{{ telegraf_yum_baseurl[ansible_distribution|lower] | default(telegraf_yum_baseurl['default']) }}"
     gpgcheck: "{{ telegraf_yum_gpgcheck | default('true') }}"
     gpgkey: "{{ telegraf_yum_gpgkey }}"
-  become: yes
+  become: true
   when:
     - telegraf_agent_package_method == "repo"
 
@@ -41,5 +41,5 @@
     state: "{{ telegraf_agent_package_state }}"
   register: is_telegraf_package_installed
   until: is_telegraf_package_installed is succeeded
-  become: yes
+  become: true
   notify: "Restart Telegraf"

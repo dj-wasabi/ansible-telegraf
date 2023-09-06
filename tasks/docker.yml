@@ -15,7 +15,7 @@
     home: /etc/telegraf
     uid: "{{ telegraf_uid_docker }}"
     system: True
-  become: yes
+  become: true
 
 - name: Create /etc/telegraf (home) directory
   file:
@@ -24,7 +24,7 @@
     group: telegraf
     mode: 0750
     state: directory
-  become: yes
+  become: true
 
 - name: Create /etc/telegraf.d directory
   file:
@@ -33,7 +33,7 @@
     group: telegraf
     mode: 0750
     state: directory
-  become: yes
+  become: true
 
 - name: Ensure Telegraf Docker container is running
   docker_container:

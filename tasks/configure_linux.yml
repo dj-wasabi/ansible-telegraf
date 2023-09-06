@@ -28,7 +28,7 @@
     owner: telegraf
     group: telegraf
     mode: 0640
-  become: yes
+  become: true
   when:
     - telegraf_agent_version is version('0.10.0', '<')
   notify:
@@ -42,7 +42,7 @@
     owner: telegraf
     group: telegraf
     mode: 0640
-  become: yes
+  become: true
   when:
     - telegraf_agent_version is version('0.10.0', '>=')
   notify:
@@ -63,7 +63,7 @@
   when:
     - telegraf_plugins_extra_exclusive
     - telegraf_directory.stat.exists
-  become: yes
+  become: true
   notify:
     - Restart Telegraf
     - Restart Telegraf container
@@ -78,7 +78,7 @@
   when:
     - telegraf_plugins_extra_exclusive
     - telegraf_directory.stat.exists
-  become: yes
+  become: true
   notify:
     - Restart Telegraf
     - Restart Telegraf container
@@ -97,7 +97,7 @@
     - telegraf_plugins_extra is defined
     - telegraf_plugins_extra is iterable
     - item.value.state|default('present') != 'absent'
-  become: yes
+  become: true
   notify:
     - Restart Telegraf
     - Restart Telegraf container
@@ -113,7 +113,7 @@
     - telegraf_plugins_extra is defined
     - telegraf_plugins_extra is iterable
     - item.value.state|default('present') == 'absent'
-  become: yes
+  become: true
   notify:
     - Restart Telegraf
     - Restart Telegraf container
@@ -126,7 +126,7 @@
     name: telegraf
     state: "{{ telegraf_enabled | ternary('started', 'stopped') }}"
     enabled: "{{ telegraf_enabled }}"
-  become: yes
+  become: true
   when: not telegraf_agent_docker
 
 - name: Configure system for for docker plugin

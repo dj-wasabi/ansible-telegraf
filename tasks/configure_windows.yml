@@ -31,7 +31,7 @@
   win_copy:
     src: '{{ telegraf_win_install_dir }}\telegraf-{{ telegraf_agent_version }}\telegraf.exe'
     dest: '{{ telegraf_win_install_dir }}\telegraf.exe'
-    remote_src: yes
+    remote_src: true
   when: telegraf_agent_version is version('1.15', '>=')
 
 - name: "Windows | Unzip file"
@@ -39,14 +39,14 @@
     src: '{{ telegraf_win_install_dir }}\telegraf-{{ telegraf_agent_version }}_windows_amd64.zip'
     dest: '{{ telegraf_win_install_dir }}'
     creates: '{{ telegraf_win_install_dir }}\telegraf.exe'
-    delete_archive: yes
+    delete_archive: true
   when: telegraf_agent_version is version('1.15', '<')
 
 - name: "Windows | Move extracted executable"
   win_copy:
     src: '{{ telegraf_win_install_dir }}\telegraf\telegraf.exe'
     dest: '{{ telegraf_win_install_dir }}\telegraf.exe'
-    remote_src: yes
+    remote_src: true
   when: telegraf_agent_version is version('1.15', '<')
 
 - name: "Windows | Configure Telegraf"
