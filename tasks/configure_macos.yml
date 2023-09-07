@@ -126,3 +126,4 @@
   register: brew_services_start_telegraf
   changed_when: '"Successfully started `telegraf`" in brew_services_start_telegraf.stdout'
   when: not telegraf_agent_docker
+  ignore_errors: "{{ ansible_check_mode }}"

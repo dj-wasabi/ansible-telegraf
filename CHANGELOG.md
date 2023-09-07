@@ -2,7 +2,41 @@
 
 ## [Unreleased](https://github.com/dj-wasabi/ansible-telegraf/tree/HEAD)
 
-[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.13.2...HEAD)
+[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.14.0...HEAD)
+
+**Implemented enhancements:**
+
+- Fix check-mode failures [\#168](https://github.com/dj-wasabi/ansible-telegraf/pull/168) ([pieterlexis-tomtom](https://github.com/pieterlexis-tomtom))
+
+**Fixed bugs:**
+
+- Replace apt\_key with get\_url [\#170](https://github.com/dj-wasabi/ansible-telegraf/pull/170) ([danclough](https://github.com/danclough))
+
+## [0.14.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.14.0) (2023-01-30)
+
+[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.13.3...0.14.0)
+
+**Implemented enhancements:**
+
+- Added/removed OS'es for Molecule CI testing [\#167](https://github.com/dj-wasabi/ansible-telegraf/pull/167) ([dj-wasabi](https://github.com/dj-wasabi))
+- Ensure check-mode works [\#163](https://github.com/dj-wasabi/ansible-telegraf/pull/163) ([pieterlexis-tomtom](https://github.com/pieterlexis-tomtom))
+- Downgrade support [\#160](https://github.com/dj-wasabi/ansible-telegraf/pull/160) ([maxnasonov](https://github.com/maxnasonov))
+
+**Fixed bugs:**
+
+- Don't install init script on SUSE/openSUSE systems running systemd [\#152](https://github.com/dj-wasabi/ansible-telegraf/issues/152)
+- Fix the molecule run as part of CI process [\#166](https://github.com/dj-wasabi/ansible-telegraf/pull/166) ([dj-wasabi](https://github.com/dj-wasabi))
+- update influxdata GPG key after rotation [\#165](https://github.com/dj-wasabi/ansible-telegraf/pull/165) ([Tetha](https://github.com/Tetha))
+- Fixed issues with Windows paths containing spaces [\#162](https://github.com/dj-wasabi/ansible-telegraf/pull/162) ([KlettIT](https://github.com/KlettIT))
+
+**Closed issues:**
+
+- Influxdata key rotation causing failure [\#164](https://github.com/dj-wasabi/ansible-telegraf/issues/164)
+- Influxdb2 output [\#158](https://github.com/dj-wasabi/ansible-telegraf/issues/158)
+
+## [0.13.3](https://github.com/dj-wasabi/ansible-telegraf/tree/0.13.3) (2022-03-21)
+
+[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.13.2...0.13.3)
 
 **Implemented enhancements:**
 

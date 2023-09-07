@@ -98,13 +98,13 @@
     - service_result.exists
 
 - name: "Windows | Unregister Service"
-  win_command: '{{ telegraf_win_install_dir }}\telegraf.exe --service uninstall'
+  win_command: '"{{ telegraf_win_install_dir }}\telegraf.exe" --service uninstall'
   register: telegraf_windows_uninstall
   when:
     - service_result.exists
 
 - name: "Windows | Register Service"
-  win_command: '{{ telegraf_win_install_dir }}\telegraf.exe {{ telegraf_win_service_args | join(" ") }}'
+  win_command: '"{{ telegraf_win_install_dir }}\telegraf.exe" {{ telegraf_win_service_args | join(" ") }}'
   register: telegraf_windows_install
 
 - name: "Windows | Set service startup mode to auto and ensure it is started"

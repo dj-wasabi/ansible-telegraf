@@ -43,3 +43,4 @@
   until: is_telegraf_package_installed is succeeded
   become: true
   notify: "Restart Telegraf"
+  ignore_errors: "{{ ansible_check_mode }}"

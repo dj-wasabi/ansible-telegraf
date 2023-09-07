@@ -37,37 +37,88 @@
     - not apt_https_transport.stat.exists
   become: true
 
-- name: "Debian | Download Telegraf apt key"
-  apt_key:
-    url: "https://repos.influxdata.com/influxdb.key"
-    id: 2582E0C5
-    state: present
-  register: are_telegraf_dependencies_keys_installed
-  until: are_telegraf_dependencies_keys_installed is succeeded
-  become: true
+- name: "Debian | Configure Telegraf apt repository"
   when:
     - telegraf_agent_package_method == "repo"
+  block:
+    - when: (ansible_distribution == "Debian" and ansible_distribution_major_version|int < 9) or (ansible_distribution == "Ubuntu" and ansible_distribution_major_version|int < 18)
+      name: "Debian | Download Telegraf apt key"
+      apt_key:
+        url: "https://repos.influxdata.com/influxdata-archive.key"
+        id: 7df8b07e
+        state: present
+      register: are_telegraf_dependencies_keys_installed
+      until: are_telegraf_dependencies_keys_installed is succeeded
+      become: true
+    - when: (ansible_distribution == "Debian" and ansible_distribution_major_version|int >= 9) or (ansible_distribution == "Ubuntu" and ansible_distribution_major_version|int >= 18)
+      block:  
+        - name: "Debian | Ensure the shared keyrings directory exists"
+          stat:
+            path: /usr/share/keyrings
+          register: usr_share_keyrings
 
-- name: "Debian | Add Telegraf repository (using LSB)"
-  apt_repository:
-    repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_lsb.codename }} stable"
-    filename: "telegraf"
-    state: present
-  become: true
-  when:
-    - telegraf_agent_package_method == "repo"
-    - ansible_lsb is defined
-    - ansible_lsb.codename is defined
+        - name: "Debian | Create shared keyrings directory"
+          file:
+            state: directory
+            path: /usr/share/keyrings
+            owner: root
+            group: root
+            mode: 0755
+          when:
+            - not usr_share_keyrings.stat.exists
+          become: true
+          
+        - name: "Debian | Install Telegraf apt key"
+          get_url:
+            url: https://repos.influxdata.com/influxdata-archive.key
+            dest: /usr/share/keyrings/influxdata-archive.asc
+          register: are_telegraf_dependencies_keys_installed
+          until: are_telegraf_dependencies_keys_installed is succeeded
+          become: true
 
-- name: "Debian | Add Telegraf repository"
-  apt_repository:
-    repo: "deb https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
-    filename: "telegraf"
-    state: present
-  become: true
-  when:
-    - telegraf_agent_package_method == "repo"
-    - ansible_lsb is not defined or ansible_lsb.codename is not defined
+        - name: "Debian | Set Telegraf apt repository parameters"
+          set_fact: 
+            telegraf_repository_params: "[signed-by=/usr/share/keyrings/influxdata-archive.asc]"
+
+    - name: "Debian | Add Telegraf repository (using LSB)"
+      copy:
+        content: "deb {{ telegraf_repository_params | default('') }} https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_lsb.codename }} stable"
+        dest: /etc/apt/sources.list.d/telegraf.list
+      when:
+        - ansible_lsb is defined
+        - ansible_lsb.codename is defined
+
+    - name: "Debian | Add Telegraf repository"
+      copy:
+        content: "deb {{ telegraf_repository_params | default('') }} https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
+        dest: /etc/apt/sources.list.d/telegraf.list
+      become: true
+      when:
+        - ansible_lsb is not defined or ansible_lsb.codename is not defined
+    
+    - name: "Debian | Install Telegraf package (repo)"
+      apt:
+        name: "{{ telegraf_agent_package }}"
+        state: "{{ telegraf_agent_package_state }}"
+        update_cache: true
+      register: is_telegraf_package_installed
+      until: is_telegraf_package_installed is succeeded
+      notify: "Restart Telegraf"
+      become: true
+      when:
+        - telegraf_agent_package_method == "repo"
+      ignore_errors: "{{ ansible_check_mode }}"
+
+    - name: "Debian | Install Telegraf package (repo)"
+      apt:
+        name: "{{ telegraf_agent_package }}"
+        state: "{{ telegraf_agent_package_state }}"
+        update_cache: true
+      register: is_telegraf_package_installed
+      until: is_telegraf_package_installed is succeeded
+      notify: "Restart Telegraf"
+      become: true
+      ignore_errors: "{{ ansible_check_mode }}"
 
 - name: "Debian | Download Telegraf package (online)"
   get_url:
@@ -80,28 +131,18 @@
   when:
     - telegraf_agent_package_method == "online"
 
-- name: "Debian | Install Telegraf package (repo)"
-  apt:
-    name: "{{ telegraf_agent_package }}"
-    state: "{{ telegraf_agent_package_state }}"
-    update_cache: true
-  register: is_telegraf_package_installed
-  until: is_telegraf_package_installed is succeeded
-  notify: "Restart Telegraf"
-  become: true
-  when:
-    - telegraf_agent_package_method == "repo"
-
 - name: "Debian | Install Telegraf package (online)"
   apt:
     deb: "{{ telegraf_agent_package_path }}/{{ telegraf_agent_package }}"
     state: "present"
+    allow_downgrade: true
   register: is_telegraf_package_installed
   until: is_telegraf_package_installed is succeeded
   notify: "Restart Telegraf"
   become: true
   when:
     - telegraf_agent_package_method == "online" or telegraf_agent_package_method == "offline"
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: "Debian | Remove repository (online/offline install)"
   file:
