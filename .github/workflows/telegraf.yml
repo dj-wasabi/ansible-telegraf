@@ -57,7 +57,6 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          curl -so requirements.txt 'https://raw.githubusercontent.com/dj-wasabi/dj-wasabi-release/main/requirements.txt'
           pip install -r requirements.txt
 
       - name: Run role tests on empty systems in check-mode
