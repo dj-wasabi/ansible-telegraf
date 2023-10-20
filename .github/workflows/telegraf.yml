@@ -22,23 +22,21 @@ on:
       - '.github/workflows/telegraf.yml'
 jobs:
   molecule:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
         molecule_distro:
-          - container: centos7
-            image: geerlingguy/docker-centos7-ansible:latest
           - container: rocky8
             image: geerlingguy/docker-rockylinux8-ansible
-          # - container: rocky9
-          #   image: geerlingguy/docker-rockylinux9-ansible
+          - container: rocky9
+            image: geerlingguy/docker-rockylinux9-ansible
+          - container: ubuntu2204
+            image: geerlingguy/docker-ubuntu2204-ansible:latest
           - container: ubuntu2004
             image: geerlingguy/docker-ubuntu2004-ansible:latest
           - container: ubuntu1804
             image: geerlingguy/docker-ubuntu1804-ansible:latest
-          - container: ubuntu1604
-            image: geerlingguy/docker-ubuntu1604-ansible:latest
           - container: debian9
             image: geerlingguy/docker-debian9-ansible:latest
           - container: debian10

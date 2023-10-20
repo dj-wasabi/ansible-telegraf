@@ -11,10 +11,11 @@ platforms:
     command: ${MY_MOLECULE_DOCKER_COMMAND:-""}
     privileged: True
     pre_build_image: True
+    cgroupns_mode: host
     networks:
       - name: telegraf
     volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
     groups:
       - telegraf
 
