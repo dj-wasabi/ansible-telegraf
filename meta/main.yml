@@ -2,6 +2,7 @@
 galaxy_info:
   author: Werner Dijkerman
   description: Installing and configuring Telegraf
+  namespace: dj_wasabi
   role_name: telegraf
   company: myCompany.Dotcom
   license: MIT
