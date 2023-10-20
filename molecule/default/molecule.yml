@@ -4,6 +4,7 @@ dependency:
 driver:
   name: docker
 
+role_name_check: 1
 platforms:
   - name: influxdb
     image: influxdb:1.7-alpine

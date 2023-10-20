@@ -4,6 +4,7 @@ dependency:
 driver:
   name: docker
 
+role_name_check: 1
 platforms:
   - name: telegraf-${MY_MOLECULE_CONTAINER:-centos8}
     image: ${MY_MOLECULE_IMAGE:-"geerlingguy/docker-centos8-ansible"}
