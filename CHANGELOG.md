@@ -19,6 +19,7 @@
 
 **Merged pull requests:**
 
+- Change Debian repo location [\#179](https://github.com/dj-wasabi/ansible-telegraf/pull/179) ([danclough](https://github.com/danclough))
 - replace depracted aws module [\#178](https://github.com/dj-wasabi/ansible-telegraf/pull/178) ([ThorstenHeck](https://github.com/ThorstenHeck))
 - added yaml 1.2.2 compatibility [\#176](https://github.com/dj-wasabi/ansible-telegraf/pull/176) ([DEvil0000](https://github.com/DEvil0000))
 - Migrate from io to diskio to fix deprecation warning [\#173](https://github.com/dj-wasabi/ansible-telegraf/pull/173) ([mprasil](https://github.com/mprasil))
