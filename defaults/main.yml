@@ -2,7 +2,7 @@
 telegraf_enabled: True
 # defaults file for ansible-telegraf
 
-telegraf_agent_version: 1.10.0
+telegraf_agent_version: 1.18.2
 telegraf_agent_version_patch: 1
 telegraf_agent_package: telegraf
 telegraf_agent_package_file_deb: telegraf_{{ telegraf_agent_version }}-{{ telegraf_agent_version_patch }}_{{ telegraf_agent_package_arch }}.deb
@@ -19,6 +19,7 @@ telegraf_agent_flush_jitter: 0
 telegraf_agent_aws_tags: False
 telegraf_agent_aws_tags_prefix: ""
 telegraf_agent_config_path: /etc/telegraf
+telegraf_win_logfile_rotation_max_archives: 3
 
 # Docker specific settings
 telegraf_uid_docker: 998
@@ -27,6 +28,7 @@ telegraf_agent_docker: False
 telegraf_agent_docker_name: telegraf
 telegraf_agent_docker_network_mode: bridge
 telegraf_agent_docker_restart_policy: unless-stopped
+telegraf_agent_docker_image_version: "{{ telegraf_agent_version }}"
 
 # v0.13 settings (not sure if supported in older version):
 telegraf_agent_collection_jitter: 0
@@ -53,7 +55,7 @@ telegraf_plugins_default:
     config:
       - percpu = true
   - plugin: disk
-  - plugin: io
+  - plugin: diskio
   - plugin: mem
   - plugin: net
   - plugin: system
@@ -74,15 +76,21 @@ telegraf_yum_baseurl:
   centos: "https://repos.influxdata.com/rhel/{{ telegraf_redhat_releasever }}/$basearch/stable"
   default: "https://repos.influxdata.com/{{ ansible_distribution|lower }}/{{ telegraf_redhat_releasever }}/$basearch/stable"
   redhat: "https://repos.influxdata.com/rhel/{{ telegraf_redhat_releasever }}/$basearch/stable"
-telegraf_yum_gpgkey: "https://repos.influxdata.com/influxdb.key"
+  rocky: "https://repos.influxdata.com/rhel/{{ telegraf_redhat_releasever }}/$basearch/stable"
+telegraf_yum_gpgkey: "https://repos.influxdata.com/influxdata-archive_compat.key"
+
+telegraf_zypper_repos:
+  "opensuse tumbleweed": "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Factory/"
+  "default": "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Factory/"
+  "sles": "http://download.opensuse.org/repositories/devel:/languages:/go/SLE_{{ ansible_distribution_major_version }}_SP{{ ansible_distribution_release }}/"
+  "opensuse leap": "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Leap_{{ ansible_distribution_version }}/"
 
 telegraf_win_install_dir: 'C:\Telegraf'
 telegraf_win_logfile: 'C:\\Telegraf\\telegraf.log'
 telegraf_win_include: 'C:\Telegraf\telegraf_agent.d'
 telegraf_win_service_args:
   - -service install
-  - -config {{ telegraf_win_install_dir }}\telegraf\telegraf.conf
-  - --config-directory {{ telegraf_win_include }}
-
+  - '-config "{{ telegraf_win_install_dir }}\telegraf.conf"'
+  - '--config-directory "{{ telegraf_win_include }}"'
 telegraf_mac_user: user
 telegraf_mac_group: admin

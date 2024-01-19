@@ -1,0 +1,16 @@
+---
+repos:
+- repo: local
+  hooks:
+    - id: ansible-lint
+      name: Ansible-lint
+      description: This hook runs ansible-lint.
+      entry: ansible-lint --force-color .
+      language: python
+      pass_filenames: false
+      always_run: true
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v3.2.0
+  hooks:
+  -   id: end-of-file-fixer
+  -   id: trailing-whitespace

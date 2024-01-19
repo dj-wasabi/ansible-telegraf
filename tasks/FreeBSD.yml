@@ -14,11 +14,11 @@
   notify: "Restart Telegraf"
 
 - name: "FreeBSD | add telegraf_flags for extra plugins"
-  shell: sysrc telegraf_flags="-quiet -config-directory=/usr/local/etc/telegraf.d"
+  command: sysrc telegraf_flags="-quiet -config-directory=/usr/local/etc/telegraf.d"
   tags:
     - skip_ansible_lint
 
 - name: "FreeBSD | add telegraf to init"
-  shell: sysrc telegraf_enable="YES"
+  command: sysrc telegraf_enable="YES"
   tags:
     - skip_ansible_lint

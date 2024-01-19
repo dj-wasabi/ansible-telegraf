@@ -13,10 +13,9 @@
     - ansible_os_family == "FreeBSD"
 
 - name: Retrieve all ec2 tags on the instance
-  ec2_tag:
+  amazon.aws.ec2_tag_info:
     region: '{{ ansible_ec2_placement_region }}'
     resource: '{{ ansible_ec2_instance_id }}'
-    state: list
   when:
     - telegraf_agent_aws_tags
   register: ec2_tags
@@ -28,9 +27,9 @@
     owner: telegraf
     group: telegraf
     mode: 0640
-  become: yes
+  become: true
   when:
-    - telegraf_agent_version is version_compare('0.10.0', '<')
+    - telegraf_agent_version is version('0.10.0', '<')
   notify:
     - Restart Telegraf
     - Restart Telegraf container
@@ -42,9 +41,9 @@
     owner: telegraf
     group: telegraf
     mode: 0640
-  become: yes
+  become: true
   when:
-    - telegraf_agent_version is version_compare('0.10.0', '>=')
+    - telegraf_agent_version is version('0.10.0', '>=')
   notify:
     - Restart Telegraf
     - Restart Telegraf container
@@ -63,7 +62,7 @@
   when:
     - telegraf_plugins_extra_exclusive
     - telegraf_directory.stat.exists
-  become: yes
+  become: true
   notify:
     - Restart Telegraf
     - Restart Telegraf container
@@ -78,7 +77,7 @@
   when:
     - telegraf_plugins_extra_exclusive
     - telegraf_directory.stat.exists
-  become: yes
+  become: true
   notify:
     - Restart Telegraf
     - Restart Telegraf container
@@ -97,7 +96,7 @@
     - telegraf_plugins_extra is defined
     - telegraf_plugins_extra is iterable
     - item.value.state|default('present') != 'absent'
-  become: yes
+  become: true
   notify:
     - Restart Telegraf
     - Restart Telegraf container
@@ -113,7 +112,7 @@
     - telegraf_plugins_extra is defined
     - telegraf_plugins_extra is iterable
     - item.value.state|default('present') == 'absent'
-  become: yes
+  become: true
   notify:
     - Restart Telegraf
     - Restart Telegraf container
@@ -126,8 +125,9 @@
     name: telegraf
     state: "{{ telegraf_enabled | ternary('started', 'stopped') }}"
     enabled: "{{ telegraf_enabled }}"
-  become: yes
+  become: true
   when: not telegraf_agent_docker
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Configure system for for docker plugin
   block:
@@ -150,7 +150,7 @@
         name: smartmontools
 
     - name: Find path of smartctl
-      shell: which smartctl
+      command: which smartctl
       register: which_smartctl
       ignore_errors: true
       changed_when: false
@@ -161,6 +161,7 @@
         marker: "# {mark} ANSIBLE MANAGED BLOCK (Ensure telegraf user can execute smartctl)"
         dest: "/etc/sudoers.d/telegraf"
         block: "telegraf ALL=(root) NOPASSWD: {{ which_smartctl.stdout }}"
+        mode: 0400
         create: true
       become: true
       notify:

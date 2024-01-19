@@ -5,21 +5,25 @@
   service:
     name: telegraf
     state: restarted
-    enabled: yes
+    enabled: true
   when: not telegraf_agent_docker
-  become: yes
+  become: true
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: "Restart Telegraf container"
   docker_container:
     name: "{{ telegraf_agent_docker_name }}"
     restart: True
   when: telegraf_agent_docker
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: "Restart Windows Telegraf"
   win_service:
     name: Telegraf
     start_mode: auto
     state: restarted
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: "Restart MacOS Telegraf"
-  shell: brew services restart telegraf
+  command: brew services restart telegraf
+  ignore_errors: "{{ ansible_check_mode }}"
