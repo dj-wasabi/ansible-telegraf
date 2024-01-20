@@ -9,6 +9,12 @@
     {{ items }}
 {% endfor %}
 {% endif %}
+{% if item.value.filter is defined and item.value.filter is iterable %}
+[inputs.{{ item.value.plugin | default(item.key) }}.{{item.value.filter.name}}]
+{% for items in item.value.filter.config %}
+    {{ items }}
+{% endfor %}
+{% endif %}
 {% if item.value.tags is defined and item.value.tags is iterable %}
 [inputs.{{ item.value.plugin | default(item.key) }}.tags]
 {% for items in item.value.tags %}

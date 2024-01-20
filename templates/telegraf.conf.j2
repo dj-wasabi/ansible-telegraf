@@ -79,6 +79,12 @@
     {{ items }}
 {% endfor %}
 {% endif %}
+{% if item.grok is defined and item.grok is iterable %}
+[inputs.{{ item.plugin }}.grok]
+{% for items in item.grok %}
+    {{ items }}
+{% endfor %}
+{% endif %}
 {% if item.tags is defined and item.tags is iterable %}
 [inputs.{{ item.plugin }}.tags]
 {% for items in item.tags %}
