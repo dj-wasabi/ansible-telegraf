@@ -19,6 +19,8 @@
 
 **Merged pull requests:**
 
+- Bump ansible-core from 2.15.2 to 2.15.9 [\#182](https://github.com/dj-wasabi/ansible-telegraf/pull/182) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible from 8.2.0 to 8.5.0 [\#181](https://github.com/dj-wasabi/ansible-telegraf/pull/181) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Change Debian repo location [\#179](https://github.com/dj-wasabi/ansible-telegraf/pull/179) ([danclough](https://github.com/danclough))
 - replace depracted aws module [\#178](https://github.com/dj-wasabi/ansible-telegraf/pull/178) ([ThorstenHeck](https://github.com/ThorstenHeck))
 - added yaml 1.2.2 compatibility [\#176](https://github.com/dj-wasabi/ansible-telegraf/pull/176) ([DEvil0000](https://github.com/DEvil0000))
