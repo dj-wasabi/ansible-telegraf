@@ -95,6 +95,7 @@
 **Merged pull requests:**
 
 - Added property telegraf\_agent\_docker\_image\_version for using a specific version of the Docker image [\#137](https://github.com/dj-wasabi/ansible-telegraf/pull/137) ([dj-wasabi](https://github.com/dj-wasabi))
+- Apply ansible-lint in pre-commit hook and fix changes [\#136](https://github.com/dj-wasabi/ansible-telegraf/pull/136) ([dj-wasabi](https://github.com/dj-wasabi))
 - Using version as version\_compare is deprecated [\#135](https://github.com/dj-wasabi/ansible-telegraf/pull/135) ([dj-wasabi](https://github.com/dj-wasabi))
 - Using command instead of shell module [\#134](https://github.com/dj-wasabi/ansible-telegraf/pull/134) ([dj-wasabi](https://github.com/dj-wasabi))
 
@@ -118,7 +119,6 @@
 
 **Merged pull requests:**
 
-- Apply ansible-lint in pre-commit hook and fix changes [\#136](https://github.com/dj-wasabi/ansible-telegraf/pull/136) ([dj-wasabi](https://github.com/dj-wasabi))
 - corrected "Example Docker configuration" to make it work by default [\#132](https://github.com/dj-wasabi/ansible-telegraf/pull/132) ([NotDead](https://github.com/NotDead))
 - Removing requirements file and use it from ci-base repo [\#131](https://github.com/dj-wasabi/ansible-telegraf/pull/131) ([dj-wasabi](https://github.com/dj-wasabi))
 - Going to Github Actions [\#130](https://github.com/dj-wasabi/ansible-telegraf/pull/130) ([dj-wasabi](https://github.com/dj-wasabi))
@@ -174,6 +174,7 @@
 - Fix to work with Fedora Linux [\#78](https://github.com/dj-wasabi/ansible-telegraf/pull/78) ([ikke-t](https://github.com/ikke-t))
 - Updating to newer version of Telegraf [\#77](https://github.com/dj-wasabi/ansible-telegraf/pull/77) ([dj-wasabi](https://github.com/dj-wasabi))
 - Add support for extra win\_perf\_counters and prevent python u'' strings [\#76](https://github.com/dj-wasabi/ansible-telegraf/pull/76) ([jdivy](https://github.com/jdivy))
+- Renamed the tojson to to\_json [\#74](https://github.com/dj-wasabi/ansible-telegraf/pull/74) ([dj-wasabi](https://github.com/dj-wasabi))
 
 ## [0.11.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.11.0) (2018-12-11)
 
@@ -188,11 +189,11 @@
 
 **Merged pull requests:**
 
-- Renamed the tojson to to\_json [\#74](https://github.com/dj-wasabi/ansible-telegraf/pull/74) ([dj-wasabi](https://github.com/dj-wasabi))
 - A few enhancements and fixes to windows support [\#73](https://github.com/dj-wasabi/ansible-telegraf/pull/73) ([jdivy](https://github.com/jdivy))
 - Replace 'ec2\_facts' with 'ec2\_metadata\_facts' to fix a deprecation warning [\#72](https://github.com/dj-wasabi/ansible-telegraf/pull/72) ([Rylon](https://github.com/Rylon))
 - Added default pluging if nothing is configured [\#70](https://github.com/dj-wasabi/ansible-telegraf/pull/70) ([dj-wasabi](https://github.com/dj-wasabi))
 - Added support for \(Open\)Suse [\#69](https://github.com/dj-wasabi/ansible-telegraf/pull/69) ([dj-wasabi](https://github.com/dj-wasabi))
+- Added Windows as OS [\#68](https://github.com/dj-wasabi/ansible-telegraf/pull/68) ([dj-wasabi](https://github.com/dj-wasabi))
 - Want to use latest [\#67](https://github.com/dj-wasabi/ansible-telegraf/pull/67) ([dj-wasabi](https://github.com/dj-wasabi))
 - Some small improvements [\#66](https://github.com/dj-wasabi/ansible-telegraf/pull/66) ([dj-wasabi](https://github.com/dj-wasabi))
 - telegraf-extra-plugin.conf.j2: fix template typo [\#65](https://github.com/dj-wasabi/ansible-telegraf/pull/65) ([gaelL](https://github.com/gaelL))
@@ -213,7 +214,6 @@
 
 **Merged pull requests:**
 
-- Added Windows as OS [\#68](https://github.com/dj-wasabi/ansible-telegraf/pull/68) ([dj-wasabi](https://github.com/dj-wasabi))
 - Updating to Telegraf 1.7.3;Updating changelog [\#58](https://github.com/dj-wasabi/ansible-telegraf/pull/58) ([dj-wasabi](https://github.com/dj-wasabi))
 - Added bunch of files [\#55](https://github.com/dj-wasabi/ansible-telegraf/pull/55) ([dj-wasabi](https://github.com/dj-wasabi))
 - Fix Deprecation warnings [\#54](https://github.com/dj-wasabi/ansible-telegraf/pull/54) ([dj-wasabi](https://github.com/dj-wasabi))
@@ -276,7 +276,6 @@
 - extra plugins tags [\#21](https://github.com/dj-wasabi/ansible-telegraf/pull/21) ([oboukili](https://github.com/oboukili))
 - Input tags support [\#20](https://github.com/dj-wasabi/ansible-telegraf/pull/20) ([szibis](https://github.com/szibis))
 - Fix telegraf confguration permissions [\#19](https://github.com/dj-wasabi/ansible-telegraf/pull/19) ([szibis](https://github.com/szibis))
-- Fixing molecule [\#15](https://github.com/dj-wasabi/ansible-telegraf/pull/15) ([dj-wasabi](https://github.com/dj-wasabi))
 
 ## [0.6.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.6.0) (2017-01-02)
 
@@ -286,17 +285,21 @@
 
 - update the README with the latest v0.13 - v1.1 agent settings [\#17](https://github.com/dj-wasabi/ansible-telegraf/pull/17) ([lhoss](https://github.com/lhoss))
 - support missing agent settings upto telegraf v1.1 [\#16](https://github.com/dj-wasabi/ansible-telegraf/pull/16) ([lhoss](https://github.com/lhoss))
+- Fixing molecule [\#15](https://github.com/dj-wasabi/ansible-telegraf/pull/15) ([dj-wasabi](https://github.com/dj-wasabi))
 - use version\_compare filter … [\#14](https://github.com/dj-wasabi/ansible-telegraf/pull/14) ([lhoss](https://github.com/lhoss))
 - set telegraf hostname in defaults. [\#13](https://github.com/dj-wasabi/ansible-telegraf/pull/13) ([airbe](https://github.com/airbe))
 - Removed imports [\#12](https://github.com/dj-wasabi/ansible-telegraf/pull/12) ([dj-wasabi](https://github.com/dj-wasabi))
 - Fix the Influxdb repo for "hybrid" debian distros \(like "jessie/sid"\) [\#11](https://github.com/dj-wasabi/ansible-telegraf/pull/11) ([Ismael](https://github.com/Ismael))
 - Do "become" for the steps that require root access on Debian [\#10](https://github.com/dj-wasabi/ansible-telegraf/pull/10) ([Ismael](https://github.com/Ismael))
 - Added new code for correct molecule verification [\#7](https://github.com/dj-wasabi/ansible-telegraf/pull/7) ([dj-wasabi](https://github.com/dj-wasabi))
-- fixed issue with ansible not getting the package [\#6](https://github.com/dj-wasabi/ansible-telegraf/pull/6) ([thecodeassassin](https://github.com/thecodeassassin))
 
 ## [0.5.1](https://github.com/dj-wasabi/ansible-telegraf/tree/0.5.1) (2016-08-24)
 
 [Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.5.0...0.5.1)
+
+**Merged pull requests:**
+
+- fixed issue with ansible not getting the package [\#6](https://github.com/dj-wasabi/ansible-telegraf/pull/6) ([thecodeassassin](https://github.com/thecodeassassin))
 
 ## [0.5.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.5.0) (2016-07-17)
 
