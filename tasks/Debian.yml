@@ -80,21 +80,11 @@
           set_fact: 
             telegraf_repository_params: "[signed-by=/usr/share/keyrings/influxdata-archive.asc]"
 
-    - name: "Debian | Add Telegraf repository (using LSB)"
-      copy:
-        content: "deb {{ telegraf_repository_params | default('') }} https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_lsb.codename }} stable"
-        dest: /etc/apt/sources.list.d/telegraf.list
-      when:
-        - ansible_lsb is defined
-        - ansible_lsb.codename is defined
-
     - name: "Debian | Add Telegraf repository"
       copy:
-        content: "deb {{ telegraf_repository_params | default('') }} https://repos.influxdata.com/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
+        content: "deb {{ telegraf_repository_params | default('') }} https://repos.influxdata.com/{{ ansible_distribution|lower }} stable main"
         dest: /etc/apt/sources.list.d/telegraf.list
-      become: true
-      when:
-        - ansible_lsb is not defined or ansible_lsb.codename is not defined
+      become: yes
     
     - name: "Debian | Install Telegraf package (repo)"
       apt:
