@@ -1,5 +1,28 @@
 # Changelog
 
+## [Unreleased](https://github.com/dj-wasabi/ansible-telegraf/tree/HEAD)
+
+[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.14.1...HEAD)
+
+**Implemented enhancements:**
+
+- Repo installation fails for Almalinux [\#172](https://github.com/dj-wasabi/ansible-telegraf/issues/172)
+
+**Fixed bugs:**
+
+- Add default repository handling for SUSE releases [\#154](https://github.com/dj-wasabi/ansible-telegraf/issues/154)
+- Fix Python package dependencies on SUSE releases [\#153](https://github.com/dj-wasabi/ansible-telegraf/issues/153)
+
+**Closed issues:**
+
+- amazon.aws.ec2\_tag\_info [\#177](https://github.com/dj-wasabi/ansible-telegraf/issues/177)
+- Failing on Debian Bookwork, telegraf recomends stable main rather than specific release [\#175](https://github.com/dj-wasabi/ansible-telegraf/issues/175)
+- Unable to run against linux machines \(redhat\) [\#159](https://github.com/dj-wasabi/ansible-telegraf/issues/159)
+
+**Merged pull requests:**
+
+- Fixes Role for Almalinux 8.8, Closes \#172 [\#183](https://github.com/dj-wasabi/ansible-telegraf/pull/183) ([mira-miracoli](https://github.com/mira-miracoli))
+
 ## [0.14.1](https://github.com/dj-wasabi/ansible-telegraf/tree/0.14.1) (2024-02-17)
 
 [Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.14.0...0.14.1)
@@ -174,7 +197,6 @@
 - Fix to work with Fedora Linux [\#78](https://github.com/dj-wasabi/ansible-telegraf/pull/78) ([ikke-t](https://github.com/ikke-t))
 - Updating to newer version of Telegraf [\#77](https://github.com/dj-wasabi/ansible-telegraf/pull/77) ([dj-wasabi](https://github.com/dj-wasabi))
 - Add support for extra win\_perf\_counters and prevent python u'' strings [\#76](https://github.com/dj-wasabi/ansible-telegraf/pull/76) ([jdivy](https://github.com/jdivy))
-- Renamed the tojson to to\_json [\#74](https://github.com/dj-wasabi/ansible-telegraf/pull/74) ([dj-wasabi](https://github.com/dj-wasabi))
 
 ## [0.11.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.11.0) (2018-12-11)
 
@@ -189,6 +211,7 @@
 
 **Merged pull requests:**
 
+- Renamed the tojson to to\_json [\#74](https://github.com/dj-wasabi/ansible-telegraf/pull/74) ([dj-wasabi](https://github.com/dj-wasabi))
 - A few enhancements and fixes to windows support [\#73](https://github.com/dj-wasabi/ansible-telegraf/pull/73) ([jdivy](https://github.com/jdivy))
 - Replace 'ec2\_facts' with 'ec2\_metadata\_facts' to fix a deprecation warning [\#72](https://github.com/dj-wasabi/ansible-telegraf/pull/72) ([Rylon](https://github.com/Rylon))
 - Added default pluging if nothing is configured [\#70](https://github.com/dj-wasabi/ansible-telegraf/pull/70) ([dj-wasabi](https://github.com/dj-wasabi))
