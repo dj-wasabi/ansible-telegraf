@@ -17,7 +17,7 @@
   yum_repository:
     name: influxdb
     description: InfluxDB Repository - RHEL $releasever
-    baseurl: "{{ telegraf_yum_baseurl[ansible_distribution|lower] | default(telegraf_yum_baseurl['default']) }}"
+    baseurl: "{{ telegraf_yum_baseurl['redhat'] | default(telegraf_yum_baseurl['default']) }}"
     gpgcheck: "{{ telegraf_yum_gpgcheck | default('true') }}"
     gpgkey: "{{ telegraf_yum_gpgkey }}"
   become: yes
