@@ -7,6 +7,7 @@
 **Implemented enhancements:**
 
 - Repo installation fails for Almalinux [\#172](https://github.com/dj-wasabi/ansible-telegraf/issues/172)
+- Support for sub\_inputs in extra plugins [\#184](https://github.com/dj-wasabi/ansible-telegraf/pull/184) ([lisuml](https://github.com/lisuml))
 
 **Fixed bugs:**
 
@@ -34,7 +35,6 @@
 **Fixed bugs:**
 
 - Fix molecule tests so that PR's can properly validated [\#180](https://github.com/dj-wasabi/ansible-telegraf/pull/180) ([dj-wasabi](https://github.com/dj-wasabi))
-- Replace apt\_key with get\_url [\#170](https://github.com/dj-wasabi/ansible-telegraf/pull/170) ([danclough](https://github.com/danclough))
 
 **Closed issues:**
 
@@ -62,6 +62,7 @@
 **Fixed bugs:**
 
 - Don't install init script on SUSE/openSUSE systems running systemd [\#152](https://github.com/dj-wasabi/ansible-telegraf/issues/152)
+- Replace apt\_key with get\_url [\#170](https://github.com/dj-wasabi/ansible-telegraf/pull/170) ([danclough](https://github.com/danclough))
 - Fix the molecule run as part of CI process [\#166](https://github.com/dj-wasabi/ansible-telegraf/pull/166) ([dj-wasabi](https://github.com/dj-wasabi))
 - update influxdata GPG key after rotation [\#165](https://github.com/dj-wasabi/ansible-telegraf/pull/165) ([Tetha](https://github.com/Tetha))
 - Fixed issues with Windows paths containing spaces [\#162](https://github.com/dj-wasabi/ansible-telegraf/pull/162) ([KlettIT](https://github.com/KlettIT))
