@@ -55,3 +55,11 @@
 {% endfor %}
 {% endfor %}
 {% endif %}
+{% if item.value.sub_inputs is defined and item.value.sub_inputs is iterable %}
+{% for sub_input, config in item.value.sub_inputs.items() %}
+[[inputs.{{ item.value.plugin | default(item.key) }}.{{ sub_input }}]]
+{% for items in config %}
+    {{ items }}
+{% endfor %}
+{% endfor %}
+{% endif %}
