@@ -14,6 +14,11 @@
     - telegraf
     - packages
 
+- name: "Install on Archlinux"
+  include_tasks: "Archlinux.yml"
+  when:
+    - ansible_os_family == "Archlinux" and not telegraf_agent_docker
+
 - name: "Install on Suse"
   include_tasks: "Suse.yml"
   when: ansible_os_family == "Suse" and not telegraf_agent_docker

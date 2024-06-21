@@ -1,0 +1,86 @@
+---
+
+- name: "Archlinux | Set name if state != latest"
+  set_fact:
+    telegraf_agent_binary: telegraf={{ telegraf_agent_version }}-{{ telegraf_agent_version_patch }}
+  when:
+    - telegraf_agent_package_state != "latest"
+
+- name: "Archlinux | Set telegraf_agent_package_arch"
+  set_fact:
+    telegraf_agent_package_arch: "{{ ansible_architecture }}"
+
+- name: "Archlinux | Set telegraf_agent_package_arch specific for x86_64"
+  set_fact:
+    telegraf_agent_package_arch: "amd64"
+  when:
+    - ansible_architecture == "x86_64"
+
+- name: "Archlinux | Set telegraf_agent_package_arch specific for arm64/armv7l"
+  set_fact:
+    telegraf_agent_package_arch: "armhf"
+  when:
+    - ansible_architecture == "arm64" or ansible_architecture == "armv7l"
+
+- name: "Archlinux | Create telegraf user"
+  user:
+    name: telegraf
+    system: yes
+    shell: /bin/false
+    home: /etc/telegraf
+  when:
+    - telegraf_agent_package_method == "online"
+
+- name: "Archlinux | Create telegraf directory"
+  file:
+    path: /etc/telegraf
+    state: directory
+  when:
+    - telegraf_agent_package_method == "online"
+
+- name: "Archlinux | Extract telegraf binary"
+  ansible.builtin.unarchive:
+    src: "https://dl.influxdata.com/telegraf/releases/telegraf-{{ telegraf_agent_version }}_linux_{{ telegraf_agent_package_arch }}.tar.gz"
+    dest: /tmp/
+    remote_src: yes
+  when:
+    - telegraf_agent_package_method == "online"
+
+- name: "Archlinux | Copy telegraf binary"
+  ansible.builtin.copy:
+    src: "/tmp/telegraf-{{ telegraf_agent_version }}/usr/bin/telegraf"
+    remote_src: yes
+    dest: /usr/bin/
+    owner: root
+    group: root
+    mode: 0755
+  when:
+    - telegraf_agent_package_method == "online"
+
+- name: "Archlinux | Copy telegraf unit file"
+  ansible.builtin.copy:
+    src: "/tmp/telegraf-{{ telegraf_agent_version }}/usr/lib/telegraf/scripts/telegraf.service"
+    remote_src: yes
+    dest: /etc/systemd/system/telegraf.service
+    owner: root
+    group: root
+    mode: 0755
+  when:
+    - telegraf_agent_package_method == "online"
+
+- name: "Archlinux | Copy telegraf unit file"
+  ansible.builtin.copy:
+    src: "/tmp/telegraf-{{ telegraf_agent_version }}/usr/lib/telegraf/scripts/telegraf.service"
+    remote_src: yes
+    dest: /etc/systemd/system/telegraf.service
+    owner: root
+    group: root
+    mode: 0755
+  when:
+    - telegraf_agent_package_method == "online"
+  register: telegraf_service
+
+- name: Reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: yes
+  when: telegraf_service.changed

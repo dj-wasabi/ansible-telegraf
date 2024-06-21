@@ -55,6 +55,7 @@ This role supports the following systems:
  * (Open)Suse
  * Windows (Best effort)
  * FreeBSD (Best effort)
+ * Archlinux (only "online" mode)
 
 So, you'll need one of those systems.. :-)
 Please sent Pull Requests or suggestions when you want to use this role for other systems.
