@@ -19,9 +19,11 @@
 - amazon.aws.ec2\_tag\_info [\#177](https://github.com/dj-wasabi/ansible-telegraf/issues/177)
 - Failing on Debian Bookwork, telegraf recomends stable main rather than specific release [\#175](https://github.com/dj-wasabi/ansible-telegraf/issues/175)
 - Unable to run against linux machines \(redhat\) [\#159](https://github.com/dj-wasabi/ansible-telegraf/issues/159)
+- How to add the sub inputs into the same config file using telegraf\_plugin\_extra  [\#149](https://github.com/dj-wasabi/ansible-telegraf/issues/149)
 
 **Merged pull requests:**
 
+- Add Archlinux OS [\#186](https://github.com/dj-wasabi/ansible-telegraf/pull/186) ([Frankkkkk](https://github.com/Frankkkkk))
 - Fixes Role for Almalinux 8.8, Closes \#172 [\#183](https://github.com/dj-wasabi/ansible-telegraf/pull/183) ([mira-miracoli](https://github.com/mira-miracoli))
 
 ## [0.14.1](https://github.com/dj-wasabi/ansible-telegraf/tree/0.14.1) (2024-02-17)
@@ -35,6 +37,7 @@
 **Fixed bugs:**
 
 - Fix molecule tests so that PR's can properly validated [\#180](https://github.com/dj-wasabi/ansible-telegraf/pull/180) ([dj-wasabi](https://github.com/dj-wasabi))
+- Replace apt\_key with get\_url [\#170](https://github.com/dj-wasabi/ansible-telegraf/pull/170) ([danclough](https://github.com/danclough))
 
 **Closed issues:**
 
@@ -62,7 +65,6 @@
 **Fixed bugs:**
 
 - Don't install init script on SUSE/openSUSE systems running systemd [\#152](https://github.com/dj-wasabi/ansible-telegraf/issues/152)
-- Replace apt\_key with get\_url [\#170](https://github.com/dj-wasabi/ansible-telegraf/pull/170) ([danclough](https://github.com/danclough))
 - Fix the molecule run as part of CI process [\#166](https://github.com/dj-wasabi/ansible-telegraf/pull/166) ([dj-wasabi](https://github.com/dj-wasabi))
 - update influxdata GPG key after rotation [\#165](https://github.com/dj-wasabi/ansible-telegraf/pull/165) ([Tetha](https://github.com/Tetha))
 - Fixed issues with Windows paths containing spaces [\#162](https://github.com/dj-wasabi/ansible-telegraf/pull/162) ([KlettIT](https://github.com/KlettIT))
