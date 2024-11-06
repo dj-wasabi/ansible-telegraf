@@ -23,6 +23,7 @@
 
 **Merged pull requests:**
 
+- Bump ansible-core from 2.15.9 to 2.17.6 [\#188](https://github.com/dj-wasabi/ansible-telegraf/pull/188) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Use `rhel` within yum url for almalinux  [\#187](https://github.com/dj-wasabi/ansible-telegraf/pull/187) ([kuhball](https://github.com/kuhball))
 - Add Archlinux OS [\#186](https://github.com/dj-wasabi/ansible-telegraf/pull/186) ([Frankkkkk](https://github.com/Frankkkkk))
 - Fixes Role for Almalinux 8.8, Closes \#172 [\#183](https://github.com/dj-wasabi/ansible-telegraf/pull/183) ([mira-miracoli](https://github.com/mira-miracoli))
