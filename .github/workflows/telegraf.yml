@@ -37,8 +37,6 @@ jobs:
             image: geerlingguy/docker-ubuntu2004-ansible:latest
           - container: ubuntu1804
             image: geerlingguy/docker-ubuntu1804-ansible:latest
-          - container: debian9
-            image: geerlingguy/docker-debian9-ansible:latest
           - container: debian10
             image: geerlingguy/docker-debian10-ansible:latest
           - container: debian11
