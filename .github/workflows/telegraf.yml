@@ -22,7 +22,7 @@ on:
       - '.github/workflows/telegraf.yml'
 jobs:
   molecule:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -37,8 +37,6 @@ jobs:
             image: geerlingguy/docker-ubuntu2004-ansible:latest
           - container: ubuntu1804
             image: geerlingguy/docker-ubuntu1804-ansible:latest
-          - container: debian9
-            image: geerlingguy/docker-debian9-ansible:latest
           - container: debian10
             image: geerlingguy/docker-debian10-ansible:latest
           - container: debian11
@@ -47,10 +45,10 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v1
 
-      - name: Set up Python 3.9
+      - name: Set up Python 3.11
         uses: actions/setup-python@v1
         with:
-          python-version: 3.9
+          python-version: 3.11.10
 
       - name: Install dependencies
         run: |
