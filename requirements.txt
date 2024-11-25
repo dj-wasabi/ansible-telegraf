@@ -1,6 +1,6 @@
 ansible==9.7.0
 ansible-compat==24.10.0
-ansible-core==2.16.8
+ansible-core==2.18.0
 docker==7.1.0
 molecule==6.0.3
 molecule-docker==2.1.0
