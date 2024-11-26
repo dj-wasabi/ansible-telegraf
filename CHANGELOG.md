@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/dj-wasabi/ansible-telegraf/tree/HEAD)
+
+[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.14.2...HEAD)
+
+**Merged pull requests:**
+
+- Bump ansible-core from 2.16.8 to 2.18.0 [\#191](https://github.com/dj-wasabi/ansible-telegraf/pull/191) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [0.14.2](https://github.com/dj-wasabi/ansible-telegraf/tree/0.14.2) (2024-11-26)
 
 [Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.14.1...0.14.2)
