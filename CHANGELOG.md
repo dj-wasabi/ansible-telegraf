@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/dj-wasabi/ansible-telegraf/tree/HEAD)
+## [0.14.2](https://github.com/dj-wasabi/ansible-telegraf/tree/0.14.2) (2024-11-26)
 
-[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.14.1...HEAD)
+[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.14.1...0.14.2)
 
 **Implemented enhancements:**
 
@@ -92,7 +92,6 @@
 
 - Improve usage on SUSE releases [\#155](https://github.com/dj-wasabi/ansible-telegraf/pull/155) ([jeffmahoney](https://github.com/jeffmahoney))
 - Add variable for openSUSE RPM repository [\#151](https://github.com/dj-wasabi/ansible-telegraf/pull/151) ([kingphil](https://github.com/kingphil))
-- Fixed issues with Windows paths containing spaces & removed redundant "telegraf" folder in path [\#144](https://github.com/dj-wasabi/ansible-telegraf/pull/144) ([treanorjp](https://github.com/treanorjp))
 
 ## [0.13.2](https://github.com/dj-wasabi/ansible-telegraf/tree/0.13.2) (2021-03-05)
 
@@ -124,6 +123,7 @@
 
 **Merged pull requests:**
 
+- Fixed issues with Windows paths containing spaces & removed redundant "telegraf" folder in path [\#144](https://github.com/dj-wasabi/ansible-telegraf/pull/144) ([treanorjp](https://github.com/treanorjp))
 - Added property telegraf\_agent\_docker\_image\_version for using a specific version of the Docker image [\#137](https://github.com/dj-wasabi/ansible-telegraf/pull/137) ([dj-wasabi](https://github.com/dj-wasabi))
 - Apply ansible-lint in pre-commit hook and fix changes [\#136](https://github.com/dj-wasabi/ansible-telegraf/pull/136) ([dj-wasabi](https://github.com/dj-wasabi))
 - Using version as version\_compare is deprecated [\#135](https://github.com/dj-wasabi/ansible-telegraf/pull/135) ([dj-wasabi](https://github.com/dj-wasabi))
