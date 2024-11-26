@@ -24,6 +24,7 @@
 **Merged pull requests:**
 
 - Updating the Python packages to make Molecule work [\#190](https://github.com/dj-wasabi/ansible-telegraf/pull/190) ([dj-wasabi](https://github.com/dj-wasabi))
+- fix: add missing tasks for RedHat distro \(rpm install\) [\#189](https://github.com/dj-wasabi/ansible-telegraf/pull/189) ([vfreitassentient](https://github.com/vfreitassentient))
 - Bump ansible-core from 2.15.9 to 2.17.6 [\#188](https://github.com/dj-wasabi/ansible-telegraf/pull/188) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Use `rhel` within yum url for almalinux  [\#187](https://github.com/dj-wasabi/ansible-telegraf/pull/187) ([kuhball](https://github.com/kuhball))
 - Add Archlinux OS [\#186](https://github.com/dj-wasabi/ansible-telegraf/pull/186) ([Frankkkkk](https://github.com/Frankkkkk))
@@ -284,6 +285,7 @@
 -  Fix extra plugins by file  /  Change apt source filename / Change tags by global\_tags  [\#37](https://github.com/dj-wasabi/ansible-telegraf/pull/37) ([aarnaud](https://github.com/aarnaud))
 - Remove useless packages on RedHat. fix \#28 [\#36](https://github.com/dj-wasabi/ansible-telegraf/pull/36) ([tszym](https://github.com/tszym))
 - Test if LSB codename exists before using it [\#35](https://github.com/dj-wasabi/ansible-telegraf/pull/35) ([tszym](https://github.com/tszym))
+- Updating to Molecule V2 [\#31](https://github.com/dj-wasabi/ansible-telegraf/pull/31) ([dj-wasabi](https://github.com/dj-wasabi))
 
 ## [0.7.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.7.0) (2017-02-23)
 
@@ -296,7 +298,6 @@
 
 **Merged pull requests:**
 
-- Updating to Molecule V2 [\#31](https://github.com/dj-wasabi/ansible-telegraf/pull/31) ([dj-wasabi](https://github.com/dj-wasabi))
 - Updating to release 0.7.0 [\#27](https://github.com/dj-wasabi/ansible-telegraf/pull/27) ([dj-wasabi](https://github.com/dj-wasabi))
 - Replace action by modules [\#26](https://github.com/dj-wasabi/ansible-telegraf/pull/26) ([tszym](https://github.com/tszym))
 - Use yum repository to install telegraf on RedHat [\#25](https://github.com/dj-wasabi/ansible-telegraf/pull/25) ([tszym](https://github.com/tszym))
