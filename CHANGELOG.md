@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Bump ansible-core from 2.18.0 to 2.18.1 [\#192](https://github.com/dj-wasabi/ansible-telegraf/pull/192) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump ansible-core from 2.16.8 to 2.18.0 [\#191](https://github.com/dj-wasabi/ansible-telegraf/pull/191) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [0.14.2](https://github.com/dj-wasabi/ansible-telegraf/tree/0.14.2) (2024-11-26)
