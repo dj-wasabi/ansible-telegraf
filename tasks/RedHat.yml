@@ -27,7 +27,7 @@
 - name: "RedHat | Download Telegraf package (online)"
   get_url:
     url: https://dl.influxdata.com/telegraf/releases/{{ telegraf_agent_package_file_rpm }}
-    dest: "{{ telegraf_agent_package }}"
+    dest: "{{ telegraf_agent_package_path }}"
     use_proxy: "{{ true if http_proxy is defined and http_proxy else false }}"
   environment:
     http_proxy: "{{ http_proxy | default(None) | default(omit) }}"
@@ -35,7 +35,7 @@
   when:
     - telegraf_agent_package_method == "online"
 
-- name: "RedHat | Install Telegraf package"
+- name: "RedHat | Install Telegraf package (repo)"
   package:
     name: "{{ telegraf_agent_package }}"
     state: "{{ telegraf_agent_package_state }}"
@@ -44,3 +44,19 @@
   become: true
   notify: "Restart Telegraf"
   ignore_errors: "{{ ansible_check_mode }}"
+  when:
+    - telegraf_agent_package_method == "repo"
+
+
+- name: "RedHat | Install Telegraf package (online)"
+  dnf:
+    name: "{{ telegraf_agent_package_path }}/{{ telegraf_agent_package_file_rpm }}"
+    disable_gpg_check: true
+    state: "{{ telegraf_agent_package_state }}"
+  register: is_telegraf_package_installed
+  until: is_telegraf_package_installed is succeeded
+  become: true
+  notify: "Restart Telegraf"
+  ignore_errors: "{{ ansible_check_mode }}"
+  when:
+    - telegraf_agent_package_method == "online"
