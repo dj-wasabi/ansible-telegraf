@@ -342,13 +342,13 @@ sqs:
     - statistic_include = ["average"]
   sub_inputs:
     metrics:
-      - names = [
+      - names: [
           "ApproximateAgeOfOldestMessage",
           "ApproximateNumberOfMessagesVisible",
         ]
     metrics.dimensions:
-      - name = "QueueName"
-      - value = "*"
+      - name: "QueueName"
+        value: "*"
 ```
 
 ## Dependencies
