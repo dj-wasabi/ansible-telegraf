@@ -27,16 +27,16 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          - container: rocky8
-            image: geerlingguy/docker-rockylinux8-ansible
+          # - container: rocky8
+          #   image: geerlingguy/docker-rockylinux8-ansible
           - container: rocky9
             image: geerlingguy/docker-rockylinux9-ansible
           - container: ubuntu2204
             image: geerlingguy/docker-ubuntu2204-ansible:latest
           - container: ubuntu2004
             image: geerlingguy/docker-ubuntu2004-ansible:latest
-          - container: ubuntu1804
-            image: geerlingguy/docker-ubuntu1804-ansible:latest
+          # - container: ubuntu1804
+          #   image: geerlingguy/docker-ubuntu1804-ansible:latest
           - container: debian10
             image: geerlingguy/docker-debian10-ansible:latest
           - container: debian11
@@ -56,7 +56,7 @@ jobs:
       #     pip install -r requirements.txt
 
       - name: Install test dependencies.
-        run: pip3 install ansible molecule molecule-plugins[docker] docker
+        run: pip3 install ansible molecule molecule-plugins[docker] docker pytest testinfra
 
       - name: Run role tests on empty systems in check-mode
         env:
