@@ -79,6 +79,7 @@
         - name: "Debian | Set Telegraf apt repository parameters"
           set_fact: 
             telegraf_repository_params: "[signed-by=/usr/share/keyrings/influxdata-archive.asc]"
+          when: telegraf_repository_params is not defined
 
     - name: "Debian | Add Telegraf repository"
       copy:
