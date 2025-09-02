@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Debian/Ubuntu: make telegraf\_repository\_params overridable [\#197](https://github.com/dj-wasabi/ansible-telegraf/pull/197) ([jlqfab](https://github.com/jlqfab))
 - Better sub inputs handling [\#193](https://github.com/dj-wasabi/ansible-telegraf/pull/193) ([lisuml](https://github.com/lisuml))
 - Bump ansible-core from 2.18.0 to 2.18.1 [\#192](https://github.com/dj-wasabi/ansible-telegraf/pull/192) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump ansible-core from 2.16.8 to 2.18.0 [\#191](https://github.com/dj-wasabi/ansible-telegraf/pull/191) ([dependabot[bot]](https://github.com/apps/dependabot))
@@ -182,6 +183,7 @@
 - Some changes for fixing FreeBSD [\#101](https://github.com/dj-wasabi/ansible-telegraf/pull/101) ([dj-wasabi](https://github.com/dj-wasabi))
 - basic FreeBSD support [\#100](https://github.com/dj-wasabi/ansible-telegraf/pull/100) ([langerma](https://github.com/langerma))
 - Added the use\_proxy argument to use a proxy \(or not\) [\#98](https://github.com/dj-wasabi/ansible-telegraf/pull/98) ([dj-wasabi](https://github.com/dj-wasabi))
+- Various small changes for molecule [\#97](https://github.com/dj-wasabi/ansible-telegraf/pull/97) ([dj-wasabi](https://github.com/dj-wasabi))
 
 ## [0.12.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.12.0) (2019-03-12)
 
@@ -197,7 +199,6 @@
 
 **Merged pull requests:**
 
-- Various small changes for molecule [\#97](https://github.com/dj-wasabi/ansible-telegraf/pull/97) ([dj-wasabi](https://github.com/dj-wasabi))
 - Add processors section in Telegraf config [\#94](https://github.com/dj-wasabi/ansible-telegraf/pull/94) ([ph4r5h4d](https://github.com/ph4r5h4d))
 - Updated to Telegraf 1.10.0;Different installation methods [\#93](https://github.com/dj-wasabi/ansible-telegraf/pull/93) ([dj-wasabi](https://github.com/dj-wasabi))
 - Updating Telegraf default to 1.9.5 [\#92](https://github.com/dj-wasabi/ansible-telegraf/pull/92) ([sdurrheimer](https://github.com/sdurrheimer))
@@ -311,7 +312,6 @@
 - Updating to release 0.7.0 [\#27](https://github.com/dj-wasabi/ansible-telegraf/pull/27) ([dj-wasabi](https://github.com/dj-wasabi))
 - Replace action by modules [\#26](https://github.com/dj-wasabi/ansible-telegraf/pull/26) ([tszym](https://github.com/tszym))
 - Use yum repository to install telegraf on RedHat [\#25](https://github.com/dj-wasabi/ansible-telegraf/pull/25) ([tszym](https://github.com/tszym))
-- Remove for-loop in extra-plugin template [\#24](https://github.com/dj-wasabi/ansible-telegraf/pull/24) ([emersondispatch](https://github.com/emersondispatch))
 - Update Debian.yml [\#23](https://github.com/dj-wasabi/ansible-telegraf/pull/23) ([zend0](https://github.com/zend0))
 - extra plugins tags [\#21](https://github.com/dj-wasabi/ansible-telegraf/pull/21) ([oboukili](https://github.com/oboukili))
 - Input tags support [\#20](https://github.com/dj-wasabi/ansible-telegraf/pull/20) ([szibis](https://github.com/szibis))
