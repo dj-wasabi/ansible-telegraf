@@ -42,6 +42,8 @@ telegraf_agent_omit_hostname: False
 
 telegraf_global_tags: []
 
+telegraf_secretstores: []
+
 telegraf_agent_output:
   - type: influxdb
     config:
