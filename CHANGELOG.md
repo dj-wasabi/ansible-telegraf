@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- added secretstores as config option [\#198](https://github.com/dj-wasabi/ansible-telegraf/pull/198) ([DEvil0000](https://github.com/DEvil0000))
 - Debian/Ubuntu: make telegraf\_repository\_params overridable [\#197](https://github.com/dj-wasabi/ansible-telegraf/pull/197) ([jlqfab](https://github.com/jlqfab))
 - Better sub inputs handling [\#193](https://github.com/dj-wasabi/ansible-telegraf/pull/193) ([lisuml](https://github.com/lisuml))
 - Bump ansible-core from 2.18.0 to 2.18.1 [\#192](https://github.com/dj-wasabi/ansible-telegraf/pull/192) ([dependabot[bot]](https://github.com/apps/dependabot))
