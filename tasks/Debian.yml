@@ -72,6 +72,7 @@
           get_url:
             url: https://repos.influxdata.com/influxdata-archive.key
             dest: /usr/share/keyrings/influxdata-archive.asc
+            force: true
           register: are_telegraf_dependencies_keys_installed
           until: are_telegraf_dependencies_keys_installed is succeeded
           become: true
