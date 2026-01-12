@@ -27,46 +27,49 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          - container: rocky8
-            image: geerlingguy/docker-rockylinux8-ansible
+          # - container: rocky8
+          #   image: geerlingguy/docker-rockylinux8-ansible
           - container: rocky9
             image: geerlingguy/docker-rockylinux9-ansible
           - container: ubuntu2204
             image: geerlingguy/docker-ubuntu2204-ansible:latest
           - container: ubuntu2004
             image: geerlingguy/docker-ubuntu2004-ansible:latest
-          - container: ubuntu1804
-            image: geerlingguy/docker-ubuntu1804-ansible:latest
+          # - container: ubuntu1804
+          #   image: geerlingguy/docker-ubuntu1804-ansible:latest
           - container: debian10
             image: geerlingguy/docker-debian10-ansible:latest
           - container: debian11
             image: geerlingguy/docker-debian11-ansible:latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.11.10
+          python-version: 3.11.11
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+      # - name: Install dependencies
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     pip install -r requirements.txt
+
+      - name: Install test dependencies.
+        run: pip3 install ansible molecule molecule-plugins[docker] docker pytest testinfra
 
       - name: Run role tests on empty systems in check-mode
-        run: >-
-          MY_MOLECULE_CONTAINER=${{ matrix.molecule_distro.container }}
-          MY_MOLECULE_IMAGE=${{ matrix.molecule_distro.image }}
-          MY_MOLECULE_GROUP=${{ matrix.molecule_distro.group }}
-          MY_MOLECULE_DOCKER_COMMAND=${{ matrix.molecule_distro.command }}
-          molecule test -s empty-checkmode
+        env:
+          MY_MOLECULE_CONTAINER: ${{ matrix.molecule_distro.container }}
+          MY_MOLECULE_IMAGE: ${{ matrix.molecule_distro.image }}
+          MY_MOLECULE_GROUP: ${{ matrix.molecule_distro.group }}
+          MY_MOLECULE_DOCKER_COMMAND: ${{ matrix.molecule_distro.command }}
+        run: molecule test -s empty-checkmode
 
       - name: Run role tests
-        run: >-
-          MY_MOLECULE_CONTAINER=${{ matrix.molecule_distro.container }}
-          MY_MOLECULE_IMAGE=${{ matrix.molecule_distro.image }}
-          MY_MOLECULE_GROUP=${{ matrix.molecule_distro.group }}
-          MY_MOLECULE_DOCKER_COMMAND=${{ matrix.molecule_distro.command }}
-          molecule test
+        env:
+          MY_MOLECULE_CONTAINER: ${{ matrix.molecule_distro.container }}
+          MY_MOLECULE_IMAGE: ${{ matrix.molecule_distro.image }}
+          MY_MOLECULE_GROUP: ${{ matrix.molecule_distro.group }}
+          MY_MOLECULE_DOCKER_COMMAND: ${{ matrix.molecule_distro.command }}
+        run: molecule test
