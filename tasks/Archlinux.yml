@@ -8,19 +8,19 @@
 
 - name: "Archlinux | Set telegraf_agent_package_arch"
   set_fact:
-    telegraf_agent_package_arch: "{{ ansible_architecture }}"
+    telegraf_agent_package_arch: "{{ ansible_facts['architecture'] }}"
 
 - name: "Archlinux | Set telegraf_agent_package_arch specific for x86_64"
   set_fact:
     telegraf_agent_package_arch: "amd64"
   when:
-    - ansible_architecture == "x86_64"
+    - ansible_facts['architecture'] == "x86_64"
 
 - name: "Archlinux | Set telegraf_agent_package_arch specific for arm64/armv7l"
   set_fact:
     telegraf_agent_package_arch: "armhf"
   when:
-    - ansible_architecture == "arm64" or ansible_architecture == "armv7l"
+    - ansible_facts['architecture'] == "arm64" or ansible_facts['architecture'] == "armv7l"
 
 - name: "Archlinux | Create telegraf user"
   user:

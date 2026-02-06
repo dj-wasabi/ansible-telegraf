@@ -10,7 +10,7 @@
   set_fact:
     telegraf_agent_config_path: /usr/local/etc
   when:
-    - ansible_os_family in ["FreeBSD", "Darwin"]
+    - ansible_facts['os_family'] in ["FreeBSD", "Darwin"]
 
 - name: Retrieve all ec2 tags on the instance
   amazon.aws.ec2_tag_info:

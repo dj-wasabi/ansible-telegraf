@@ -11,7 +11,7 @@
   set_fact:
     telegraf_redhat_releasever: 7
   when:
-    - ansible_distribution == "Fedora"
+    - ansible_facts['distribution'] == "Fedora"
 
 - name: "RedHat | Add yum repository"
   yum_repository:

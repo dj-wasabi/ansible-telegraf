@@ -8,19 +8,19 @@
 
 - name: "Debian | Set telegraf_agent_package_arch"
   set_fact:
-    telegraf_agent_package_arch: "{{ ansible_architecture }}"
+    telegraf_agent_package_arch: "{{ ansible_facts['architecture'] }}"
 
 - name: "Debian | Set telegraf_agent_package_arch specific for x86_64"
   set_fact:
     telegraf_agent_package_arch: "amd64"
   when:
-    - ansible_architecture == "x86_64"
+    - ansible_facts['architecture'] == "x86_64"
 
 - name: "Debian | Set telegraf_agent_package_arch specific for arm64"
   set_fact:
     telegraf_agent_package_arch: "armhf"
   when:
-    - ansible_architecture == "arm64"
+    - ansible_facts['architecture'] == "arm64"
 
 - name: "Debian | Ensure the system can use the HTTPS transport for APT"
   stat:
@@ -41,7 +41,7 @@
   when:
     - telegraf_agent_package_method == "repo"
   block:
-    - when: (ansible_distribution == "Debian" and ansible_distribution_major_version|int < 9) or (ansible_distribution == "Ubuntu" and ansible_distribution_major_version|int < 18)
+    - when: (ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version']|int < 9) or (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_major_version']|int < 18)
       name: "Debian | Download Telegraf apt key"
       apt_key:
         url: "https://repos.influxdata.com/influxdata-archive.key"
@@ -50,7 +50,7 @@
       register: are_telegraf_dependencies_keys_installed
       until: are_telegraf_dependencies_keys_installed is succeeded
       become: true
-    - when: (ansible_distribution == "Debian" and ansible_distribution_major_version|int >= 9) or (ansible_distribution == "Ubuntu" and ansible_distribution_major_version|int >= 18)
+    - when: (ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version']|int >= 9) or (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_major_version']|int >= 18)
       block:  
         - name: "Debian | Ensure the shared keyrings directory exists"
           stat:
@@ -84,7 +84,7 @@
 
     - name: "Debian | Add Telegraf repository"
       copy:
-        content: "deb {{ telegraf_repository_params | default('') }} https://repos.influxdata.com/{{ ansible_distribution|lower }} stable main"
+        content: "deb {{ telegraf_repository_params | default('') }} https://repos.influxdata.com/{{ ansible_facts['distribution']|lower }} stable main"
         dest: /etc/apt/sources.list.d/telegraf.list
       become: yes
     

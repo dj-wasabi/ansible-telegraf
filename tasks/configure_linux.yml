@@ -10,7 +10,7 @@
   set_fact:
     telegraf_agent_config_path: /usr/local/etc
   when:
-    - ansible_os_family == "FreeBSD"
+    - ansible_facts['os_family'] == "FreeBSD"
 
 - name: Retrieve all ec2 tags on the instance
   amazon.aws.ec2_tag_info:
@@ -177,13 +177,13 @@
       become: true
       notify:
         - Restart Telegraf
-      when: ansible_os_family == "Debian"
+      when: ansible_facts['os_family'] == "Debian"
     - name: RedHat | Install lm-sensors
       package:
         name: lm_sensors
       become: true
       notify:
         - Restart Telegraf
-      when: ansible_os_family == "RedHat"
+      when: ansible_facts['os_family'] == "RedHat"
 
   when: "'sensors' in telegraf_plugins_extra and not telegraf_agent_docker"
