@@ -22,7 +22,7 @@
   register: are_telegraf_dependencies_packages_installed
   until: are_telegraf_dependencies_packages_installed is succeeded
   become: true
-  when: ansible_python.version.major == 2
+  when: ansible_facts['python']['version']['major'] == 2
 
 - name: "Suse | Install repo dependencies for Python >= 3"
   zypper:
@@ -33,11 +33,11 @@
   register: are_telegraf_dependencies_packages_installed
   until: are_telegraf_dependencies_packages_installed is succeeded
   become: true
-  when: ansible_python.version.major >= 3
+  when: ansible_facts['python']['version']['major'] >= 3
 
 - name: "Suse | Add default Open Build Service repository"
   zypper_repository:
-    repo: "{{ telegraf_zypper_repos[ansible_distribution|lower] | default(telegraf_zypper_repos['default']) }}"
+    repo: "{{ telegraf_zypper_repos[ansible_facts['distribution']|lower] | default(telegraf_zypper_repos['default']) }}"
     name: "telegraf"
     state: present
     runrefresh: True
