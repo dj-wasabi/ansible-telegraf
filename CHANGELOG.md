@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Address ansible deprecation FACTS\_AS\_VARS [\#202](https://github.com/dj-wasabi/ansible-telegraf/pull/202) ([aroberts](https://github.com/aroberts))
 - Force download of repo key to deal with key rotation [\#201](https://github.com/dj-wasabi/ansible-telegraf/pull/201) ([tlaerm](https://github.com/tlaerm))
 - added secretstores as config option [\#198](https://github.com/dj-wasabi/ansible-telegraf/pull/198) ([DEvil0000](https://github.com/DEvil0000))
 - Debian/Ubuntu: make telegraf\_repository\_params overridable [\#197](https://github.com/dj-wasabi/ansible-telegraf/pull/197) ([jlqfab](https://github.com/jlqfab))
@@ -50,7 +51,6 @@
 **Implemented enhancements:**
 
 - Fix check-mode failures [\#168](https://github.com/dj-wasabi/ansible-telegraf/pull/168) ([pieterlexis-tomtom](https://github.com/pieterlexis-tomtom))
-- Ensure check-mode works [\#163](https://github.com/dj-wasabi/ansible-telegraf/pull/163) ([pieterlexis-tomtom](https://github.com/pieterlexis-tomtom))
 
 **Fixed bugs:**
 
@@ -77,6 +77,7 @@
 **Implemented enhancements:**
 
 - Added/removed OS'es for Molecule CI testing [\#167](https://github.com/dj-wasabi/ansible-telegraf/pull/167) ([dj-wasabi](https://github.com/dj-wasabi))
+- Ensure check-mode works [\#163](https://github.com/dj-wasabi/ansible-telegraf/pull/163) ([pieterlexis-tomtom](https://github.com/pieterlexis-tomtom))
 - Downgrade support [\#160](https://github.com/dj-wasabi/ansible-telegraf/pull/160) ([maxnasonov](https://github.com/maxnasonov))
 
 **Fixed bugs:**
