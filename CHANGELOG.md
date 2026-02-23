@@ -8,6 +8,7 @@
 
 - Address ansible deprecation FACTS\_AS\_VARS [\#202](https://github.com/dj-wasabi/ansible-telegraf/pull/202) ([aroberts](https://github.com/aroberts))
 - Force download of repo key to deal with key rotation [\#201](https://github.com/dj-wasabi/ansible-telegraf/pull/201) ([tlaerm](https://github.com/tlaerm))
+- Bump ansible from 9.7.0 to 12.2.0 [\#200](https://github.com/dj-wasabi/ansible-telegraf/pull/200) ([dependabot[bot]](https://github.com/apps/dependabot))
 - added secretstores as config option [\#198](https://github.com/dj-wasabi/ansible-telegraf/pull/198) ([DEvil0000](https://github.com/DEvil0000))
 - Debian/Ubuntu: make telegraf\_repository\_params overridable [\#197](https://github.com/dj-wasabi/ansible-telegraf/pull/197) ([jlqfab](https://github.com/jlqfab))
 - Better sub inputs handling [\#193](https://github.com/dj-wasabi/ansible-telegraf/pull/193) ([lisuml](https://github.com/lisuml))
@@ -142,6 +143,7 @@
 - Apply ansible-lint in pre-commit hook and fix changes [\#136](https://github.com/dj-wasabi/ansible-telegraf/pull/136) ([dj-wasabi](https://github.com/dj-wasabi))
 - Using version as version\_compare is deprecated [\#135](https://github.com/dj-wasabi/ansible-telegraf/pull/135) ([dj-wasabi](https://github.com/dj-wasabi))
 - Using command instead of shell module [\#134](https://github.com/dj-wasabi/ansible-telegraf/pull/134) ([dj-wasabi](https://github.com/dj-wasabi))
+- Removing requirements file and use it from ci-base repo [\#131](https://github.com/dj-wasabi/ansible-telegraf/pull/131) ([dj-wasabi](https://github.com/dj-wasabi))
 
 ## [0.13.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.13.0) (2020-10-16)
 
@@ -164,7 +166,6 @@
 **Merged pull requests:**
 
 - corrected "Example Docker configuration" to make it work by default [\#132](https://github.com/dj-wasabi/ansible-telegraf/pull/132) ([NotDead](https://github.com/NotDead))
-- Removing requirements file and use it from ci-base repo [\#131](https://github.com/dj-wasabi/ansible-telegraf/pull/131) ([dj-wasabi](https://github.com/dj-wasabi))
 - Going to Github Actions [\#130](https://github.com/dj-wasabi/ansible-telegraf/pull/130) ([dj-wasabi](https://github.com/dj-wasabi))
 - quote aws ec2 global tags [\#129](https://github.com/dj-wasabi/ansible-telegraf/pull/129) ([Puneeth-n](https://github.com/Puneeth-n))
 - made service status configurable [\#127](https://github.com/dj-wasabi/ansible-telegraf/pull/127) ([DEvil0000](https://github.com/DEvil0000))
