@@ -1,4 +1,4 @@
-ansible==9.7.0
+ansible==12.2.0
 ansible-compat==24.10.0
 ansible-core==2.18.1
 docker==7.1.0
