@@ -23,7 +23,7 @@ def test_telegraf_dot_d_dir(host):
 
 
 def test_telegraf_dot_d(host):
-    telegraf = host.file("/etc/telegraf/telegraf.d/logparser.conf")
+    telegraf = host.file("/etc/telegraf/telegraf.d/tail.conf")
     assert not telegraf.exists
 
 
