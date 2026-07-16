@@ -58,29 +58,13 @@ jobs:
       - name: Install test dependencies.
         run: pip3 install -r requirements.txt
 
-      - name: DEBUG - validate molecule.yml against bundled schema
-        run: |
-          python - <<'EOF'
-          import json, os, molecule, jsonschema
-          from molecule.util import safe_load_file
-          schema_path = os.path.join(os.path.dirname(molecule.__file__), "data", "molecule.json")
-          schema = json.load(open(schema_path))
-          for f in ["molecule/default/molecule.yml", "molecule/empty-checkmode/molecule.yml"]:
-              data = safe_load_file(f)
-              validator = jsonschema.Draft202012Validator(schema)
-              errors = sorted(validator.iter_errors(data), key=str)
-              print(f"==== {f}: {len(errors)} error(s) ====")
-              for e in errors:
-                  print("  PATH:", list(e.absolute_path), "| MSG:", e.message)
-          EOF
-
       - name: Run role tests on empty systems in check-mode
         env:
           MY_MOLECULE_CONTAINER: ${{ matrix.molecule_distro.container }}
           MY_MOLECULE_IMAGE: ${{ matrix.molecule_distro.image }}
           MY_MOLECULE_GROUP: ${{ matrix.molecule_distro.group }}
           MY_MOLECULE_DOCKER_COMMAND: ${{ matrix.molecule_distro.command }}
-        run: molecule --debug test -s empty-checkmode
+        run: molecule test -s empty-checkmode
 
       - name: Run role tests
         env:

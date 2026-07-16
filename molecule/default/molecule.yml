@@ -13,7 +13,7 @@ platforms:
       - tsdb
     networks:
       - name: telegraf
-    environment:
+    env:
       INFLUXDB_DB: telegraf
   - name: telegraf-${MY_MOLECULE_CONTAINER:-centos8}
     image: ${MY_MOLECULE_IMAGE:-"geerlingguy/docker-centos8-ansible"}
