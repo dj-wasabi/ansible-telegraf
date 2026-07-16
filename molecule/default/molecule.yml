@@ -30,8 +30,6 @@ platforms:
 
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
   inventory:
     group_vars:
       debian:

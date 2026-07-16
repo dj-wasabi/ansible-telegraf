@@ -56,7 +56,7 @@ jobs:
       #     pip install -r requirements.txt
 
       - name: Install test dependencies.
-        run: pip3 install ansible molecule molecule-plugins[docker] docker pytest testinfra
+        run: pip3 install -r requirements.txt
 
       - name: Run role tests on empty systems in check-mode
         env:
