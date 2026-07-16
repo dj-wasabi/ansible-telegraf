@@ -27,20 +27,24 @@ jobs:
       fail-fast: false
       matrix:
         molecule_distro:
-          # - container: rocky8
-          #   image: geerlingguy/docker-rockylinux8-ansible
-          - container: rocky9
-            image: geerlingguy/docker-rockylinux9-ansible
+          # rocky9 dropped: geerlingguy image hits a sudo/PAM bug under
+          # docker-ce on GitHub Actions runners. Using rocky10 instead.
+          - container: rocky10
+            image: geerlingguy/docker-rockylinux10-ansible:latest
+          - container: ubuntu2404
+            image: geerlingguy/docker-ubuntu2404-ansible:latest
           - container: ubuntu2204
             image: geerlingguy/docker-ubuntu2204-ansible:latest
           - container: ubuntu2004
             image: geerlingguy/docker-ubuntu2004-ansible:latest
-          # - container: ubuntu1804
-          #   image: geerlingguy/docker-ubuntu1804-ansible:latest
-          - container: debian10
-            image: geerlingguy/docker-debian10-ansible:latest
+          # debian10 dropped: EOL and ships Python 3.7, incompatible with
+          # ansible-core 2.19 (requires Python 3.8+ on managed nodes).
           - container: debian11
             image: geerlingguy/docker-debian11-ansible:latest
+          - container: debian12
+            image: geerlingguy/docker-debian12-ansible:latest
+          - container: debian13
+            image: geerlingguy/docker-debian13-ansible:latest
     steps:
       - name: Check out code
         uses: actions/checkout@v4
