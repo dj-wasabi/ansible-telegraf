@@ -6,6 +6,8 @@
 
 **Merged pull requests:**
 
+- Fixes an idempotency issue when adding the Telegraf Repository [\#205](https://github.com/dj-wasabi/ansible-telegraf/pull/205) ([Tetha](https://github.com/Tetha))
+- Bump pytest from 8.3.3 to 9.0.3 [\#203](https://github.com/dj-wasabi/ansible-telegraf/pull/203) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Address ansible deprecation FACTS\_AS\_VARS [\#202](https://github.com/dj-wasabi/ansible-telegraf/pull/202) ([aroberts](https://github.com/aroberts))
 - Force download of repo key to deal with key rotation [\#201](https://github.com/dj-wasabi/ansible-telegraf/pull/201) ([tlaerm](https://github.com/tlaerm))
 - Bump ansible from 9.7.0 to 12.2.0 [\#200](https://github.com/dj-wasabi/ansible-telegraf/pull/200) ([dependabot[bot]](https://github.com/apps/dependabot))
@@ -340,10 +342,6 @@
 ## [0.5.1](https://github.com/dj-wasabi/ansible-telegraf/tree/0.5.1) (2016-08-24)
 
 [Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.5.0...0.5.1)
-
-**Merged pull requests:**
-
-- fixed issue with ansible not getting the package [\#6](https://github.com/dj-wasabi/ansible-telegraf/pull/6) ([thecodeassassin](https://github.com/thecodeassassin))
 
 ## [0.5.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.5.0) (2016-07-17)
 
