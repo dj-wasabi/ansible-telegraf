@@ -4,8 +4,14 @@
 
 [Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.14.2...HEAD)
 
+**Closed issues:**
+
+- Molecule Idempotency Tests fail at "Add Telegraf repository" [\#204](https://github.com/dj-wasabi/ansible-telegraf/issues/204)
+- secret store configuration [\#196](https://github.com/dj-wasabi/ansible-telegraf/issues/196)
+
 **Merged pull requests:**
 
+- Fixing CI job [\#206](https://github.com/dj-wasabi/ansible-telegraf/pull/206) ([dj-wasabi](https://github.com/dj-wasabi))
 - Fixes an idempotency issue when adding the Telegraf Repository [\#205](https://github.com/dj-wasabi/ansible-telegraf/pull/205) ([Tetha](https://github.com/Tetha))
 - Bump pytest from 8.3.3 to 9.0.3 [\#203](https://github.com/dj-wasabi/ansible-telegraf/pull/203) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Address ansible deprecation FACTS\_AS\_VARS [\#202](https://github.com/dj-wasabi/ansible-telegraf/pull/202) ([aroberts](https://github.com/aroberts))
@@ -46,6 +52,7 @@
 - Use `rhel` within yum url for almalinux  [\#187](https://github.com/dj-wasabi/ansible-telegraf/pull/187) ([kuhball](https://github.com/kuhball))
 - Add Archlinux OS [\#186](https://github.com/dj-wasabi/ansible-telegraf/pull/186) ([Frankkkkk](https://github.com/Frankkkkk))
 - Fixes Role for Almalinux 8.8, Closes \#172 [\#183](https://github.com/dj-wasabi/ansible-telegraf/pull/183) ([mira-miracoli](https://github.com/mira-miracoli))
+- Change Debian repo location [\#179](https://github.com/dj-wasabi/ansible-telegraf/pull/179) ([danclough](https://github.com/danclough))
 
 ## [0.14.1](https://github.com/dj-wasabi/ansible-telegraf/tree/0.14.1) (2024-02-17)
 
@@ -68,7 +75,6 @@
 
 - Bump ansible-core from 2.15.2 to 2.15.9 [\#182](https://github.com/dj-wasabi/ansible-telegraf/pull/182) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump ansible from 8.2.0 to 8.5.0 [\#181](https://github.com/dj-wasabi/ansible-telegraf/pull/181) ([dependabot[bot]](https://github.com/apps/dependabot))
-- Change Debian repo location [\#179](https://github.com/dj-wasabi/ansible-telegraf/pull/179) ([danclough](https://github.com/danclough))
 - replace depracted aws module [\#178](https://github.com/dj-wasabi/ansible-telegraf/pull/178) ([daparm](https://github.com/daparm))
 - added yaml 1.2.2 compatibility [\#176](https://github.com/dj-wasabi/ansible-telegraf/pull/176) ([DEvil0000](https://github.com/DEvil0000))
 - Migrate from io to diskio to fix deprecation warning [\#173](https://github.com/dj-wasabi/ansible-telegraf/pull/173) ([mprasil](https://github.com/mprasil))
