@@ -36,6 +36,7 @@
 
 - Add default repository handling for SUSE releases [\#154](https://github.com/dj-wasabi/ansible-telegraf/issues/154)
 - Fix Python package dependencies on SUSE releases [\#153](https://github.com/dj-wasabi/ansible-telegraf/issues/153)
+- Fix molecule tests so that PR's can properly validated [\#180](https://github.com/dj-wasabi/ansible-telegraf/pull/180) ([dj-wasabi](https://github.com/dj-wasabi))
 
 **Closed issues:**
 
@@ -52,7 +53,6 @@
 - Use `rhel` within yum url for almalinux  [\#187](https://github.com/dj-wasabi/ansible-telegraf/pull/187) ([kuhball](https://github.com/kuhball))
 - Add Archlinux OS [\#186](https://github.com/dj-wasabi/ansible-telegraf/pull/186) ([Frankkkkk](https://github.com/Frankkkkk))
 - Fixes Role for Almalinux 8.8, Closes \#172 [\#183](https://github.com/dj-wasabi/ansible-telegraf/pull/183) ([mira-miracoli](https://github.com/mira-miracoli))
-- Change Debian repo location [\#179](https://github.com/dj-wasabi/ansible-telegraf/pull/179) ([danclough](https://github.com/danclough))
 
 ## [0.14.1](https://github.com/dj-wasabi/ansible-telegraf/tree/0.14.1) (2024-02-17)
 
@@ -64,7 +64,6 @@
 
 **Fixed bugs:**
 
-- Fix molecule tests so that PR's can properly validated [\#180](https://github.com/dj-wasabi/ansible-telegraf/pull/180) ([dj-wasabi](https://github.com/dj-wasabi))
 - Replace apt\_key with get\_url [\#170](https://github.com/dj-wasabi/ansible-telegraf/pull/170) ([danclough](https://github.com/danclough))
 
 **Closed issues:**
@@ -75,6 +74,7 @@
 
 - Bump ansible-core from 2.15.2 to 2.15.9 [\#182](https://github.com/dj-wasabi/ansible-telegraf/pull/182) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump ansible from 8.2.0 to 8.5.0 [\#181](https://github.com/dj-wasabi/ansible-telegraf/pull/181) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Change Debian repo location [\#179](https://github.com/dj-wasabi/ansible-telegraf/pull/179) ([danclough](https://github.com/danclough))
 - replace depracted aws module [\#178](https://github.com/dj-wasabi/ansible-telegraf/pull/178) ([daparm](https://github.com/daparm))
 - added yaml 1.2.2 compatibility [\#176](https://github.com/dj-wasabi/ansible-telegraf/pull/176) ([DEvil0000](https://github.com/DEvil0000))
 - Migrate from io to diskio to fix deprecation warning [\#173](https://github.com/dj-wasabi/ansible-telegraf/pull/173) ([mprasil](https://github.com/mprasil))
@@ -227,7 +227,6 @@
 - Fix to work with Fedora Linux [\#78](https://github.com/dj-wasabi/ansible-telegraf/pull/78) ([ikke-t](https://github.com/ikke-t))
 - Updating to newer version of Telegraf [\#77](https://github.com/dj-wasabi/ansible-telegraf/pull/77) ([dj-wasabi](https://github.com/dj-wasabi))
 - Add support for extra win\_perf\_counters and prevent python u'' strings [\#76](https://github.com/dj-wasabi/ansible-telegraf/pull/76) ([jdivy](https://github.com/jdivy))
-- Added Windows as OS [\#68](https://github.com/dj-wasabi/ansible-telegraf/pull/68) ([dj-wasabi](https://github.com/dj-wasabi))
 
 ## [0.11.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.11.0) (2018-12-11)
 
@@ -247,6 +246,7 @@
 - Replace 'ec2\_facts' with 'ec2\_metadata\_facts' to fix a deprecation warning [\#72](https://github.com/dj-wasabi/ansible-telegraf/pull/72) ([Rylon](https://github.com/Rylon))
 - Added default pluging if nothing is configured [\#70](https://github.com/dj-wasabi/ansible-telegraf/pull/70) ([dj-wasabi](https://github.com/dj-wasabi))
 - Added support for \(Open\)Suse [\#69](https://github.com/dj-wasabi/ansible-telegraf/pull/69) ([dj-wasabi](https://github.com/dj-wasabi))
+- Added Windows as OS [\#68](https://github.com/dj-wasabi/ansible-telegraf/pull/68) ([dj-wasabi](https://github.com/dj-wasabi))
 - Want to use latest [\#67](https://github.com/dj-wasabi/ansible-telegraf/pull/67) ([dj-wasabi](https://github.com/dj-wasabi))
 - Some small improvements [\#66](https://github.com/dj-wasabi/ansible-telegraf/pull/66) ([dj-wasabi](https://github.com/dj-wasabi))
 - telegraf-extra-plugin.conf.j2: fix template typo [\#65](https://github.com/dj-wasabi/ansible-telegraf/pull/65) ([gaelL](https://github.com/gaelL))
