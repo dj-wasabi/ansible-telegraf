@@ -36,11 +36,11 @@ def test_telegraf_dot_d_dir(host):
 
 
 def test_telegraf_dot_d(host):
-    telegraf = host.file("/etc/telegraf/telegraf.d/logparser.conf")
+    telegraf = host.file("/etc/telegraf/telegraf.d/tail.conf")
     assert telegraf.user == "telegraf"
     assert telegraf.group == "telegraf"
     assert telegraf.mode == 0o640
-    assert telegraf.contains('[[inputs.logparser]]')
+    assert telegraf.contains('[[inputs.tail]]')
     assert telegraf.contains('from_beginning = false')
 
 

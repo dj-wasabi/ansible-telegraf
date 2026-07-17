@@ -80,7 +80,10 @@ telegraf_yum_baseurl:
   redhat: "https://repos.influxdata.com/rhel/{{ telegraf_redhat_releasever }}/$basearch/stable"
   rocky: "https://repos.influxdata.com/rhel/{{ telegraf_redhat_releasever }}/$basearch/stable"
   almalinux: "https://repos.influxdata.com/rhel/{{ telegraf_redhat_releasever }}/$basearch/stable"
-telegraf_yum_gpgkey: "https://repos.influxdata.com/influxdata-archive_compat.key"
+# NOTE: influxdata-archive_compat.key is expired and is rejected by the
+# stricter rpm (sequoia) GPG backend on EL10+. The current archive key works
+# on EL9 and EL10 alike.
+telegraf_yum_gpgkey: "https://repos.influxdata.com/influxdata-archive.key"
 
 telegraf_zypper_repos:
   "opensuse tumbleweed": "http://download.opensuse.org/repositories/devel:/languages:/go/openSUSE_Factory/"

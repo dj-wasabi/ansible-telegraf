@@ -13,7 +13,7 @@ platforms:
       - tsdb
     networks:
       - name: telegraf
-    environment:
+    env:
       INFLUXDB_DB: telegraf
   - name: telegraf-${MY_MOLECULE_CONTAINER:-centos8}
     image: ${MY_MOLECULE_IMAGE:-"geerlingguy/docker-centos8-ansible"}
@@ -30,8 +30,6 @@ platforms:
 
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
   inventory:
     group_vars:
       debian:
@@ -45,15 +43,13 @@ provisioner:
               - database = "telegraf"
               - precision = "s"
         telegraf_plugins_extra:
-          logparser:
-            plugin: logparser
+          tail:
+            plugin: tail
             config:
               - files = ["/var/log/messages"]
               - from_beginning = false
-            filter:
-              name: grok
-              config:
-                - patterns = ["invoked oom-killer"]
+              - data_format = "grok"
+              - grok_patterns = ["invoked oom-killer"]
         telegraf_aggregators:
           - aggregator: basicstats
             config:
