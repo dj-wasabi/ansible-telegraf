@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/dj-wasabi/ansible-telegraf/tree/HEAD)
+## [0.15.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.15.0) (2026-07-17)
 
-[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.14.2...HEAD)
+[Full Changelog](https://github.com/dj-wasabi/ansible-telegraf/compare/0.14.2...0.15.0)
 
 **Closed issues:**
 
@@ -227,6 +227,7 @@
 - Fix to work with Fedora Linux [\#78](https://github.com/dj-wasabi/ansible-telegraf/pull/78) ([ikke-t](https://github.com/ikke-t))
 - Updating to newer version of Telegraf [\#77](https://github.com/dj-wasabi/ansible-telegraf/pull/77) ([dj-wasabi](https://github.com/dj-wasabi))
 - Add support for extra win\_perf\_counters and prevent python u'' strings [\#76](https://github.com/dj-wasabi/ansible-telegraf/pull/76) ([jdivy](https://github.com/jdivy))
+- Added Windows as OS [\#68](https://github.com/dj-wasabi/ansible-telegraf/pull/68) ([dj-wasabi](https://github.com/dj-wasabi))
 
 ## [0.11.0](https://github.com/dj-wasabi/ansible-telegraf/tree/0.11.0) (2018-12-11)
 
@@ -246,7 +247,6 @@
 - Replace 'ec2\_facts' with 'ec2\_metadata\_facts' to fix a deprecation warning [\#72](https://github.com/dj-wasabi/ansible-telegraf/pull/72) ([Rylon](https://github.com/Rylon))
 - Added default pluging if nothing is configured [\#70](https://github.com/dj-wasabi/ansible-telegraf/pull/70) ([dj-wasabi](https://github.com/dj-wasabi))
 - Added support for \(Open\)Suse [\#69](https://github.com/dj-wasabi/ansible-telegraf/pull/69) ([dj-wasabi](https://github.com/dj-wasabi))
-- Added Windows as OS [\#68](https://github.com/dj-wasabi/ansible-telegraf/pull/68) ([dj-wasabi](https://github.com/dj-wasabi))
 - Want to use latest [\#67](https://github.com/dj-wasabi/ansible-telegraf/pull/67) ([dj-wasabi](https://github.com/dj-wasabi))
 - Some small improvements [\#66](https://github.com/dj-wasabi/ansible-telegraf/pull/66) ([dj-wasabi](https://github.com/dj-wasabi))
 - telegraf-extra-plugin.conf.j2: fix template typo [\#65](https://github.com/dj-wasabi/ansible-telegraf/pull/65) ([gaelL](https://github.com/gaelL))
